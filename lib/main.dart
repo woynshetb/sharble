@@ -23,7 +23,7 @@ class MyApp extends StatelessWidget {
             darkTheme: darkTheme,
             debugShowCheckedModeBanner: false,
             title: 'Shable App',
-            home: const WelcomePage(),
+            home: const SplashPage(),
           );
         });
   }

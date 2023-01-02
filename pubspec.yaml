@@ -40,6 +40,8 @@ dependencies:
   pin_code_fields: ^7.4.0
   image_picker: ^0.8.6
   flutter_svg: ^1.1.6
+  stacked: ^3.0.1
+  get: ^4.6.5
 
 dev_dependencies:
   flutter_test:

@@ -24,14 +24,14 @@ class _ResetPasswordPageState extends State<ResetPasswordPage> {
               Column(
                 children: [
                   const CustomAppbar(
-                    title: "Forgot Password",
+                    title: "Reset Password",
                     showLeading: true,
                   ),
                   const SizedBox(
                     height: 10,
                   ),
                   const Text(
-                    "Enter your email address to receive a 6-pin number and reset your password.",
+                    "Add your new password. From now on, you can login only with the new password.",
                     textAlign: TextAlign.center,
                     style: TextStyle(
                       fontSize: 13,

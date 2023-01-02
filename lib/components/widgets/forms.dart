@@ -132,10 +132,8 @@ class _DefaultFieldState extends State<DefaultField> {
             });
           },
           child: Icon(
-            (!makePasswordVisible)
-                ? Icons.remove_red_eye
-                : Icons.remove_red_eye,
-            color: Colors.grey,
+            (!makePasswordVisible) ? Icons.visibility : Icons.visibility_off,
+            color: Color(0xff2E3553),
           ),
         ),
       );
