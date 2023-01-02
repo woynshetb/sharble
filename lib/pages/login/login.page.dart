@@ -18,52 +18,46 @@ class _LoginPageState extends State<LoginPage> {
   Widget build(BuildContext context) {
     Size deviceSize = MediaQuery.of(context).size;
     TextEditingController email = TextEditingController();
-    return SafeArea(
-      child: Scaffold(
-        body: Padding(
-          padding: EdgeInsets.only(
-              left: deviceSize.width * 0.1,
-              right: deviceSize.width * 0.1,
-              bottom: deviceSize.width * 0.1),
+    return Scaffold(
+      body: SafeArea(
+        child: Padding(
+          padding: EdgeInsets.only(left: 30, right: 30, bottom: 30, top: 50),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Column(
                 children: [
-                  SizedBox(
-                    height: deviceSize.height * 0.04,
-                  ),
-                  CustomAppbar(
+                  const CustomAppbar(
                     title: "Login",
                     showLeading: false,
                   ),
-                  SizedBox(
-                    height: deviceSize.height * 0.015,
+                  const SizedBox(
+                    height: 10,
                   ),
-                  Text(
+                  const Text(
                     "Please log in to access all of the features and \n benefits of our app",
                     textAlign: TextAlign.center,
-                    style: TextStyle(fontSize: deviceSize.width * 0.035),
+                    style: TextStyle(
+                      fontSize: 13,
+                    ),
                   ),
-                  SizedBox(
-                    height: deviceSize.height * 0.015,
+                const  SizedBox(
+                    height:20,
                   ),
                   Container(
                     alignment: Alignment.topLeft,
-                    padding: const EdgeInsets.all(3.0),
+                    // padding: const EdgeInsets.all(3.0),
                     child: Text(
                       "Email",
                       style: TextStyle(
                         color: Theme.of(context).textTheme.bodyText1!.color,
                         fontWeight: FontWeight.w700,
-                        fontSize: deviceSize.width * 0.03,
+                        fontSize: 13,
                       ),
                     ),
                   ),
-                  SizedBox(
-                    height: deviceSize.height * 0.01,
-                  ),
+                  const SizedBox(height: 10),
                   DefaultField(
                     keyboardType: TextInputType.emailAddress,
                     textEditingController: email,
@@ -72,23 +66,21 @@ class _LoginPageState extends State<LoginPage> {
                     onTap: () {},
                     validator: (value) => FormValidator.validateEmail(value!),
                   ),
-                  SizedBox(
-                    height: deviceSize.height * 0.015,
-                  ),
+                  const SizedBox(height: 10),
                   Container(
                     alignment: Alignment.topLeft,
-                    padding: const EdgeInsets.all(3.0),
+                    //  padding: const EdgeInsets.all(3.0),
                     child: Text(
                       "Password",
                       style: TextStyle(
                         color: Theme.of(context).textTheme.bodyText1!.color,
                         fontWeight: FontWeight.w700,
-                        fontSize: deviceSize.width * 0.03,
+                        fontSize: 13,
                       ),
                     ),
                   ),
-                  SizedBox(
-                    height: deviceSize.height * 0.01,
+                  const SizedBox(
+                    height: 10,
                   ),
                   DefaultField(
                     keyboardType: TextInputType.emailAddress,
@@ -100,7 +92,7 @@ class _LoginPageState extends State<LoginPage> {
                     validator: (value) => FormValidator.validateEmail(value!),
                   ),
                   SizedBox(
-                    height: deviceSize.height * 0.01,
+                    height: 10,
                   ),
                   Align(
                     alignment: Alignment.topRight,
@@ -111,10 +103,10 @@ class _LoginPageState extends State<LoginPage> {
                             MaterialPageRoute(
                                 builder: (context) => ForgotPasswordPage()));
                       },
-                      child: Text(
+                      child: const Text(
                         "Forgot Password?",
                         style: TextStyle(
-                          fontSize: deviceSize.width * 0.03,
+                          fontSize: 13,
                           color: Color(
                             0xff48BFAA,
                           ),
@@ -129,20 +121,25 @@ class _LoginPageState extends State<LoginPage> {
                   Align(
                     alignment: Alignment.bottomCenter,
                     child: GreenPostitve(
-                      onPressed: () {},
+                      onPressed: () {
+
+
+                      },
                       title: "Login",
                     ),
                   ),
-                  SizedBox(
-                    height: deviceSize.height * 0.015,
+                  const SizedBox(
+                    height: 10,
                   ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Text(
+                     const Text(
                         "Don't have an account? ",
                         textAlign: TextAlign.center,
-                        style: TextStyle(fontSize: deviceSize.width * 0.035),
+                        style: TextStyle(
+                          fontSize: 14,
+                        ),
                       ),
                       InkWell(
                         onTap: () {
@@ -151,11 +148,11 @@ class _LoginPageState extends State<LoginPage> {
                               MaterialPageRoute(
                                   builder: (context) => SignupPage()));
                         },
-                        child: Text(
+                        child: const Text(
                           "Sign up",
                           textAlign: TextAlign.center,
                           style: TextStyle(
-                              fontSize: deviceSize.width * 0.035,
+                              fontSize: 14,
                               fontWeight: FontWeight.w600,
                               color: Color(0xff48BFAA)),
                         ),

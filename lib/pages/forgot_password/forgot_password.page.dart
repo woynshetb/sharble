@@ -16,58 +16,42 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
   @override
   Widget build(BuildContext context) {
     Size deviceSize = MediaQuery.of(context).size;
-    return SafeArea(
-      child: Scaffold(
-        body: Padding(
-          padding: EdgeInsets.only(
-            left: deviceSize.width * 0.03,
-            right: deviceSize.width * 0.03,
-            top: deviceSize.width * 0.1,
-            bottom: deviceSize.width * 0.1,
-          ),
+    return Scaffold(
+      body: SafeArea(
+        child: Padding(
+          padding: EdgeInsets.only(left: 30, right: 30, bottom: 30, top: 50),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Column(
                 children: [
-                  CustomAppbar(
+                  const CustomAppbar(
                     title: "Forgot Password",
                     showLeading: true,
                   ),
-                  SizedBox(
-                    height: deviceSize.height * 0.015,
-                  ),
-                  Text(
-                    "Enter your email address to receive a 6-pin number and \n and reset your password ",
+                  const SizedBox(height: 20),
+                  const Text(
+                    "Enter your email address to receive a 6-pin number and reset your password ",
                     textAlign: TextAlign.center,
-                    style: TextStyle(fontSize: deviceSize.width * 0.035),
+                    style: TextStyle(fontSize: 13),
                   ),
-                  SizedBox(
-                    height: deviceSize.height * 0.015,
-                  ),
+                  const SizedBox(height: 20),
                   Container(
                     alignment: Alignment.topLeft,
-                    padding: const EdgeInsets.all(3.0),
-                    child: Text(
+                    child: const Text(
                       "Email",
-                      style: TextStyle(
-                        color: Theme.of(context).textTheme.bodyText1!.color,
-                        fontWeight: FontWeight.w700,
-                        fontSize: deviceSize.width * 0.03,
-                      ),
+                      style:
+                          TextStyle(fontWeight: FontWeight.w700, fontSize: 13),
                     ),
                   ),
-                  SizedBox(
-                    height: deviceSize.height * 0.01,
-                  ),
+                const  SizedBox(height: 10),
                   DefaultField(
                     keyboardType: TextInputType.emailAddress,
                     textEditingController: TextEditingController(),
-                    hintText: "lubabi@gmail.com",
                     obscureText: false,
                     onTap: () {},
-                    validator: (value) => FormValidator.validateEmail(value!),
+     
                   ),
                 ],
               ),
