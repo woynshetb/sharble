@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:sharble/components/widgets/custom.appbar.dart';
-import 'package:sharble/components/widgets/custom_button.dart';
-import 'package:sharble/components/widgets/custom_textform.dart';
+import 'package:sharble/components/widgets/buttons.dart';
+import 'package:sharble/components/widgets/forms.dart';
 import 'package:sharble/pages/forgot_password/forgot_password.page.dart';
 import 'package:sharble/pages/signup/signup.page.dart';
 import 'package:sharble/services/validator.service.dart';
@@ -64,7 +64,7 @@ class _LoginPageState extends State<LoginPage> {
                   SizedBox(
                     height: deviceSize.height * 0.01,
                   ),
-                  CustomTextFormField(
+                  DefaultField(
                     keyboardType: TextInputType.emailAddress,
                     textEditingController: email,
                     hintText: "wbilihatu@gmail.com",
@@ -90,7 +90,7 @@ class _LoginPageState extends State<LoginPage> {
                   SizedBox(
                     height: deviceSize.height * 0.01,
                   ),
-                  CustomTextFormField(
+                  DefaultField(
                     keyboardType: TextInputType.emailAddress,
                     textEditingController: email,
                     hintText: "1234",
@@ -128,13 +128,9 @@ class _LoginPageState extends State<LoginPage> {
                 children: [
                   Align(
                     alignment: Alignment.bottomCenter,
-                    child: CustomButton(
+                    child: GreenPostitve(
                       onPressed: () {},
-                      child: const Text(
-                        "Login",
-                        style: TextStyle(
-                            color: Colors.white, fontWeight: FontWeight.bold),
-                      ),
+                      title: "Login",
                     ),
                   ),
                   SizedBox(

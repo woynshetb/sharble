@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:sharble/components/widgets/custom.appbar.dart';
-import 'package:sharble/components/widgets/custom_button.dart';
-import 'package:sharble/components/widgets/custom_textform.dart';
+import 'package:sharble/components/widgets/buttons.dart';
+import 'package:sharble/components/widgets/forms.dart';
 import 'package:sharble/pages/verify/verify.page.dart';
 import 'package:sharble/services/validator.service.dart';
 
@@ -61,7 +61,7 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
                   SizedBox(
                     height: deviceSize.height * 0.01,
                   ),
-                  CustomTextFormField(
+                  DefaultField(
                     keyboardType: TextInputType.emailAddress,
                     textEditingController: TextEditingController(),
                     hintText: "lubabi@gmail.com",
@@ -75,18 +75,14 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
                 children: [
                   Align(
                     alignment: Alignment.bottomCenter,
-                    child: CustomButton(
+                    child: GreenPostitve(
                       onPressed: () {
                         Navigator.push(
                             context,
                             MaterialPageRoute(
                                 builder: (context) => VerfiyPage()));
                       },
-                      child: const Text(
-                        "Next",
-                        style: TextStyle(
-                            color: Colors.white, fontWeight: FontWeight.bold),
-                      ),
+                      title: "Next",
                     ),
                   ),
                 ],

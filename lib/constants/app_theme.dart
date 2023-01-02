@@ -15,15 +15,15 @@ class AppTheme {
       scaffoldBackgroundColor: Colors.white,
       backgroundColor: Colors.white,
       cardColor: Colors.white,
-      textTheme: TextTheme(
+      textTheme: const TextTheme(
         headline3: TextStyle(
-   color: AppColor.secondary,
+          color: Color(0xff2e3553),
         ),
         bodyText1: TextStyle(
-   color: AppColor.secondary,
+          color: Color(0xff2e3553),
         ),
         bodyText2: TextStyle(
-          color: AppColor.secondary,
+          color: Color(0xff2e3553),
         ),
       ),
       bottomSheetTheme: const BottomSheetThemeData(

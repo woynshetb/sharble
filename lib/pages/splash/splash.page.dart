@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 class SplashPage extends StatefulWidget {
   const SplashPage({Key? key}) : super(key: key);
@@ -12,23 +13,18 @@ class _SplashPageState extends State<SplashPage> {
   Widget build(BuildContext context) {
     Size deviceSize = MediaQuery.of(context).size;
     return Scaffold(
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          Center(
-            child: Text(
-              "Sharble",
-              style: TextStyle(
-                fontWeight: FontWeight.w900,
-                fontSize: deviceSize.width * 0.1,
-                color: Color(
-                  0xff48BFAA,
-                ),
+      body: SafeArea(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Center(
+              child: SvgPicture.asset(
+                "assets/images/Sharble.svg",
               ),
             ),
-          )
-        ],
+          ],
+        ),
       ),
     );
   }

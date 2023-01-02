@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-class CustomTextFormField extends StatefulWidget {
-  const CustomTextFormField({
+class DefaultField extends StatefulWidget {
+  const DefaultField({
     Key? key,
     this.filled,
     this.fillColor,
@@ -60,29 +60,29 @@ class CustomTextFormField extends StatefulWidget {
   final List<TextInputFormatter>? inputFormatters;
 
   @override
-  _CustomTextFormFieldState createState() => _CustomTextFormFieldState();
+  _DefaultFieldState createState() => _DefaultFieldState();
 }
 
-class _CustomTextFormFieldState extends State<CustomTextFormField> {
+class _DefaultFieldState extends State<DefaultField> {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
-      scrollPadding: EdgeInsets.all(0),
-      style: TextStyle(fontWeight: FontWeight.w600),
+      scrollPadding: const EdgeInsets.all(0),
+      style: const TextStyle(
+          color: Color(0xff2E3553), fontWeight: FontWeight.w700, fontSize: 13),
       onChanged: widget.onChanged,
       decoration: InputDecoration(
         border: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(5),
+            borderRadius: BorderRadius.circular(15),
             borderSide: BorderSide.none),
         filled: true,
-        fillColor: widget.fillColor ?? Color(0xff2E3553).withOpacity(0.05),
+        fillColor: const Color(0xfffaf9fd),
         labelText: widget.labelText,
-        hintText: widget.hintText,
+        // hintText: widget.hintText,
         hintStyle: TextStyle(color: Colors.grey.withOpacity(0.8), fontSize: 14),
         labelStyle:
-            TextStyle(color: Colors.grey.withOpacity(0.8), fontSize: 14),
+            TextStyle(color: Colors.grey.withOpacity(0.8), fontSize: 13),
         errorText: widget.errorText,
-        
         prefixIcon: widget.prefixIcon,
         suffixIcon: widget.suffixIcon ?? _getSuffixWidget(),
         contentPadding: const EdgeInsets.all(10),
