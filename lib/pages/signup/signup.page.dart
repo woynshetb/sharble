@@ -1,11 +1,13 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:percent_indicator/percent_indicator.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 import 'package:sharble/components/widgets/custom.appbar.dart';
 import 'package:sharble/components/widgets/buttons.dart';
 import 'package:sharble/components/widgets/forms.dart';
 import 'package:sharble/services/validator.service.dart';
+import 'package:step_progress_indicator/step_progress_indicator.dart';
 
 class SignupPage extends StatefulWidget {
   const SignupPage({Key? key}) : super(key: key);
@@ -77,17 +79,17 @@ class _SignupPageState extends State<SignupPage> with RestorationMixin {
     return Scaffold(
       body: SafeArea(
         child: Padding(
-          padding: EdgeInsets.only(left: 30, right: 30, top: 30, bottom: 30),
+          padding:
+              const EdgeInsets.only(left: 30, right: 30, top: 30, bottom: 30),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              const SizedBox(height: 20),
               Center(
                 child: Stack(
                   children: [
                     Container(
-                      width: deviceSize.width,
-                      height: deviceSize.height * 0.0035,
+                      width: deviceSize.width * 0.8,
+                      height: 4,
                       decoration: const BoxDecoration(
                         color: Color(0xffF4F4F4),
                         borderRadius: BorderRadius.all(Radius.circular(10)),
@@ -96,24 +98,24 @@ class _SignupPageState extends State<SignupPage> with RestorationMixin {
                     Positioned(
                       top: 0,
                       right: stepPercent == 30
-                          ? deviceSize.width * 0.63
+                          ? deviceSize.width * 0.6
                           : stepPercent == 60
-                              ? deviceSize.width * 0.48
+                              ? deviceSize.width * 0.4
                               : stepPercent == 90
-                                  ? deviceSize.width * 0.22
+                                  ? deviceSize.width * 0.2
                                   : 0,
                       left: stepPercent == 30
                           ? 0
                           : stepPercent == 60
-                              ? deviceSize.width * 0.15
+                              ? deviceSize.width * 0.2
                               : stepPercent == 90
                                   ? deviceSize.width * 0.4
-                                  : deviceSize.width * 0.63,
+                                  : deviceSize.width * 0.6,
                       bottom: 0,
                       child: LayoutBuilder(
                         builder: (context, constraints) => Container(
-                          width: constraints.maxWidth * (30 / 100),
-                          height: deviceSize.height * 0.003,
+                          width: deviceSize.width * 0.8 * (30 / 100),
+                          height: 4,
                           decoration: const BoxDecoration(
                             color: Color(0xff48BFAA),
                             borderRadius: BorderRadius.all(Radius.circular(0)),
@@ -124,6 +126,21 @@ class _SignupPageState extends State<SignupPage> with RestorationMixin {
                   ],
                 ),
               ),
+
+              // LinearPercentIndicator(
+              //   alignment: MainAxisAlignment.start,
+              //   width: deviceSize.width * 0.8,
+              //   lineHeight: 4,
+              //   percent: stepPercent == 30
+              //       ? 0.25
+              //       : stepPercent == 60
+              //           ? 0.5
+              //           : stepPercent == 90
+              //               ? 0.75
+              //               : 1,
+              //   backgroundColor: Color(0xffF4F4F4),
+              //   progressColor: Color(0xff48BFAA),
+              // ),
               const SizedBox(
                 height: 20,
               ),
@@ -147,7 +164,7 @@ class _SignupPageState extends State<SignupPage> with RestorationMixin {
                                 textAlign: TextAlign.center,
                                 style: TextStyle(fontSize: 13),
                               ),
-                              SizedBox(height: 20),
+                              const SizedBox(height: 20),
                               Container(
                                 alignment: Alignment.topLeft,
                                 padding: const EdgeInsets.all(3.0),
@@ -159,18 +176,16 @@ class _SignupPageState extends State<SignupPage> with RestorationMixin {
                                   ),
                                 ),
                               ),
-                              SizedBox(height: 10),
+                              SizedBox(height: 5),
                               DefaultField(
                                 keyboardType: TextInputType.emailAddress,
                                 textEditingController: TextEditingController(),
                                 obscureText: false,
                                 onTap: () {},
-                                // validator: (value) =>
-                                //     FormValidator.validateEmail(value!),
+                                validator: (value) =>
+                                    FormValidator.validateName(value!),
                               ),
-                              SizedBox(
-                                height: deviceSize.height * 0.015,
-                              ),
+                              const SizedBox(height: 5),
                               Container(
                                 alignment: Alignment.topLeft,
                                 padding: const EdgeInsets.all(3.0),
@@ -182,7 +197,7 @@ class _SignupPageState extends State<SignupPage> with RestorationMixin {
                                   ),
                                 ),
                               ),
-                              SizedBox(height: 10),
+                              const SizedBox(height: 5),
                               DefaultField(
                                 keyboardType: TextInputType.emailAddress,
                                 textEditingController: TextEditingController(),
@@ -190,33 +205,32 @@ class _SignupPageState extends State<SignupPage> with RestorationMixin {
                                 obscureText: false,
                                 onTap: () {},
                                 validator: (value) =>
-                                    FormValidator.validateEmail(value!),
+                                    FormValidator.validateName(value!),
                               ),
-                              SizedBox(height: 10),
+                              const SizedBox(height: 5),
                               Container(
                                 alignment: Alignment.topLeft,
                                 padding: const EdgeInsets.all(3.0),
                                 child: Text(
                                   "Birthday",
                                   style: TextStyle(
-                                    color: Theme.of(context)
-                                        .textTheme
-                                        .bodyText1!
-                                        .color,
-                                    fontWeight: FontWeight.w700,
-                                    fontSize: deviceSize.width * 0.03,
-                                  ),
+                                      color: Theme.of(context)
+                                          .textTheme
+                                          .bodyText1!
+                                          .color,
+                                      fontWeight: FontWeight.w700,
+                                      fontSize: 13),
                                 ),
                               ),
-                              const SizedBox(height: 10),
+                              const SizedBox(height: 5),
                               DefaultField(
                                 keyboardType: TextInputType.emailAddress,
                                 textEditingController: TextEditingController(),
                                 hintText: _selectedDate.value.toString(),
                                 obscureText: false,
                                 onTap: () {},
-                                // validator: (value) =>
-                                //     FormValidator.validateEmail(value!),
+                                validator: (value) =>
+                                    FormValidator.valateBirthday(value!),
                                 suffixIcon: InkWell(
                                   onTap: () {
                                     _restorableDatePickerRouteFuture.present();
@@ -227,9 +241,7 @@ class _SignupPageState extends State<SignupPage> with RestorationMixin {
                                   ),
                                 ),
                               ),
-                              SizedBox(
-                                height: deviceSize.height * 0.02,
-                              ),
+                              const SizedBox(height: 15),
                               Row(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
@@ -258,7 +270,7 @@ class _SignupPageState extends State<SignupPage> with RestorationMixin {
                                       ),
                                     ),
                                   ),
-                                  SizedBox(
+                                  const SizedBox(
                                     width: 10,
                                   ),
                                   Text(
@@ -275,14 +287,12 @@ class _SignupPageState extends State<SignupPage> with RestorationMixin {
                           visible: stepPercent == 60,
                           child: Column(
                             children: [
-                              Text(
+                              const Text(
                                 "Enter your email and password. Password must be at leas 8 characters.",
                                 textAlign: TextAlign.center,
-                                style: TextStyle(
-                                  fontSize: deviceSize.width * 0.033,
-                                ),
+                                style: TextStyle(fontSize: 13),
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 height: 20,
                               ),
                               Container(
@@ -295,14 +305,16 @@ class _SignupPageState extends State<SignupPage> with RestorationMixin {
                                       fontSize: 13),
                                 ),
                               ),
-                              const SizedBox(height: 10),
+                              const SizedBox(height: 5),
                               DefaultField(
                                 keyboardType: TextInputType.emailAddress,
                                 textEditingController: TextEditingController(),
                                 obscureText: false,
                                 onTap: () {},
+                                validator: (value) =>
+                                    FormValidator.validateEmail(value!),
                               ),
-                              const SizedBox(height: 10),
+                              const SizedBox(height: 5),
                               Container(
                                 alignment: Alignment.topLeft,
                                 padding: const EdgeInsets.all(3.0),
@@ -314,20 +326,16 @@ class _SignupPageState extends State<SignupPage> with RestorationMixin {
                                   ),
                                 ),
                               ),
-                              SizedBox(
-                                height: deviceSize.height * 0.01,
-                              ),
+                              SizedBox(height: 5),
                               DefaultField(
                                 keyboardType: TextInputType.emailAddress,
                                 textEditingController: TextEditingController(),
                                 obscureText: true,
                                 onTap: () {},
                                 validator: (value) =>
-                                    FormValidator.validateEmail(value!),
+                                    FormValidator.validatePassword(value!),
                               ),
-                              SizedBox(
-                                height: deviceSize.height * 0.015,
-                              ),
+                              SizedBox(height: 5),
                               Container(
                                 alignment: Alignment.topLeft,
                                 padding: const EdgeInsets.all(3.0),
@@ -338,16 +346,15 @@ class _SignupPageState extends State<SignupPage> with RestorationMixin {
                                       fontSize: 13),
                                 ),
                               ),
-                              const SizedBox(height: 10),
+                              const SizedBox(height: 5),
                               DefaultField(
-                                keyboardType: TextInputType.emailAddress,
+                                keyboardType: TextInputType.text,
                                 textEditingController: TextEditingController(),
                                 hintText: _selectedDate.value.toString(),
                                 obscureText: true,
                                 onTap: () {},
-                              ),
-                              SizedBox(
-                                height: deviceSize.height * 0.02,
+                                validator: (value) =>
+                                    FormValidator.validatePassword(value!),
                               ),
                             ],
                           )),
@@ -420,7 +427,7 @@ class _SignupPageState extends State<SignupPage> with RestorationMixin {
                                 ),
                               ),
                               const Padding(
-                                padding:  EdgeInsets.all(10.0),
+                                padding: EdgeInsets.all(5.0),
                                 child: Text(
                                   "You have 120 seconds left to verify.\nResend new Code!",
                                   textAlign: TextAlign.center,
@@ -435,16 +442,12 @@ class _SignupPageState extends State<SignupPage> with RestorationMixin {
                           visible: stepPercent == 100,
                           child: Column(
                             children: [
-                            const  Text(
+                              const Text(
                                 "Congratulations! Your account is setup. You can upload your profile picture now or later. Only your friends you share rooms with, will see the picture.",
                                 textAlign: TextAlign.center,
-                                style: TextStyle(
-                                  fontSize: 13
-                                ),
+                                style: TextStyle(fontSize: 13),
                               ),
-                            const  SizedBox(
-                                height: 20
-                              ),
+                              const SizedBox(height: 20),
                               InkWell(
                                 onTap: () async {
                                   image = await _picker.pickImage(

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:sharble/components/widgets/buttons.dart';
 import 'package:sharble/components/widgets/custom.appbar.dart';
 import 'package:sharble/components/widgets/forms.dart';
+import 'package:sharble/services/validator.service.dart';
 
 class ResetPasswordPage extends StatefulWidget {
   const ResetPasswordPage({Key? key}) : super(key: key);
@@ -16,7 +17,7 @@ class _ResetPasswordPageState extends State<ResetPasswordPage> {
     return Scaffold(
       body: SafeArea(
         child: Padding(
-          padding: EdgeInsets.only(left: 30, right: 30, bottom: 30, top: 50),
+          padding: EdgeInsets.only(left: 30, right: 30, bottom: 30, top: 30),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -50,15 +51,16 @@ class _ResetPasswordPageState extends State<ResetPasswordPage> {
                       ),
                     ),
                   ),
-                  const SizedBox(height: 10),
+                  const SizedBox(height: 5),
                   DefaultField(
                     keyboardType: TextInputType.emailAddress,
                     textEditingController: TextEditingController(),
-                    hintText: "wbilihatu@gmail.com",
                     obscureText: false,
                     onTap: () {},
+                    validator: (value) =>
+                        FormValidator.validatePassword(value!),
                   ),
-                  const SizedBox(height: 10),
+                  const SizedBox(height: 5),
                   Container(
                     alignment: Alignment.topLeft,
                     //  padding: const EdgeInsets.all(3.0),
@@ -72,7 +74,7 @@ class _ResetPasswordPageState extends State<ResetPasswordPage> {
                     ),
                   ),
                   const SizedBox(
-                    height: 10,
+                    height: 5,
                   ),
                   DefaultField(
                     keyboardType: TextInputType.emailAddress,
@@ -80,6 +82,8 @@ class _ResetPasswordPageState extends State<ResetPasswordPage> {
                     hintText: "1234",
                     obscureText: true,
                     onTap: () {},
+                    validator: (value) =>
+                        FormValidator.validatePassword(value!),
                     suffixIcon: null,
                   ),
                 ],

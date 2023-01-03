@@ -20,7 +20,7 @@ class _VerfiyPageState extends State<VerfiyPage> {
     return Scaffold(
       body: SafeArea(
         child: Padding(
-          padding: EdgeInsets.only(left: 30, right: 30, bottom: 30, top: 50),
+          padding: EdgeInsets.only(left: 30, right: 30, bottom: 30, top: 30),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
@@ -95,7 +95,7 @@ class _VerfiyPageState extends State<VerfiyPage> {
                     ),
                   ),
                   const Padding(
-                    padding: EdgeInsets.all(10.0),
+                    padding: EdgeInsets.all(5.0),
                     child: Text(
                       "You have 120 seconds left to verify.\nResend new Code!",
                       textAlign: TextAlign.center,
@@ -110,10 +110,15 @@ class _VerfiyPageState extends State<VerfiyPage> {
                 alignment: Alignment.bottomCenter,
                 child: GreenPostitve(
                   onPressed: () {
-                      Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => ResetPasswordPage()));
+                    Navigator.pushReplacement(
+                      context,
+                      PageRouteBuilder(
+                        pageBuilder: (context, animation1, animation2) =>
+                            ResetPasswordPage(),
+                        transitionDuration: Duration.zero,
+                        reverseTransitionDuration: Duration.zero,
+                      ),
+                    );
                   },
                   title: "Next",
                 ),

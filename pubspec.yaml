@@ -42,6 +42,8 @@ dependencies:
   flutter_svg: ^1.1.6
   stacked: ^3.0.1
   get: ^4.6.5
+  percent_indicator: ^4.2.2
+  step_progress_indicator: ^1.0.2
 
 dev_dependencies:
   flutter_test:

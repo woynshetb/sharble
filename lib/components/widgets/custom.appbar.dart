@@ -14,26 +14,30 @@ class CustomAppbar extends StatefulWidget {
 class _CustomAppbarState extends State<CustomAppbar> {
   @override
   Widget build(BuildContext context) {
-    Size deviceSize = MediaQuery.of(context).size;
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         Visibility(
-          visible: widget.showLeading,
-          child: InkWell(
-            onTap: () {
-              Navigator.pop(context);
-            },
-            child: Container(
-              width: 26,
-              height: 26,
-              decoration: const BoxDecoration(
-                  color: Color(0xffF5F5F5), shape: BoxShape.circle),
-              child: const Icon(
-                Icons.keyboard_arrow_left,
-              ),
-            ),
-          ),
+          visible: true,
+          child: widget.showLeading == false
+              ? Container(
+                  width: 26,
+                  height: 26,
+                )
+              : InkWell(
+                  onTap: () {
+                    Navigator.pop(context);
+                  },
+                  child: Container(
+                    width: 26,
+                    height: 26,
+                    decoration: const BoxDecoration(
+                        color: Color(0xffF5F5F5), shape: BoxShape.circle),
+                    child: const Icon(
+                      Icons.keyboard_arrow_left,
+                    ),
+                  ),
+                ),
         ),
         Text(
           widget.title,
@@ -43,7 +47,7 @@ class _CustomAppbarState extends State<CustomAppbar> {
           ),
         ),
         Visibility(
-          visible: widget.showLeading,
+          visible: true,
           child: Container(),
         )
       ],

@@ -17,19 +17,13 @@ class _WelcomePageState extends State<WelcomePage> {
     return Scaffold(
       body: SafeArea(
         child: Padding(
-          padding: const EdgeInsets.only(
-            left: 30,
-            right: 30,
-            bottom: 30,
-          ),
+          padding:
+              const EdgeInsets.only(left: 30, right: 30, bottom: 30, top: 30),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Column(
                 children: [
-                  const SizedBox(
-                    height: 50,
-                  ),
                   Text(
                     "Sharble",
                     style: TextStyle(
@@ -49,13 +43,13 @@ class _WelcomePageState extends State<WelcomePage> {
                       fontSize: deviceSize.width * 0.035,
                     ),
                   ),
-                  const SizedBox(height: 40),
+                  const SizedBox(height: 25),
                   Image.asset(
                     "assets/images/welcome.png",
                     width: deviceSize.width * 1.2,
                     height: deviceSize.height * 0.4,
                   ),
-                  SizedBox(height: 40),
+                  const SizedBox(height: 25),
                   const Text(
                     "Simply create an account and log in to start using Sharly and simplifying your shopping experience.",
                     textAlign: TextAlign.center,
@@ -67,10 +61,15 @@ class _WelcomePageState extends State<WelcomePage> {
                 children: [
                   GreenPostitve(
                     onPressed: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => SignupPage()));
+                      Navigator.pushReplacement(
+                        context,
+                        PageRouteBuilder(
+                          pageBuilder: (context, animation1, animation2) =>
+                              SignupPage(),
+                          transitionDuration: Duration.zero,
+                          reverseTransitionDuration: Duration.zero,
+                        ),
+                      );
                     },
                     title: "Sign up",
                   ),

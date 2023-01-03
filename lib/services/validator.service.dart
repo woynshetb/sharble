@@ -9,6 +9,13 @@ class FormValidator {
     return null;
   }
 
+  static String? valateBirthday(String value) {
+    if (value.isEmpty || value.trim().isEmpty) {
+      return 'Invalid Birthday';
+    }
+    return null;
+  }
+
   static String? validateName(String value) {
     if (value.isEmpty || value.trim().isEmpty) {
       return 'Invalid name';

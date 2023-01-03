@@ -21,7 +21,8 @@ class _LoginPageState extends State<LoginPage> {
     return Scaffold(
       body: SafeArea(
         child: Padding(
-          padding: EdgeInsets.only(left: 30, right: 30, bottom: 30, top: 50),
+          padding:
+              const EdgeInsets.only(left: 30, right: 30, bottom: 30, top: 30),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -42,8 +43,8 @@ class _LoginPageState extends State<LoginPage> {
                       fontSize: 13,
                     ),
                   ),
-                const  SizedBox(
-                    height:20,
+                  const SizedBox(
+                    height: 20,
                   ),
                   Container(
                     alignment: Alignment.topLeft,
@@ -57,16 +58,16 @@ class _LoginPageState extends State<LoginPage> {
                       ),
                     ),
                   ),
-                  const SizedBox(height: 10),
+                  const SizedBox(height: 5),
                   DefaultField(
                     keyboardType: TextInputType.emailAddress,
-                    textEditingController: email,
+                    textEditingController: TextEditingController(),
                     hintText: "wbilihatu@gmail.com",
                     obscureText: false,
                     onTap: () {},
                     validator: (value) => FormValidator.validateEmail(value!),
                   ),
-                  const SizedBox(height: 10),
+                  const SizedBox(height: 5),
                   Container(
                     alignment: Alignment.topLeft,
                     //  padding: const EdgeInsets.all(3.0),
@@ -80,7 +81,7 @@ class _LoginPageState extends State<LoginPage> {
                     ),
                   ),
                   const SizedBox(
-                    height: 10,
+                    height: 5,
                   ),
                   DefaultField(
                     keyboardType: TextInputType.emailAddress,
@@ -89,19 +90,25 @@ class _LoginPageState extends State<LoginPage> {
                     obscureText: true,
                     onTap: () {},
                     suffixIcon: null,
-                    validator: (value) => FormValidator.validateEmail(value!),
+                    validator: (value) =>
+                        FormValidator.validatePassword(value!),
                   ),
-                  SizedBox(
-                    height: 10,
+                  const SizedBox(
+                    height: 5,
                   ),
                   Align(
                     alignment: Alignment.topRight,
                     child: InkWell(
                       onTap: () {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => ForgotPasswordPage()));
+                        Navigator.pushReplacement(
+                          context,
+                          PageRouteBuilder(
+                            pageBuilder: (context, animation1, animation2) =>
+                                ForgotPasswordPage(),
+                            transitionDuration: Duration.zero,
+                            reverseTransitionDuration: Duration.zero,
+                          ),
+                        );
                       },
                       child: const Text(
                         "Forgot Password?",
@@ -121,10 +128,7 @@ class _LoginPageState extends State<LoginPage> {
                   Align(
                     alignment: Alignment.bottomCenter,
                     child: GreenPostitve(
-                      onPressed: () {
-
-
-                      },
+                      onPressed: () {},
                       title: "Login",
                     ),
                   ),
@@ -134,7 +138,7 @@ class _LoginPageState extends State<LoginPage> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                     const Text(
+                      const Text(
                         "Don't have an account? ",
                         textAlign: TextAlign.center,
                         style: TextStyle(

@@ -19,7 +19,7 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
     return Scaffold(
       body: SafeArea(
         child: Padding(
-          padding: EdgeInsets.only(left: 30, right: 30, bottom: 30, top: 50),
+          padding: EdgeInsets.only(left: 30, right: 30, bottom: 30, top: 30),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -45,13 +45,13 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
                           TextStyle(fontWeight: FontWeight.w700, fontSize: 13),
                     ),
                   ),
-                const  SizedBox(height: 10),
+                  const SizedBox(height: 5),
                   DefaultField(
                     keyboardType: TextInputType.emailAddress,
                     textEditingController: TextEditingController(),
                     obscureText: false,
                     onTap: () {},
-     
+                    validator: (value) => FormValidator.validateEmail(value!),
                   ),
                 ],
               ),
@@ -61,10 +61,15 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
                     alignment: Alignment.bottomCenter,
                     child: GreenPostitve(
                       onPressed: () {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => VerfiyPage()));
+                        Navigator.pushReplacement(
+                          context,
+                          PageRouteBuilder(
+                            pageBuilder: (context, animation1, animation2) =>
+                                VerfiyPage(),
+                            transitionDuration: Duration.zero,
+                            reverseTransitionDuration: Duration.zero,
+                          ),
+                        );
                       },
                       title: "Next",
                     ),
