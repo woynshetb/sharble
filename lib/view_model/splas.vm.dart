@@ -17,7 +17,7 @@ class SplashViewModel extends MyBaseViewModel {
 
   loadNextPage() async {
     Future.delayed(const Duration(seconds: 1), () {
-      Navigator.pushReplacement(
+      Navigator.push(
         viewContext!,
         PageRouteBuilder(
           pageBuilder: (context, animation1, animation2) => WelcomePage(),

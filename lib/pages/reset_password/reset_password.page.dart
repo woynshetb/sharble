@@ -24,9 +24,12 @@ class _ResetPasswordPageState extends State<ResetPasswordPage> {
             children: [
               Column(
                 children: [
-                  const CustomAppbar(
+                   CustomAppbar(
                     title: "Reset Password",
                     showLeading: true,
+                    onPressed: () {
+                      Navigator.pop(context);
+                    },
                   ),
                   const SizedBox(
                     height: 10,

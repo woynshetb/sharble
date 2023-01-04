@@ -10,28 +10,63 @@ class GreenPostitve extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ElevatedButton(
-      onPressed: () {
+    return InkWell(
+      onTap: () {
         onPressed();
       },
-      style: ElevatedButton.styleFrom(
-        padding: const EdgeInsets.fromLTRB(40, 10, 40, 10),
-        surfaceTintColor: bgColor ?? const Color(0xff48BFAA),
-        elevation: 1,
-        tapTargetSize: MaterialTapTargetSize.shrinkWrap,
-        primary: bgColor ?? const Color(0xff48BFAA),
-        onSurface: null,
-        shadowColor: Colors.black,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(15),
+      child: Container(
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.only(
+            topLeft: Radius.circular(15),
+            topRight: Radius.circular(15),
+            bottomLeft: Radius.circular(15),
+            bottomRight: Radius.circular(15),
+          ),
+          color: Color.fromRGBO(72, 191, 169, 1),
+          border: Border.all(
+            color: Color.fromRGBO(72, 191, 169, 1),
+            width: 1,
+          ),
+        ),
+        padding: EdgeInsets.symmetric(horizontal: 40, vertical: 10),
+        child: Row(
+          mainAxisSize: MainAxisSize.min,
+          children: <Widget>[
+            Text(
+              title,
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                  color: Color.fromRGBO(255, 255, 255, 1),
+                  fontSize: 15,
+                  fontWeight: FontWeight.bold,
+                  height: 1.6),
+            ),
+          ],
         ),
       ),
-      child: Text(
-        title,
-        style: const TextStyle(
-            color: Colors.white, fontSize: 14, fontWeight: FontWeight.bold),
-      ),
     );
+    // return ElevatedButton(
+    //   onPressed: () {
+    //     onPressed();
+    //   },
+    //   style: ElevatedButton.styleFrom(
+    //     padding: const EdgeInsets.fromLTRB(40, 10, 40, 10),
+    //     surfaceTintColor: bgColor ?? const Color(0xff48BFAA),
+    //     elevation: 1,
+    //     tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+    //     primary: bgColor ?? const Color(0xff48BFAA),
+    //     onSurface: null,
+    //     shadowColor: Colors.black,
+    //     shape: RoundedRectangleBorder(
+    //       borderRadius: BorderRadius.circular(15),
+    //     ),
+    //   ),
+    //   child: Text(
+    //     title,
+    //     style: const TextStyle(
+    //         color: Colors.white, fontSize: 14, fontWeight: FontWeight.bold),
+    //   ),
+    // );
   }
 }
 

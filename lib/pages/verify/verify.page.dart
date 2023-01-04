@@ -26,7 +26,10 @@ class _VerfiyPageState extends State<VerfiyPage> {
             children: [
               Column(
                 children: [
-                  const CustomAppbar(
+                   CustomAppbar(
+                    onPressed: () {
+                      Navigator.pop(context);
+                    },
                     title: "Verify Code",
                     showLeading: true,
                   ),
@@ -42,6 +45,7 @@ class _VerfiyPageState extends State<VerfiyPage> {
                   Form(
                     key: formKey,
                     child: PinCodeTextField(
+                      autoFocus: true,
                       appContext: context,
                       length: 6,
                       obscureText: false,
@@ -110,7 +114,7 @@ class _VerfiyPageState extends State<VerfiyPage> {
                 alignment: Alignment.bottomCenter,
                 child: GreenPostitve(
                   onPressed: () {
-                    Navigator.pushReplacement(
+                    Navigator.push(
                       context,
                       PageRouteBuilder(
                         pageBuilder: (context, animation1, animation2) =>

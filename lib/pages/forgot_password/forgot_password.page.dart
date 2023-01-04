@@ -26,7 +26,10 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
             children: [
               Column(
                 children: [
-                  const CustomAppbar(
+                  CustomAppbar(
+                    onPressed: () {
+                      Navigator.pop(context);
+                    },
                     title: "Forgot Password",
                     showLeading: true,
                   ),
@@ -47,6 +50,7 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
                   ),
                   const SizedBox(height: 5),
                   DefaultField(
+                    
                     keyboardType: TextInputType.emailAddress,
                     textEditingController: TextEditingController(),
                     obscureText: false,
@@ -61,7 +65,7 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
                     alignment: Alignment.bottomCenter,
                     child: GreenPostitve(
                       onPressed: () {
-                        Navigator.pushReplacement(
+                        Navigator.push(
                           context,
                           PageRouteBuilder(
                             pageBuilder: (context, animation1, animation2) =>

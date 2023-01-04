@@ -67,6 +67,7 @@ class _DefaultFieldState extends State<DefaultField> {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      autofocus: true,
       scrollPadding: const EdgeInsets.all(0),
       style: const TextStyle(
           color: Color(0xff2E3553), fontWeight: FontWeight.w700, fontSize: 13),
@@ -118,23 +119,23 @@ class _DefaultFieldState extends State<DefaultField> {
 
   Widget _getSuffixWidget() {
     if (widget.obscureText!) {
-      return ButtonTheme(
-        minWidth: 30,
-        height: 30,
-        padding: const EdgeInsets.all(0),
-        child: TextButton(
-          style: TextButton.styleFrom(
-            padding: const EdgeInsets.all(0),
-          ),
-          onPressed: () {
+      return Container(
+        width: 16,
+        height: 16,
+        padding: const EdgeInsets.all(10),
+        child: InkWell(
+          onTap: () {
             setState(() {
               makePasswordVisible = !makePasswordVisible;
             });
           },
-          child: Icon(
-            (!makePasswordVisible) ? Icons.visibility : Icons.visibility_off,
-            color: Color(0xff2E3553),
-          ),
+          child: (!makePasswordVisible)
+              ?
+              Image.asset("assets/images/icon-eve-close.png"): Image.asset("assets/images/icon-eye.png"),
+          // child: Icon(
+          //   (!makePasswordVisible) ? Icons.visibility : Icons.visibility_off,
+          //   color: Color(0xff2E3553),
+          // ),
         ),
       );
     } else {

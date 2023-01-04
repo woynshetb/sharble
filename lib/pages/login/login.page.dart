@@ -27,10 +27,14 @@ class _LoginPageState extends State<LoginPage> {
             crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
+            
               Column(
                 children: [
-                  const CustomAppbar(
+                  CustomAppbar(
                     title: "Login",
+                    onPressed: () {
+                      Navigator.pop(context);
+                    },
                     showLeading: false,
                   ),
                   const SizedBox(
@@ -94,13 +98,13 @@ class _LoginPageState extends State<LoginPage> {
                         FormValidator.validatePassword(value!),
                   ),
                   const SizedBox(
-                    height: 5,
+                    height: 10,
                   ),
                   Align(
                     alignment: Alignment.topRight,
                     child: InkWell(
                       onTap: () {
-                        Navigator.pushReplacement(
+                        Navigator.push(
                           context,
                           PageRouteBuilder(
                             pageBuilder: (context, animation1, animation2) =>
@@ -147,10 +151,14 @@ class _LoginPageState extends State<LoginPage> {
                       ),
                       InkWell(
                         onTap: () {
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => SignupPage()));
+                      Navigator.push(
+        context,
+        PageRouteBuilder(
+          pageBuilder: (context, animation1, animation2) => SignupPage(),
+          transitionDuration: Duration.zero,
+          reverseTransitionDuration: Duration.zero,
+        ),
+      );
                         },
                         child: const Text(
                           "Sign up",

@@ -1,5 +1,6 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:percent_indicator/percent_indicator.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
@@ -144,7 +145,11 @@ class _SignupPageState extends State<SignupPage> with RestorationMixin {
               const SizedBox(
                 height: 20,
               ),
+              
               CustomAppbar(
+                onPressed: () {
+                  Navigator.pop(context);
+                },
                 title: "Sign up",
                 showLeading: stepPercent == 100 ? false : true,
               ),
@@ -185,7 +190,7 @@ class _SignupPageState extends State<SignupPage> with RestorationMixin {
                                 validator: (value) =>
                                     FormValidator.validateName(value!),
                               ),
-                              const SizedBox(height: 5),
+                              const SizedBox(height: 10),
                               Container(
                                 alignment: Alignment.topLeft,
                                 padding: const EdgeInsets.all(3.0),
@@ -207,7 +212,7 @@ class _SignupPageState extends State<SignupPage> with RestorationMixin {
                                 validator: (value) =>
                                     FormValidator.validateName(value!),
                               ),
-                              const SizedBox(height: 5),
+                              const SizedBox(height: 10),
                               Container(
                                 alignment: Alignment.topLeft,
                                 padding: const EdgeInsets.all(3.0),
@@ -235,13 +240,29 @@ class _SignupPageState extends State<SignupPage> with RestorationMixin {
                                   onTap: () {
                                     _restorableDatePickerRouteFuture.present();
                                   },
-                                  child: const Icon(
-                                    Icons.date_range,
-                                    color: Color(0xff2E3553),
+                                  child: Container(
+                                    width: 16,
+                                    height: 18,
+                                    padding: EdgeInsets.only(
+                                      right: deviceSize.width * 0.04,
+                                      top: deviceSize.height * 0.013,
+                                      bottom: deviceSize.height * 0.013,
+                                    ),
+                                    // decoration: BoxDecoration(
+                                    //     image: DecorationImage(
+                                    //       fit: BoxFit.cover,
+                                    //         image: AssetImage(
+
+                                    //   "assets/images/icon_calendar.png",
+                                    // ))),
+
+                                    child: Image.asset(
+                                      "assets/images/icon_calendar.png",
+                                    ),
                                   ),
                                 ),
                               ),
-                              const SizedBox(height: 15),
+                              const SizedBox(height: 20),
                               Row(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
@@ -256,7 +277,14 @@ class _SignupPageState extends State<SignupPage> with RestorationMixin {
                                       height: 20,
                                       alignment: Alignment.center,
                                       decoration: BoxDecoration(
-                                        color: Theme.of(context).primaryColor,
+                                        color: isChecked
+                                            ? Theme.of(context).primaryColor
+                                            : Colors.white,
+                                        border: isChecked
+                                            ? null
+                                            : Border.all(
+                                                color: Theme.of(context)
+                                                    .primaryColor),
                                         borderRadius: BorderRadius.circular(6),
                                       ),
                                       child: Center(
@@ -373,6 +401,7 @@ class _SignupPageState extends State<SignupPage> with RestorationMixin {
                               Form(
                                 key: formKey,
                                 child: PinCodeTextField(
+                                  autoFocus: true,
                                   appContext: context,
                                   length: 6,
                                   obscureText: false,
@@ -467,13 +496,15 @@ class _SignupPageState extends State<SignupPage> with RestorationMixin {
                                       color: Color(0xffFAF9FD),
                                       borderRadius: BorderRadius.circular(15)),
                                   child: Visibility(
-                                    visible: image == null,
-                                    child: Icon(
-                                      Icons.camera_alt_outlined,
-                                      color: Color(0xffCFD3EE),
-                                      size: 40,
-                                    ),
-                                  ),
+                                      visible: image == null,
+                                      child: Padding(
+                                        padding: EdgeInsets.all(
+                                          deviceSize.width * 0.1,
+                                        ),
+                                        child: Image.asset(
+                                          "assets/images/Icon.png",
+                                        ),
+                                      )),
                                 ),
                               ),
                             ],
