@@ -6,8 +6,9 @@ class AppTheme {
     return ThemeData(
       fontFamily: "Gilroy",
       primarySwatch: AppColor.myColor,
-      primaryColor: AppColor.myColor[100],
+      primaryColor: AppColor.myColor[500],
       primaryColorDark: AppColor.secondary,
+
       textSelectionTheme: const TextSelectionThemeData(
         selectionColor: Colors.grey,
       ),

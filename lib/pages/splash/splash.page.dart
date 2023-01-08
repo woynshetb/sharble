@@ -19,6 +19,7 @@ class _SplashPageState extends State<SplashPage> {
         onModelReady: (vm) async => vm.initialise(),
         builder: (context, vm, child) {
           return Scaffold(
+             resizeToAvoidBottomInset: false,
             body: SafeArea(
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,

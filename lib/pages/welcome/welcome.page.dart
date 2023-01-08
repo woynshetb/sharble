@@ -17,6 +17,7 @@ class _WelcomePageState extends State<WelcomePage> {
     Size deviceSize = MediaQuery.of(context).size;
 
     return Scaffold(
+       resizeToAvoidBottomInset: false,
       body: SafeArea(
         child: Padding(
           padding:

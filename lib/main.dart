@@ -19,8 +19,8 @@ class MyApp extends StatelessWidget {
         light: AppTheme().lightTheme(),
         dark: AppTheme().darkTheme(),
         builder: (theme, darkTheme) {
-          return MaterialApp(
-            
+          return GetMaterialApp(
+            defaultTransition: Transition.noTransition,
             theme: theme,
             darkTheme: darkTheme,
             debugShowCheckedModeBanner: false,

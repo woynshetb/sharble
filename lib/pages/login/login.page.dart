@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:sharble/components/widgets/custom.appbar.dart';
 import 'package:sharble/components/widgets/buttons.dart';
 import 'package:sharble/components/widgets/forms.dart';
+import 'package:sharble/pages/bottom_nav/bottom_nav.dart';
 import 'package:sharble/pages/forgot_password/forgot_password.page.dart';
 import 'package:sharble/pages/signup/signup.page.dart';
 import 'package:sharble/services/validator.service.dart';
@@ -19,6 +20,7 @@ class _LoginPageState extends State<LoginPage> {
     Size deviceSize = MediaQuery.of(context).size;
     TextEditingController email = TextEditingController();
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       body: SafeArea(
         child: Padding(
           padding:
@@ -27,7 +29,6 @@ class _LoginPageState extends State<LoginPage> {
             crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-            
               Column(
                 children: [
                   CustomAppbar(
@@ -132,7 +133,17 @@ class _LoginPageState extends State<LoginPage> {
                   Align(
                     alignment: Alignment.bottomCenter,
                     child: GreenPostitve(
-                      onPressed: () {},
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          PageRouteBuilder(
+                            pageBuilder: (context, animation1, animation2) =>
+                                BottomNavPage(),
+                            transitionDuration: Duration.zero,
+                            reverseTransitionDuration: Duration.zero,
+                          ),
+                        );
+                      },
                       title: "Login",
                     ),
                   ),
@@ -151,14 +162,15 @@ class _LoginPageState extends State<LoginPage> {
                       ),
                       InkWell(
                         onTap: () {
-                      Navigator.push(
-        context,
-        PageRouteBuilder(
-          pageBuilder: (context, animation1, animation2) => SignupPage(),
-          transitionDuration: Duration.zero,
-          reverseTransitionDuration: Duration.zero,
-        ),
-      );
+                          Navigator.push(
+                            context,
+                            PageRouteBuilder(
+                              pageBuilder: (context, animation1, animation2) =>
+                                  SignupPage(),
+                              transitionDuration: Duration.zero,
+                              reverseTransitionDuration: Duration.zero,
+                            ),
+                          );
                         },
                         child: const Text(
                           "Sign up",

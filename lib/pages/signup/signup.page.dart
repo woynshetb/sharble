@@ -78,6 +78,8 @@ class _SignupPageState extends State<SignupPage> with RestorationMixin {
     String currentText = "";
     Size deviceSize = MediaQuery.of(context).size;
     return Scaffold(
+      
+      resizeToAvoidBottomInset: false,
       body: SafeArea(
         child: Padding(
           padding:
@@ -145,7 +147,7 @@ class _SignupPageState extends State<SignupPage> with RestorationMixin {
               const SizedBox(
                 height: 20,
               ),
-              
+
               CustomAppbar(
                 onPressed: () {
                   Navigator.pop(context);
@@ -190,7 +192,7 @@ class _SignupPageState extends State<SignupPage> with RestorationMixin {
                                 validator: (value) =>
                                     FormValidator.validateName(value!),
                               ),
-                              const SizedBox(height: 10),
+                              const SizedBox(height: 5),
                               Container(
                                 alignment: Alignment.topLeft,
                                 padding: const EdgeInsets.all(3.0),
@@ -212,7 +214,7 @@ class _SignupPageState extends State<SignupPage> with RestorationMixin {
                                 validator: (value) =>
                                     FormValidator.validateName(value!),
                               ),
-                              const SizedBox(height: 10),
+                              const SizedBox(height: 5),
                               Container(
                                 alignment: Alignment.topLeft,
                                 padding: const EdgeInsets.all(3.0),
@@ -257,7 +259,7 @@ class _SignupPageState extends State<SignupPage> with RestorationMixin {
                                     // ))),
 
                                     child: Image.asset(
-                                      "assets/images/icon_calendar.png",
+                                      "assets/images/icon_calander.png",
                                     ),
                                   ),
                                 ),
@@ -265,6 +267,8 @@ class _SignupPageState extends State<SignupPage> with RestorationMixin {
                               const SizedBox(height: 20),
                               Row(
                                 crossAxisAlignment: CrossAxisAlignment.start,
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
                                 children: [
                                   InkWell(
                                     onTap: () {
@@ -298,14 +302,10 @@ class _SignupPageState extends State<SignupPage> with RestorationMixin {
                                       ),
                                     ),
                                   ),
-                                  const SizedBox(
-                                    width: 10,
-                                  ),
                                   Text(
                                     "I agree with the terms and conditions and also \nthe protection of my personal data on Sharble.",
                                     textAlign: TextAlign.center,
-                                    style: TextStyle(
-                                        fontSize: deviceSize.width * 0.034),
+                                    style: TextStyle(fontSize: 13),
                                   )
                                 ],
                               )
@@ -502,7 +502,7 @@ class _SignupPageState extends State<SignupPage> with RestorationMixin {
                                           deviceSize.width * 0.1,
                                         ),
                                         child: Image.asset(
-                                          "assets/images/Icon.png",
+                                          "assets/images/Icon_camera.png",
                                         ),
                                       )),
                                 ),

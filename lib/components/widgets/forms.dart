@@ -120,9 +120,9 @@ class _DefaultFieldState extends State<DefaultField> {
   Widget _getSuffixWidget() {
     if (widget.obscureText!) {
       return Container(
-        width: 16,
-        height: 16,
-        padding: const EdgeInsets.all(10),
+        width: 12,
+        height: 12,
+        padding: const EdgeInsets.only(right:20),
         child: InkWell(
           onTap: () {
             setState(() {
@@ -130,8 +130,15 @@ class _DefaultFieldState extends State<DefaultField> {
             });
           },
           child: (!makePasswordVisible)
-              ?
-              Image.asset("assets/images/icon-eve-close.png"): Image.asset("assets/images/icon-eye.png"),
+              ? Image.asset(
+                  "assets/images/icon-eve-close.png",
+                  fit: BoxFit.fitWidth,
+                  width: 10,
+                )
+              : Image.asset(
+                  "assets/images/icon-eye.png",
+                  width: 10,
+                ),
           // child: Icon(
           //   (!makePasswordVisible) ? Icons.visibility : Icons.visibility_off,
           //   color: Color(0xff2E3553),

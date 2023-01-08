@@ -18,6 +18,7 @@ class _VerfiyPageState extends State<VerfiyPage> {
   Widget build(BuildContext context) {
     Size deviceSize = MediaQuery.of(context).size;
     return Scaffold(
+       resizeToAvoidBottomInset: false,
       body: SafeArea(
         child: Padding(
           padding: EdgeInsets.only(left: 30, right: 30, bottom: 30, top: 30),
