@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:sharble/pages/notifications/notifications.page.dart';
 import 'package:sharble/pages/room/create_room.page.dart';
 import 'package:sharble/pages/shopping/shopping_list.page.dart';
@@ -17,20 +18,20 @@ class _RoomsPageState extends State<RoomsPage> {
       "total": "12",
       "image": "assets/images/girl.png",
       "color": Color(0xffE7FFE8),
-      "icon": "assets/images/icon_bag.png",
+      "icon": "assets/images/assets/icon_shopping_list.svg",
     },
     {
       "name": "Vacation Trip 2021 & Student \nLoans",
       "total": "12",
       "image": "assets/images/girl.png",
       "color": Color(0xffE7FEFF),
-      "icon": "assets/images/icon_add.png",
+      "icon": "assets/images/assets/icon-task-manager.svg",
     },
     {
       "name": "Mike owing me money for a long \ntime",
       "total": "12",
       "image": "assets/images/girl.png",
-      "icon": "assets/images/icon_wallet.png",
+      "icon": "assets/images/assets/icon-dept-organizer.svg",
       "color": Color(0xffFFE7E7)
     },
     {
@@ -38,7 +39,7 @@ class _RoomsPageState extends State<RoomsPage> {
       "total": "12",
       "image": "assets/images/girl.png",
       "color": Color(0xffF7E7FF),
-      "icon": "assets/images/icon_food.png",
+      "icon": "assets/images/assets/icon-activity-planner.svg",
     },
   ];
   @override
@@ -49,15 +50,16 @@ class _RoomsPageState extends State<RoomsPage> {
       appBar: AppBar(
         leadingWidth: 30,
         titleSpacing: 0,
-        backgroundColor: Colors.transparent,
+        backgroundColor: Color(0xfffcfbfc),
         elevation: 0,
         centerTitle: false,
         title: Text(
           "Rooms",
           style: TextStyle(
-              color: Theme.of(context).textTheme.bodyText1!.color,
-              fontWeight: FontWeight.bold,
-              fontSize: 18),
+            color: Theme.of(context).textTheme.bodyText1!.color,
+            fontWeight: FontWeight.w900,
+            fontSize: 16,
+          ),
         ),
         actions: [
           InkWell(
@@ -92,8 +94,12 @@ class _RoomsPageState extends State<RoomsPage> {
           ),
         ],
       ),
+      backgroundColor: Color(0xffFCFBFC),
       body: Padding(
-        padding: const EdgeInsets.all(20.0),
+        padding: const EdgeInsets.only(
+          left: 20.0,
+          right: 20,
+        ),
         child: ListView.builder(
             itemCount: list.length,
             physics: NeverScrollableScrollPhysics(),
@@ -111,35 +117,38 @@ class _RoomsPageState extends State<RoomsPage> {
                   );
                 },
                 child: Container(
+                  
+                  margin: EdgeInsets.only(top: 2, bottom: 8),
                   padding: EdgeInsets.symmetric(horizontal: 20, vertical: 15),
                   decoration: BoxDecoration(
                     color: Colors.white,
                     borderRadius: BorderRadius.circular(15),
                     boxShadow: [
                       BoxShadow(
-                        color: Colors.grey.shade100,
-                        blurRadius:
-                            50, // has the effect of softening the shadow
+                        color: Colors.grey.withOpacity(0.1),
+                        blurRadius: 25, // has the effect of softening the shadow
                         spreadRadius:
                             1, // has the effect of extending the shadow
                         offset: Offset(
-                          5.0, // horizontal, move right 10
-                          5.0, // vertical, move down 10
+                          6, // horizontal, move right 10
+                          6, // vertical, move down 10
                         ),
                       )
                     ],
                   ),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  
                     children: [
                       Column(
+                        mainAxisSize: MainAxisSize.min,
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
                             list[index]['name'],
                             style: TextStyle(
                               fontSize: 14,
-                              fontWeight: FontWeight.w900,
+                              fontWeight: FontWeight.w800,
                             ),
                           ),
                           SizedBox(
@@ -164,11 +173,14 @@ class _RoomsPageState extends State<RoomsPage> {
                               ),
                             ],
                           ),
+                          SizedBox(
+                            height: 5,
+                          ),
                           Row(
                             children: [
                               Container(
-                                width: deviceSize.width * 0.05,
-                                height: deviceSize.height * 0.05,
+                                width:20,
+                                height: 20,
                                 decoration: BoxDecoration(
                                     image: DecorationImage(
                                         fit: BoxFit.contain,
@@ -179,8 +191,8 @@ class _RoomsPageState extends State<RoomsPage> {
                                 width: 5,
                               ),
                               Container(
-                                width: deviceSize.width * 0.05,
-                                height: deviceSize.height * 0.05,
+                               width:20,
+                                height: 20,
                                 decoration: BoxDecoration(
                                     image: DecorationImage(
                                         fit: BoxFit.contain,
@@ -191,7 +203,7 @@ class _RoomsPageState extends State<RoomsPage> {
                                 width: 5,
                               ),
                               CircleAvatar(
-                                radius: 12,
+                                radius: 10,
                                 child: Text(
                                   "TM",
                                   style: TextStyle(
@@ -202,18 +214,12 @@ class _RoomsPageState extends State<RoomsPage> {
                           )
                         ],
                       ),
-                      CircleAvatar(
-                        radius: 35,
-                        backgroundColor: list[index]['color'],
-                        child: Container(
-                          width: deviceSize.width * 0.08,
-                          height: deviceSize.height * 0.08,
-                          decoration: BoxDecoration(
-                              image: DecorationImage(
-                                  fit: BoxFit.contain,
-                                  image: AssetImage(list[index]['icon']))),
-                        ),
-                      )
+                      SvgPicture.asset(
+                        list[index]['icon'],
+                        fit: BoxFit.contain,
+                        width: 65,
+                        height: 65,
+                      ),
                     ],
                   ),
                 ),

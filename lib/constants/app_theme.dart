@@ -8,14 +8,14 @@ class AppTheme {
       primarySwatch: AppColor.myColor,
       primaryColor: AppColor.myColor[500],
       primaryColorDark: AppColor.secondary,
-
       textSelectionTheme: const TextSelectionThemeData(
         selectionColor: Colors.grey,
       ),
       dividerColor: Colors.black,
-      scaffoldBackgroundColor: Colors.white,
+      scaffoldBackgroundColor: Color(0xffFCFBFC),
       backgroundColor: Colors.white,
       cardColor: Colors.white,
+    
       textTheme: const TextTheme(
         headline3: TextStyle(
           color: Color(0xff2e3553),
@@ -23,6 +23,7 @@ class AppTheme {
         bodyText1: TextStyle(
           color: Color(0xff2e3553),
         ),
+       
         bodyText2: TextStyle(
           color: Color(0xff2e3553),
         ),

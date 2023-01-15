@@ -66,6 +66,7 @@ class DefaultField extends StatefulWidget {
 class _DefaultFieldState extends State<DefaultField> {
   @override
   Widget build(BuildContext context) {
+    Size deviceSize = MediaQuery.of(context).size;
     return TextFormField(
       autofocus: true,
       scrollPadding: const EdgeInsets.all(0),
@@ -77,7 +78,7 @@ class _DefaultFieldState extends State<DefaultField> {
             borderRadius: BorderRadius.circular(15),
             borderSide: BorderSide.none),
         filled: true,
-        fillColor: const Color(0xfffaf9fd),
+        fillColor: const Color(0xffFAF9FD),
         labelText: widget.labelText,
         // hintText: widget.hintText,
         hintStyle: TextStyle(color: Colors.grey.withOpacity(0.8), fontSize: 14),
@@ -85,7 +86,7 @@ class _DefaultFieldState extends State<DefaultField> {
             TextStyle(color: Colors.grey.withOpacity(0.8), fontSize: 13),
         errorText: widget.errorText,
         prefixIcon: widget.prefixIcon,
-        suffixIcon: widget.suffixIcon ?? _getSuffixWidget(),
+        suffixIcon: widget.suffixIcon ?? _getSuffixWidget(deviceSize),
         contentPadding: const EdgeInsets.all(10),
       ),
       inputFormatters: widget.inputFormatters,
@@ -117,12 +118,18 @@ class _DefaultFieldState extends State<DefaultField> {
   //check if it's password input
   bool makePasswordVisible = false;
 
-  Widget _getSuffixWidget() {
+  Widget _getSuffixWidget(deviceSize) {
     if (widget.obscureText!) {
       return Container(
         width: 12,
         height: 12,
-        padding: const EdgeInsets.only(right:20),
+        padding: EdgeInsets.only(
+          left: deviceSize.width * 0.01,
+          right: deviceSize.width * 0.05,
+          top: deviceSize.height * 0.013,
+          bottom: deviceSize.height * 0.013,
+        ),
+        //  padding: const EdgeInsets.only(left: 5, right: 20, top: 10, bottom: 10),
         child: InkWell(
           onTap: () {
             setState(() {
@@ -132,12 +139,15 @@ class _DefaultFieldState extends State<DefaultField> {
           child: (!makePasswordVisible)
               ? Image.asset(
                   "assets/images/icon-eve-close.png",
-                  fit: BoxFit.fitWidth,
+                  fit: BoxFit.contain,
                   width: 10,
+                  height: 10,
                 )
               : Image.asset(
                   "assets/images/icon-eye.png",
+                  fit: BoxFit.contain,
                   width: 10,
+                  height: 10,
                 ),
           // child: Icon(
           //   (!makePasswordVisible) ? Icons.visibility : Icons.visibility_off,

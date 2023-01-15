@@ -21,7 +21,7 @@ class _VerfiyPageState extends State<VerfiyPage> {
        resizeToAvoidBottomInset: false,
       body: SafeArea(
         child: Padding(
-          padding: EdgeInsets.only(left: 30, right: 30, bottom: 30, top: 30),
+          padding: EdgeInsets.only(left: 20, right: 20, bottom: 30, top: 30),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [

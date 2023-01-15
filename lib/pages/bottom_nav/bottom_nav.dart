@@ -44,6 +44,7 @@ class _BottomNavPageState extends State<BottomNavPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       body: PersistentTabView(
         context,
         controller: _controller,

@@ -78,7 +78,6 @@ class _SignupPageState extends State<SignupPage> with RestorationMixin {
     String currentText = "";
     Size deviceSize = MediaQuery.of(context).size;
     return Scaffold(
-      
       resizeToAvoidBottomInset: false,
       body: SafeArea(
         child: Padding(
@@ -244,7 +243,7 @@ class _SignupPageState extends State<SignupPage> with RestorationMixin {
                                   },
                                   child: Container(
                                     width: 16,
-                                    height: 18,
+                                    height: 16,
                                     padding: EdgeInsets.only(
                                       right: deviceSize.width * 0.04,
                                       top: deviceSize.height * 0.013,
@@ -260,6 +259,9 @@ class _SignupPageState extends State<SignupPage> with RestorationMixin {
 
                                     child: Image.asset(
                                       "assets/images/icon_calander.png",
+                                      fit: BoxFit.contain,
+                                      width: 10,
+                                      height: 10,
                                     ),
                                   ),
                                 ),

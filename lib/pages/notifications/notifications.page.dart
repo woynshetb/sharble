@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:sharble/components/widgets/buttons.dart';
 
 class NotificationsPage extends StatefulWidget {
@@ -51,37 +52,39 @@ class _NotificationsPageState extends State<NotificationsPage> {
         //leadingWidth: 50,
         leading: Visibility(
           visible: true,
-          child: InkWell(
-            onTap: () => {Navigator.of(context).maybePop()},
-            child: Container(
-              margin: EdgeInsets.only(
-                right: 10,
-                top: 10,
-                bottom: 10,
-                left: 10,
-              ),
-              decoration: const BoxDecoration(
-                  color: Color(0xffF5F5F5), shape: BoxShape.circle),
-              child: Icon(
-                Icons.keyboard_arrow_left,
-                color: Color(0xff2E3553),
-                size: 30,
-              ),
+          child:  InkWell(
+          onTap: () => {Navigator.of(context).maybePop()},
+          child: Container(
+            margin: const EdgeInsets.only(
+              right: 15,
+              top: 10,
+              bottom: 10,
+              left: 15,
+            ),
+            decoration: const BoxDecoration(
+                color: Color(0xffF5F5F5), shape: BoxShape.circle),
+            child: SvgPicture.asset(
+              "assets/images/assets/icon-nav-button-back.svg",
+              width: 26,
+              height: 26,
+              fit: BoxFit.contain,
             ),
           ),
+        ),
         ),
         centerTitle: false,
         title: Text(
           "Notifications",
           style: TextStyle(
-            fontWeight: FontWeight.w900,
+            fontWeight: FontWeight.w800,
             color: Theme.of(context).textTheme.bodyText1!.color,
-            fontSize: 18,
+            fontSize: 14,
+            
           ),
         ),
       ),
       body: Padding(
-        padding: const EdgeInsets.all(30),
+        padding: const EdgeInsets.only(left:20, right: 20, bottom: 20),
         child: Column(
           children: [
             Expanded(

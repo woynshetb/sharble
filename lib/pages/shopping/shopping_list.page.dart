@@ -1,8 +1,11 @@
 import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_swipe_action_cell/flutter_swipe_action_cell.dart';
 import 'package:sharble/components/widgets/buttons.dart';
+import 'package:sharble/components/widgets/custom.appbar.dart';
 import 'package:sharble/components/widgets/forms.dart';
+import 'package:sharble/pages/home/home.page.dart';
 import 'package:sharble/pages/room/room_setting.page.dart';
 import 'package:sharble/services/validator.service.dart';
 
@@ -36,62 +39,61 @@ class _ShoppingListPageState extends State<ShoppingListPage>
       required String description,
       required Size deviceSize,
       required BuildContext context}) {
-    return showDialog(
+    return showModalBottomSheet(
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(15.0),
+        ),
         context: context,
         builder: (BuildContext context) {
-          return Dialog(
-            backgroundColor: Colors.transparent,
-            child: Container(
-              width: deviceSize.width,
-              decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.only(
-                    topLeft: Radius.circular(15),
-                    topRight: Radius.circular(15),
-                  )),
-              child: Padding(
-                padding:
-                    const EdgeInsets.symmetric(vertical: 20, horizontal: 30),
-                child: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    Text(
-                      title,
-                      style: TextStyle(
-                        fontSize: 14,
-                        fontWeight: FontWeight.w900,
-                      ),
+          return Container(
+            width: deviceSize.width,
+            decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.only(
+                  topLeft: Radius.circular(15),
+                  topRight: Radius.circular(15),
+                )),
+            child: Padding(
+              padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 30),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Text(
+                    title,
+                    style: TextStyle(
+                      fontSize: 14,
+                      fontWeight: FontWeight.w900,
                     ),
-                    SizedBox(
-                      height: 10,
-                    ),
-                    Text(
-                      description,
-                      textAlign: TextAlign.center,
-                    ),
-                    SizedBox(
-                      height: 20,
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        GreenNegative(
-                            val: deviceSize.width * 0.09,
-                            onPressed: () {
-                              var nav = Navigator.of(context);
-                              nav.pop();
-                            },
-                            title: "No"),
-                        GreenPostitve(
-                            onPressed: () {
-                              var nav = Navigator.of(context);
-                              nav.pop();
-                            },
-                            title: "Yes")
-                      ],
-                    )
-                  ],
-                ),
+                  ),
+                  SizedBox(
+                    height: 10,
+                  ),
+                  Text(
+                    description,
+                    textAlign: TextAlign.center,
+                  ),
+                  SizedBox(
+                    height: 20,
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      GreenNegative(
+                          val: deviceSize.width * 0.09,
+                          onPressed: () {
+                            var nav = Navigator.of(context);
+                            nav.pop();
+                          },
+                          title: "No"),
+                      GreenPostitve(
+                          onPressed: () {
+                            var nav = Navigator.of(context);
+                            nav.pop();
+                          },
+                          title: "Yes")
+                    ],
+                  )
+                ],
               ),
             ),
           );
@@ -99,105 +101,101 @@ class _ShoppingListPageState extends State<ShoppingListPage>
   }
 
   customDialog({required Size deviceSize, required BuildContext context}) {
-    return showDialog(
+    return showModalBottomSheet(
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(15.0),
+        ),
         context: context,
         builder: (BuildContext context) {
-          return Dialog(
-            backgroundColor: Colors.transparent,
-            child: Container(
-              width: deviceSize.width,
-              decoration: const BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.only(
-                    topLeft: Radius.circular(15),
-                    topRight: Radius.circular(15),
-                  )),
-              child: Padding(
-                padding:
-                    const EdgeInsets.symmetric(vertical: 20, horizontal: 30),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    const Align(
-                      alignment: Alignment.topLeft,
-                      child: Text(
-                        "Item Name",
-                        style: TextStyle(
-                          fontSize: 14,
-                          fontWeight: FontWeight.w900,
-                        ),
+          return Container(
+            width: deviceSize.width,
+            decoration: const BoxDecoration(
+              color: Colors.white,
+            ),
+            child: Padding(
+              padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 30),
+              child: ListView(
+                // crossAxisAlignment: CrossAxisAlignment.center,
+                // mainAxisSize: MainAxisSize.min,
+                children: [
+                  const Align(
+                    alignment: Alignment.topLeft,
+                    child: Text(
+                      "Item Name",
+                      style: TextStyle(
+                        fontSize: 14,
+                        fontWeight: FontWeight.w900,
                       ),
                     ),
-                    SizedBox(
-                      height: 5,
-                    ),
-                    DefaultField(
-                      keyboardType: TextInputType.emailAddress,
-                      textEditingController: TextEditingController(),
-                      obscureText: false,
-                      onTap: () {},
-                      validator: (value) => FormValidator.validateEmail(value!),
-                    ),
-                    SizedBox(
-                      height: 10,
-                    ),
-                    Align(
-                      alignment: Alignment.topLeft,
-                      child: Text(
-                        "Quantity",
-                        style: TextStyle(
-                          fontSize: 14,
-                          fontWeight: FontWeight.w900,
-                        ),
+                  ),
+                  SizedBox(
+                    height: 5,
+                  ),
+                  DefaultField(
+                    keyboardType: TextInputType.emailAddress,
+                    textEditingController: TextEditingController(),
+                    obscureText: false,
+                    onTap: () {},
+                    validator: (value) => FormValidator.validateEmail(value!),
+                  ),
+                  SizedBox(
+                    height: 10,
+                  ),
+                  Align(
+                    alignment: Alignment.topLeft,
+                    child: Text(
+                      "Quantity",
+                      style: TextStyle(
+                        fontSize: 14,
+                        fontWeight: FontWeight.w900,
                       ),
                     ),
-                    SizedBox(
-                      height: 5,
-                    ),
-                    DefaultField(
-                      keyboardType: TextInputType.emailAddress,
-                      textEditingController: TextEditingController(),
-                      hintText: "wbilihatu@gmail.com",
-                      obscureText: false,
-                      onTap: () {},
-                      validator: (value) => FormValidator.validateEmail(value!),
-                    ),
-                    SizedBox(
-                      height: 10,
-                    ),
-                    Align(
-                      alignment: Alignment.topLeft,
-                      child: Text(
-                        "Store",
-                        style: TextStyle(
-                          fontSize: 14,
-                          fontWeight: FontWeight.w900,
-                        ),
+                  ),
+                  SizedBox(
+                    height: 5,
+                  ),
+                  DefaultField(
+                    keyboardType: TextInputType.emailAddress,
+                    textEditingController: TextEditingController(),
+                    hintText: "wbilihatu@gmail.com",
+                    obscureText: false,
+                    onTap: () {},
+                    validator: (value) => FormValidator.validateEmail(value!),
+                  ),
+                  SizedBox(
+                    height: 10,
+                  ),
+                  Align(
+                    alignment: Alignment.topLeft,
+                    child: Text(
+                      "Store",
+                      style: TextStyle(
+                        fontSize: 14,
+                        fontWeight: FontWeight.w900,
                       ),
                     ),
-                    SizedBox(
-                      height: 5,
-                    ),
-                    DefaultField(
-                      keyboardType: TextInputType.emailAddress,
-                      textEditingController: TextEditingController(),
-                      hintText: "wbilihatu@gmail.com",
-                      obscureText: false,
-                      onTap: () {},
-                      validator: (value) => FormValidator.validateEmail(value!),
-                    ),
-                    SizedBox(
-                      height: 20,
-                    ),
-                    GreenPostitve(
-                        onPressed: () {
-                          var nav = Navigator.of(context);
-                          nav.pop();
-                        },
-                        title: "Add")
-                  ],
-                ),
+                  ),
+                  SizedBox(
+                    height: 5,
+                  ),
+                  DefaultField(
+                    keyboardType: TextInputType.emailAddress,
+                    textEditingController: TextEditingController(),
+                    hintText: "wbilihatu@gmail.com",
+                    obscureText: false,
+                    onTap: () {},
+                    validator: (value) => FormValidator.validateEmail(value!),
+                  ),
+                  SizedBox(
+                    height: 20,
+                  ),
+                  GreenPostitve(
+                      onPressed: () {
+                        var nav = Navigator.of(context);
+                        nav.pop();
+                      },
+                      title: "Add")
+                ],
               ),
             ),
           );
@@ -207,155 +205,71 @@ class _ShoppingListPageState extends State<ShoppingListPage>
   @override
   Widget build(BuildContext context) {
     Size deviceSize = MediaQuery.of(context).size;
+
     return Scaffold(
       resizeToAvoidBottomInset: false,
       appBar: AppBar(
-        backgroundColor: Colors.transparent,
+        centerTitle: false,
+        backgroundColor: Color(0xffFCFBFC),
         titleSpacing: 0,
         elevation: 0,
-        //leadingWidth: 50,
         leading: Visibility(
-          visible: true,
-          child: InkWell(
-            onTap: () => {Navigator.of(context).maybePop()},
-            child: Container(
-              margin: const EdgeInsets.only(
-                right: 10,
-                top: 10,
-                bottom: 10,
-                left: 10,
-              ),
-              decoration: const BoxDecoration(
-                  color: Color(0xffF5F5F5), shape: BoxShape.circle),
-              child: Icon(
-                Icons.keyboard_arrow_left,
-                color: Color(0xff2E3553),
-                size: 30,
+          child: Padding(
+            padding: const EdgeInsets.only(left: 8.0),
+            child: InkWell(
+              onTap: () => {Navigator.of(context).maybePop()},
+              child: Container(
+                margin: const EdgeInsets.only(
+                  right: 10,
+                  top: 10,
+                  bottom: 10,
+                  left: 10,
+                ),
+                decoration: const BoxDecoration(
+                    color: Color(0xffF5F5F5), shape: BoxShape.circle),
+                child: SvgPicture.asset(
+                  "assets/images/assets/icon-nav-button-back.svg",
+                  width: 26,
+                  height: 26,
+                  fit: BoxFit.contain,
+                ),
               ),
             ),
           ),
         ),
-        centerTitle: false,
         title: Text(
           "Home Grocery",
           style: TextStyle(
             fontWeight: FontWeight.w900,
             color: Theme.of(context).textTheme.bodyText1!.color,
-            fontSize: 18,
+            fontSize: 14,
           ),
         ),
         actions: [
-          Container(
-            width: 35,
-            height: 35,
-            padding: EdgeInsets.all(8),
-            decoration: const BoxDecoration(
-                color: Color(
-                  0xffE7FFE8,
-                ),
-                shape: BoxShape.circle),
-            child: Image.asset(
-              "assets/images/icon_bag.png",
-            ),
+          SvgPicture.asset(
+            "assets/images/assets/icon_shopping_list.svg",
+            width: 26,
+            height: 26,
+            fit: BoxFit.contain,
+          ),
+          CustomDropDown2(
+            items: items,
+            valueUrl: "assets/images/assets/icon_shopping_list.svg",
+            bgColor: Color(0xff48BFAA),
           ),
           const SizedBox(
-            width: 5,
-          ),
-          Center(
-            child: DropdownButtonHideUnderline(
-              child: DropdownButton2(
-                customButton: Container(
-                  width: 30,
-                  height: 30,
-                  decoration: const BoxDecoration(
-                    color: Color(0xff48BFAA),
-                    shape: BoxShape.circle,
-                  ),
-                  child: const Icon(
-                    Icons.more_horiz_outlined,
-                    color: Colors.white,
-                    size: 30,
-                  ),
-                ),
-                customItemsHeights: [48, 48],
-                items: items.map((String items) {
-                  return DropdownMenuItem(
-                    value: items,
-                    child: InkWell(
-                      onTap: () {
-                        if (items == 'Room Settings') {
-                          Navigator.push(
-                            context,
-                            PageRouteBuilder(
-                              pageBuilder: (context, animation1, animation2) =>
-                                  const RoomSettingPage(),
-                              transitionDuration: Duration.zero,
-                              reverseTransitionDuration: Duration.zero,
-                            ),
-                          );
-                        } else {
-                          customDialogDelete(
-                              title: "Delete Room",
-                              description:
-                                  "Are you sure you want to delete this room? It can’t be undone.",
-                              deviceSize: deviceSize,
-                              context: context);
-                        }
-                      },
-                      child: Row(
-                        children: [
-                          items == 'Room Settings'
-                              ? Icon(
-                                  Icons.settings,
-                                )
-                              : Icon(
-                                  Icons.delete_outline,
-                                ),
-                          const SizedBox(
-                            width: 10,
-                          ),
-                          Text(
-                            items,
-                            style: const TextStyle(
-                              fontSize: 13,
-                              color: Colors.white,
-                              fontWeight: FontWeight.w600,
-                            ),
-                          )
-                        ],
-                      ),
-                    ),
-                  );
-                }).toList(),
-                onChanged: (value) {},
-                itemHeight: 48,
-                itemPadding: const EdgeInsets.only(left: 16, right: 16),
-                dropdownWidth: 160,
-                dropdownPadding: const EdgeInsets.symmetric(
-                  vertical: 6,
-                ),
-                dropdownDecoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(10),
-                  color: Theme.of(context).primaryColor,
-                ),
-                dropdownElevation: 8,
-                offset: const Offset(0, 8),
-              ),
-            ),
-          ),
-          const SizedBox(
-            width: 15,
+            width: 20,
           ),
         ],
       ),
       body: Padding(
-        padding: const EdgeInsets.only(left: 20.0),
+        padding: const EdgeInsets.only(left: 20.0, right: 10),
         child: Column(children: [
           Row(
             children: [
               Container(
-                width: deviceSize.width * 0.06,
-                height: deviceSize.height * 0.06,
+                width: 20,
+                height: 20,
                 decoration: BoxDecoration(
                     image: DecorationImage(
                         fit: BoxFit.contain,
@@ -365,8 +279,8 @@ class _ShoppingListPageState extends State<ShoppingListPage>
                 width: 5,
               ),
               Container(
-                width: deviceSize.width * 0.06,
-                height: deviceSize.height * 0.06,
+               width: 20,
+                height: 20,
                 decoration: BoxDecoration(
                     image: DecorationImage(
                         fit: BoxFit.contain,
@@ -376,7 +290,7 @@ class _ShoppingListPageState extends State<ShoppingListPage>
                 width: 5,
               ),
               CircleAvatar(
-                radius: 12,
+                radius: 10,
                 backgroundColor: Theme.of(context).primaryColor,
                 child: Text(
                   "TM",
@@ -387,7 +301,7 @@ class _ShoppingListPageState extends State<ShoppingListPage>
                 width: 5,
               ),
               CircleAvatar(
-                radius: 12,
+                radius: 10,
                 backgroundColor: Theme.of(context).primaryColor,
                 child: Text(
                   "TM",
@@ -398,7 +312,7 @@ class _ShoppingListPageState extends State<ShoppingListPage>
                 width: 5,
               ),
               CircleAvatar(
-                radius: 12,
+                radius: 10,
                 backgroundColor: Theme.of(context).primaryColor,
                 child: Text(
                   "TM",
@@ -443,6 +357,7 @@ class _ShoppingListPageState extends State<ShoppingListPage>
                 tabs: [
                   Tab(
                     child: Container(
+                      height: 31,
                       padding: const EdgeInsets.symmetric(
                         vertical: 10,
                         horizontal: 20,
@@ -471,17 +386,21 @@ class _ShoppingListPageState extends State<ShoppingListPage>
                   ),
                   Tab(
                     child: Container(
+                        height: 31,
                       padding: const EdgeInsets.symmetric(
-                        vertical: 10,
+                      
                         horizontal: 20,
                       ),
-                      child: Text(
-                        "Tasco",
-                        style: TextStyle(
-                          fontSize: 12,
-                          color: tabController!.index == 1
-                              ? Colors.white
-                              : Theme.of(context).textTheme.bodyText1!.color,
+                      child: Align(
+                        alignment: Alignment.center,
+                        child: Text(
+                          "Tasco",
+                          style: TextStyle(
+                            fontSize: 12,
+                            color: tabController!.index == 1
+                                ? Colors.white
+                                : Theme.of(context).textTheme.bodyText1!.color,
+                          ),
                         ),
                       ),
                       decoration: BoxDecoration(
@@ -497,17 +416,21 @@ class _ShoppingListPageState extends State<ShoppingListPage>
                   ),
                   Tab(
                     child: Container(
+                         height: 31,
                       padding: const EdgeInsets.symmetric(
-                        vertical: 10,
+                       
                         horizontal: 20,
                       ),
-                      child: Text(
-                        "Edeka",
-                        style: TextStyle(
-                          fontSize: 12,
-                          color: tabController!.index == 2
-                              ? Colors.white
-                              : Theme.of(context).textTheme.bodyText1!.color,
+                      child: Align(
+                        alignment: Alignment.center,
+                        child: Text(
+                          "Edeka",
+                          style: TextStyle(
+                            fontSize: 12,
+                            color: tabController!.index == 2
+                                ? Colors.white
+                                : Theme.of(context).textTheme.bodyText1!.color,
+                          ),
                         ),
                       ),
                       decoration: BoxDecoration(
@@ -523,17 +446,21 @@ class _ShoppingListPageState extends State<ShoppingListPage>
                   ),
                   Tab(
                     child: Container(
+                         height: 31,
                       padding: const EdgeInsets.symmetric(
-                        vertical: 10,
+                       
                         horizontal: 20,
                       ),
-                      child: Text(
-                        "Shopping Mall Center",
-                        style: TextStyle(
-                          fontSize: 12,
-                          color: tabController!.index == 3
-                              ? Colors.white
-                              : Theme.of(context).textTheme.bodyText1!.color,
+                      child: Align(
+                        alignment: Alignment.center,
+                        child: Text(
+                          "Shopping Mall Center",
+                          style: TextStyle(
+                            fontSize: 12,
+                            color: tabController!.index == 3
+                                ? Colors.white
+                                : Theme.of(context).textTheme.bodyText1!.color,
+                          ),
                         ),
                       ),
                       decoration: BoxDecoration(
@@ -613,7 +540,7 @@ class _CustomTabBodyState extends State<CustomTabBody> {
                   )),
               child: Padding(
                 padding:
-                    const EdgeInsets.symmetric(vertical: 20, horizontal: 30),
+                    const EdgeInsets.symmetric(vertical: 10, horizontal: 30),
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
                   children: [
@@ -669,8 +596,36 @@ class _CustomTabBodyState extends State<CustomTabBody> {
     {
       "title": "Coca Cola",
       "sub": "",
+      "desc": "Endeka",
+    },
+    {
+      "title": "Coca Cola",
+      "sub": "",
+      "desc": "Endeka",
+    },
+    {
+      "title": "Rice and Milk",
+      "sub": "",
+      "desc": "Shopping mall center",
+    },
+    {
+      "title": "Bottle watter",
+      "sub": "",
+      "desc": "",
+    },
+  ];
+
+  List<Map> copmpletedList = [
+    {
+      "title": "Spagetti watter",
+      "sub": "1pics",
       "desc": "Tasco",
-    }
+    },
+    {
+      "title": "Bottle watter",
+      "sub": "",
+      "desc": "Tasco",
+    },
   ];
 
   String dropdownvalue = 'Completed';
@@ -698,10 +653,11 @@ class _CustomTabBodyState extends State<CustomTabBody> {
           height: 5,
         ),
         Expanded(
+            flex: 0,
             child: ListView.builder(
-                itemCount: 5,
+                itemCount: list.length,
                 shrinkWrap: true,
-               physics: NeverScrollableScrollPhysics(),
+                physics: NeverScrollableScrollPhysics(),
                 itemBuilder: (context, index) {
                   return SwipeActionCell(
                     /// this key is necessary
@@ -710,19 +666,14 @@ class _CustomTabBodyState extends State<CustomTabBody> {
                       SwipeAction(
                         /// this is the same as iOS native
                         performsFirstActionWithFullSwipe: true,
-                        icon: Container(
-                            padding: EdgeInsets.all(5),
-                            decoration: BoxDecoration(
-                                shape: BoxShape.circle,
-                                border: Border.all(
-                                  color: Colors.white,
-                                )),
-                            child: Icon(
-                              Icons.done,
-                              color: Colors.white,
-                              size: 13,
-                            )),
-
+                        icon: SvgPicture.asset(
+                          "assets/images/assets/icon-completed-blue.svg",
+                          width: 20,
+                          height: 20,
+                          fit: BoxFit.contain,
+                          color: Colors.white,
+                        ),
+    
                         onTap: (CompletionHandler handler) async {
                           //  list.removeAt(index);
                           //  setState(() {});
@@ -732,11 +683,14 @@ class _CustomTabBodyState extends State<CustomTabBody> {
                     ],
                     trailingActions: <SwipeAction>[
                       SwipeAction(
-                          icon: Icon(
-                            Icons.delete_outline_outlined,
+                          icon: SvgPicture.asset(
+                            "assets/images/assets/icon-bin-blue.svg",
+                            width: 20,
+                            height: 20,
                             color: Colors.white,
+                            fit: BoxFit.contain,
                           ),
-
+    
                           /// this is the same as iOS native
                           performsFirstActionWithFullSwipe: false,
                           onTap: (CompletionHandler handler) async {
@@ -751,6 +705,9 @@ class _CustomTabBodyState extends State<CustomTabBody> {
                     ],
                     child: Container(
                       padding: EdgeInsets.all(15),
+                      margin: EdgeInsets.only(
+                        bottom: 10,
+                      ),
                       decoration: BoxDecoration(
                         color: Colors.white,
                         borderRadius: BorderRadius.circular(10),
@@ -775,19 +732,16 @@ class _CustomTabBodyState extends State<CustomTabBody> {
                           Column(
                             children: [
                               Text(
-                                "Beans",
+                                list[index]['title'],
                                 style: TextStyle(
                                   fontSize: 13,
                                   fontWeight: FontWeight.w900,
                                 ),
                               ),
-                              Visibility(
-                                visible: index == 0,
-                                child: Text(
-                                  "1pics",
-                                  style: TextStyle(
-                                    fontSize: 12,
-                                  ),
+                              Text(
+                                list[index]['sub'],
+                                style: TextStyle(
+                                  fontSize: 12,
                                 ),
                               ),
                             ],
@@ -795,159 +749,17 @@ class _CustomTabBodyState extends State<CustomTabBody> {
                           Row(
                             mainAxisAlignment: MainAxisAlignment.end,
                             children: [
-                              Text("Tasco"),
+                              Text(list[index]['desc']),
                               SizedBox(
-                                width: 10,
+                                width: 8,
                               ),
-                              Center(
-                                child: DropdownButtonHideUnderline(
-                                  child: DropdownButton2(
-                                    customButton: InkWell(
-                                      child: CircleAvatar(
-                                        radius: 18,
-                                        backgroundColor: Color(0xffE7FFE8),
-                                        child: Icon(Icons.more_horiz),
-                                      ),
-                                    ),
-                                    customItemsHeights: [48, 48, 48],
-                                    items: items.map((String items) {
-                                      return DropdownMenuItem(
-                                        value: items,
-                                        child: InkWell(
-                                          onTap: () {
-                                            Navigator.pop(context);
-                                            // Navigator.push(
-                                            //   context,
-                                            //   PageRouteBuilder(
-                                            //     pageBuilder: (context,
-                                            //             animation1,
-                                            //             animation2) =>
-                                            //         const RoomSettingPage(),
-                                            //     transitionDuration:
-                                            //         Duration.zero,
-                                            //     reverseTransitionDuration:
-                                            //         Duration.zero,
-                                            //   ),
-                                            // );
-                                          },
-                                          child: Row(
-                                            children: [
-                                              items == "Completed"
-                                                  ? Icon(Icons.done)
-                                                  : items == "Edit"
-                                                      ? Icon(Icons.edit)
-                                                      : Icon(
-                                                          Icons.delete_outline,
-                                                        ),
-                                              const SizedBox(
-                                                width: 10,
-                                              ),
-                                              Text(
-                                                items,
-                                                style: const TextStyle(
-                                                  fontSize: 13,
-                                                  fontWeight: FontWeight.w600,
-                                                ),
-                                              )
-                                            ],
-                                          ),
-                                        ),
-                                      );
-                                    }).toList(),
-                                    onChanged: (value) {},
-                                    itemHeight: 48,
-                                    itemPadding: const EdgeInsets.only(
-                                        left: 16, right: 16),
-                                    dropdownWidth: 160,
-                                    dropdownPadding:
-                                        const EdgeInsets.symmetric(vertical: 6),
-                                    dropdownDecoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(10),
-                                      color: Color(0xffE7FFE8),
-                                    ),
-                                    dropdownElevation: 8,
-                                    offset: const Offset(0, 8),
-                                  ),
-                                ),
+                              CustomDropDown(
+                                show: true,
+                                items: items,
+                                valueUrl:
+                                    "assets/images/assets/icon-button-shopping-list.svg",
+                                bgColor: Color(0xffE7FFE8),
                               ),
-                              // DropdownButtonHideUnderline(
-                              //   child: Theme(
-                              //     data: Theme.of(context).copyWith(
-                              //       canvasColor: Color(0xffE7FFE8),
-                              //     ),
-                              //     child: DropdownButton(
-                              //       iconSize: 0,
-                              //       isDense: true,
-                              //       isExpanded: false,
-                              //       borderRadius: BorderRadius.circular(10),
-                              //       icon: Container(
-                              //         width: 30,
-                              //         height: 30,
-                              //         decoration: const BoxDecoration(
-                              //           color: Color(0xff48BFAA),
-                              //           shape: BoxShape.circle,
-                              //         ),
-                              //         child: const Icon(
-                              //           Icons.more_horiz_outlined,
-                              //           color: Colors.white,
-                              //           size: 30,
-                              //         ),
-                              //       ),
-
-                              //       // Array list of items
-                              //       items: items.map((String items) {
-                              //         return DropdownMenuItem(
-                              //           value: items,
-                              //           child: InkWell(
-                              //             onTap: () {
-                              //               Navigator.push(
-                              //                 context,
-                              //                 PageRouteBuilder(
-                              //                   pageBuilder: (context,
-                              //                           animation1,
-                              //                           animation2) =>
-                              //                       const RoomSettingPage(),
-                              //                   transitionDuration:
-                              //                       Duration.zero,
-                              //                   reverseTransitionDuration:
-                              //                       Duration.zero,
-                              //                 ),
-                              //               );
-                              //             },
-                              //             child: Row(
-                              //               children: [
-                              //                 items == "Completed"
-                              //                     ? Icon(Icons.done)
-                              //                     : items == "Edit"
-                              //                         ? Icon(Icons.edit)
-                              //                         : Icon(
-                              //                             Icons.delete_outline,
-                              //                           ),
-                              //                 const SizedBox(
-                              //                   width: 10,
-                              //                 ),
-                              //                 Text(
-                              //                   items,
-                              //                   style: const TextStyle(
-                              //                     fontSize: 13,
-                              //                     fontWeight: FontWeight.w600,
-                              //                   ),
-                              //                 )
-                              //               ],
-                              //             ),
-                              //           ),
-                              //         );
-                              //       }).toList(),
-                              //       // After selecting the desired option,it will
-                              //       // change button value to selected value
-                              //       onChanged: (String? newValue) {
-                              //         setState(() {
-                              //           dropdownvalue = newValue!;
-                              //         });
-                              //       },
-                              //     ),
-                              //   ),
-                              // ),
                             ],
                           )
                         ],
@@ -956,7 +768,7 @@ class _CustomTabBodyState extends State<CustomTabBody> {
                   );
                 })),
         SizedBox(
-          height: 20,
+          height: 10,
         ),
         Text(
           "Completed",
@@ -966,8 +778,9 @@ class _CustomTabBodyState extends State<CustomTabBody> {
           height: 10,
         ),
         Expanded(
+          
             child: ListView.builder(
-                itemCount: 2,
+                itemCount: copmpletedList.length,
                 physics: NeverScrollableScrollPhysics(),
                 itemBuilder: (context, index) {
                   return SwipeActionCell(
@@ -977,19 +790,14 @@ class _CustomTabBodyState extends State<CustomTabBody> {
                       SwipeAction(
                         /// this is the same as iOS native
                         performsFirstActionWithFullSwipe: true,
-                        icon: Container(
-                            padding: EdgeInsets.all(5),
-                            decoration: BoxDecoration(
-                                shape: BoxShape.circle,
-                                border: Border.all(
-                                  color: Colors.white,
-                                )),
-                            child: Icon(
-                              Icons.done,
-                              color: Colors.white,
-                              size: 13,
-                            )),
-
+                        icon: SvgPicture.asset(
+                          "assets/images/assets/icon-completed-blue.svg",
+                          width: 20,
+                          height: 20,
+                          fit: BoxFit.contain,
+                          color: Colors.white,
+                        ),
+    
                         onTap: (CompletionHandler handler) async {
                           //  list.removeAt(index);
                           //  setState(() {});
@@ -999,21 +807,29 @@ class _CustomTabBodyState extends State<CustomTabBody> {
                     ],
                     trailingActions: <SwipeAction>[
                       SwipeAction(
-                          icon: Icon(
-                            Icons.delete_outline_outlined,
+                          icon: SvgPicture.asset(
+                            "assets/images/assets/icon-bin-blue.svg",
+                            width: 20,
+                            height: 20,
                             color: Colors.white,
+                            fit: BoxFit.contain,
                           ),
-
+    
                           /// this is the same as iOS native
                           performsFirstActionWithFullSwipe: false,
                           onTap: (CompletionHandler handler) async {
-                            //  list.removeAt(index);
-                            //  setState(() {});
+                            customDialog(
+                                title: "Delete Room",
+                                description:
+                                    "Are you sure you want to delete this room? It can’t be undone.",
+                                deviceSize: deviceSize,
+                                context: context);
                           },
                           color: Colors.red),
                     ],
                     child: Container(
                       padding: EdgeInsets.all(15),
+                      margin: EdgeInsets.only(bottom: 10),
                       decoration: BoxDecoration(
                         color: Colors.white,
                         borderRadius: BorderRadius.circular(10),
@@ -1038,18 +854,17 @@ class _CustomTabBodyState extends State<CustomTabBody> {
                           Column(
                             children: [
                               Text(
-                                "Beans",
+                                copmpletedList[index]['title'],
                                 style: TextStyle(
                                   fontSize: 13,
                                   fontWeight: FontWeight.w900,
+                                  color: Colors.grey
                                 ),
                               ),
-                              Visibility(
-                                child: Text(
-                                  "1pics",
-                                  style: TextStyle(
-                                    fontSize: 12,
-                                  ),
+                              Text(
+                                copmpletedList[index]['sub'],
+                                style: TextStyle(
+                                  fontSize: 12,
                                 ),
                               ),
                             ],
@@ -1057,80 +872,19 @@ class _CustomTabBodyState extends State<CustomTabBody> {
                           Row(
                             mainAxisAlignment: MainAxisAlignment.end,
                             children: [
-                              Text("Tasco"),
-                              SizedBox(
-                                width: 10,
-                              ),
-                              Center(
-                                child: DropdownButtonHideUnderline(
-                                  child: DropdownButton2(
-                                    customButton: InkWell(
-                                      child: CircleAvatar(
-                                        radius: 18,
-                                        backgroundColor: Color(0xffE7FFE8),
-                                        child: Icon(Icons.more_horiz),
-                                      ),
-                                    ),
-                                    customItemsHeights: [48, 48, 48],
-                                    items: items.map((String items) {
-                                      return DropdownMenuItem(
-                                        value: items,
-                                        child: InkWell(
-                                          onTap: () {
-                                            Navigator.pop(context);
-                                            // Navigator.push(
-                                            //   context,
-                                            //   PageRouteBuilder(
-                                            //     pageBuilder: (context,
-                                            //             animation1,
-                                            //             animation2) =>
-                                            //         const RoomSettingPage(),
-                                            //     transitionDuration:
-                                            //         Duration.zero,
-                                            //     reverseTransitionDuration:
-                                            //         Duration.zero,
-                                            //   ),
-                                            // );
-                                          },
-                                          child: Row(
-                                            children: [
-                                              items == "Completed"
-                                                  ? Icon(Icons.done)
-                                                  : items == "Edit"
-                                                      ? Icon(Icons.edit)
-                                                      : Icon(
-                                                          Icons.delete_outline,
-                                                        ),
-                                              const SizedBox(
-                                                width: 10,
-                                              ),
-                                              Text(
-                                                items,
-                                                style: const TextStyle(
-                                                  fontSize: 13,
-                                                  fontWeight: FontWeight.w600,
-                                                ),
-                                              )
-                                            ],
-                                          ),
-                                        ),
-                                      );
-                                    }).toList(),
-                                    onChanged: (value) {},
-                                    itemHeight: 48,
-                                    itemPadding: const EdgeInsets.only(
-                                        left: 16, right: 16),
-                                    dropdownWidth: 160,
-                                    dropdownPadding:
-                                        const EdgeInsets.symmetric(vertical: 6),
-                                    dropdownDecoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(10),
-                                      color: Color(0xffE7FFE8),
-                                    ),
-                                    dropdownElevation: 8,
-                                    offset: const Offset(0, 8),
-                                  ),
+                              Text(
+                                copmpletedList[index]['desc'],
+                                style: TextStyle(
+                                  fontSize: 12,
                                 ),
+                              ),
+                              SizedBox(width: 8,),
+                              CustomDropDown(
+                                show: true,
+                                items: items,
+                                valueUrl:
+                                    "assets/images/assets/icon-button-shopping-list.svg",
+                                bgColor: Color(0xffE7FFE8),
                               ),
                             ],
                           )
@@ -1140,6 +894,196 @@ class _CustomTabBodyState extends State<CustomTabBody> {
                   );
                 })),
       ],
+    );
+  }
+}
+
+class CustomDropDown2 extends StatelessWidget {
+  String? valueUrl;
+  Color? bgColor;
+  bool? show;
+  CustomDropDown2(
+      {Key? key,
+      required this.items,
+      required this.valueUrl,
+      required this.bgColor,
+      this.show = false})
+      : super(key: key);
+
+  final List<String> items;
+
+  @override
+  Widget build(BuildContext context) {
+    customDialogDelete(
+        {required String title,
+        required String description,
+        required Size deviceSize,
+        required BuildContext context}) {
+      return showModalBottomSheet(
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(15.0),
+          ),
+          context: context,
+          builder: (BuildContext context) {
+            return Container(
+              width: deviceSize.width,
+              decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.only(
+                    topLeft: Radius.circular(15),
+                    topRight: Radius.circular(15),
+                  )),
+              child: Padding(
+                padding:
+                    const EdgeInsets.symmetric(vertical: 20, horizontal: 30),
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Text(
+                      title,
+                      style: TextStyle(
+                        fontSize: 14,
+                        fontWeight: FontWeight.w900,
+                      ),
+                    ),
+                    SizedBox(
+                      height: 10,
+                    ),
+                    Text(
+                      description,
+                      textAlign: TextAlign.center,
+                    ),
+                    SizedBox(
+                      height: 20,
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        GreenNegative(
+                            val: deviceSize.width * 0.09,
+                            onPressed: () {
+                              var nav = Navigator.of(context);
+                              nav.pop();
+                            },
+                            title: "No"),
+                        GreenPostitve(
+                            onPressed: () {
+                              var nav = Navigator.of(context);
+                              nav.pop();
+                            },
+                            title: "Yes")
+                      ],
+                    )
+                  ],
+                ),
+              ),
+            );
+          });
+    }
+
+    Size deviceSize = MediaQuery.of(context).size;
+    return PopupMenuButton(
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(10),
+      ),
+      color: bgColor,
+      child: Row(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          SvgPicture.asset(
+            "assets/images/assets/icon-button-room-task-manager.svg",
+            width: 26,
+            height: 26,
+            fit: BoxFit.contain,
+          ),
+        ],
+      ),
+      itemBuilder: (context) {
+        return List.generate(
+          items.length,
+          (index) => PopupMenuItem(
+            onTap: () {
+              // Navigator.push(
+              //   context,
+              //   PageRouteBuilder(
+              //     pageBuilder: (context, animation1, animation2) =>
+              //         const RoomSettingPage(),
+              //     transitionDuration: Duration.zero,
+              //     reverseTransitionDuration: Duration.zero,
+              //   ),
+              // );
+              // if (items[index] == 'Room Settings') {
+              //   Navigator.push(
+              //     context,
+              //     PageRouteBuilder(
+              //       pageBuilder: (context, animation1, animation2) =>
+              //           const RoomSettingPage(),
+              //       transitionDuration: Duration.zero,
+              //       reverseTransitionDuration: Duration.zero,
+              //     ),
+              //   );
+              // } else {
+              //   customDialogDelete(
+              //       title: "Delete Room",
+              //       description:
+              //           "Are you sure you want to delete this room? It can’t be undone.",
+              //       deviceSize: deviceSize,
+              //       context: context);
+              // }
+            },
+            child: InkWell(
+              onTap: () {
+                if (items[index] == 'Room Settings') {
+                  Navigator.push(
+                    context,
+                    PageRouteBuilder(
+                      pageBuilder: (context, animation1, animation2) =>
+                          const RoomSettingPage(),
+                      transitionDuration: Duration.zero,
+                      reverseTransitionDuration: Duration.zero,
+                    ),
+                  );
+                } else {
+                  customDialogDelete(
+                      title: "Delete Room",
+                      description:
+                          "Are you sure you want to delete this room? It can’t be undone.",
+                      deviceSize: deviceSize,
+                      context: context);
+                }
+              },
+              child: Row(
+                children: [
+                  items[index] == "Room Settings"
+                      ? const Icon(
+                          Icons.settings,
+                          color: Colors.white,
+                          size: 15,
+                        )
+                      : SvgPicture.asset(
+                          "assets/images/assets/icon-bin-blue.svg",
+                          width: 15,
+                          height: 15,
+                          color: Colors.white,
+                          fit: BoxFit.contain,
+                        ),
+                  const SizedBox(
+                    width: 10,
+                  ),
+                  Text(
+                    items[index],
+                    style: const TextStyle(
+                      fontSize: 13,
+                      color: Colors.white,
+                      fontWeight: FontWeight.w600,
+                    ),
+                  )
+                ],
+              ),
+            ),
+          ),
+        );
+      },
     );
   }
 }

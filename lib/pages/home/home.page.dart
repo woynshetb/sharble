@@ -28,14 +28,15 @@ class _HomePageState extends State<HomePage> {
       "child": [],
     },
   ];
+  @override
   Widget build(BuildContext context) {
     Size deviceSize = MediaQuery.of(context).size;
     return Scaffold(
-       resizeToAvoidBottomInset: false,
+      resizeToAvoidBottomInset: false,
       appBar: AppBar(
         leadingWidth: 30,
         titleSpacing: 0,
-        backgroundColor: Colors.transparent,
+        backgroundColor: Color(0xffFCFBFC),
         elevation: 0,
         centerTitle: false,
         title: Padding(
@@ -113,8 +114,9 @@ class _HomePageState extends State<HomePage> {
         ),
       ),
       body: haveRoom
-          ? Padding(
+          ? Container(
               padding: const EdgeInsets.only(left: 10, right: 10),
+              margin: const EdgeInsets.only(left: 5, right: 10),
               child: ListView(
                 children: [
                   Theme(
@@ -137,40 +139,38 @@ class _HomePageState extends State<HomePage> {
                         child: const Text(
                           "Home Grocery",
                           style: TextStyle(
-                              fontWeight: FontWeight.bold, fontSize: 17),
+                              fontWeight: FontWeight.bold, fontSize: 14),
                         ),
                       ),
                       trailing: Container(
-                        alignment: Alignment.topRight,
+                        alignment: Alignment.center,
                         width: 100,
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.end,
                           children: [
-                            InkWell(
-                              child: CircleAvatar(
-                                radius: 20,
-                                backgroundColor: Color(0xffE7FFE8),
-                                child: Container(
-                                  width: deviceSize.width * 0.035,
-                                  height: deviceSize.height * 0.035,
-                                  decoration: const BoxDecoration(
-                                      image: DecorationImage(
-                                          fit: BoxFit.contain,
-                                          image: AssetImage(
-                                              "assets/images/icon_bag.png"))),
-                                ),
-                              ),
+                            //                 fit:BoxFit.contain,
+                            // width:26,
+                            // height: 26,
+
+                            SvgPicture.asset(
+                              "assets/images/assets/icon_shopping_list.svg",
+                              fit: BoxFit.contain,
+                              width: 26,
+                              height: 26,
                             ),
+
                             SizedBox(
                               width: 10,
                             ),
+
                             InkWell(
-                              child: CircleAvatar(
-                                radius: 20,
-                                backgroundColor: Color(0xffF5F5F5),
-                                child: Icon(_customTileExpanded
-                                    ? Icons.keyboard_arrow_up
-                                    : Icons.keyboard_arrow_down),
+                              child: SvgPicture.asset(
+                                _customTileExpanded
+                                    ? "assets/images/assets/icon-nav-button-bottom.svg"
+                                    : "assets/images/assets/icon-nav-button-top.svg",
+                                fit: BoxFit.contain,
+                                width: 26,
+                                height: 26,
                               ),
                             ),
                           ],
@@ -208,8 +208,66 @@ class _HomePageState extends State<HomePage> {
                                   Text(
                                     "Beans",
                                     style: TextStyle(
-                                      fontSize: 13,
+                                      color: Color(0xff2E3553),
+                                      fontFamily: "Gilroy",
                                       fontWeight: FontWeight.w900,
+                                    ),
+                                  ),
+                                  Text(
+                                    "1pics",
+                                    style: TextStyle(
+                                      fontSize: 12,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                              Row(children: [
+                                Text("Tasco"),
+                                SizedBox(
+                                  width: 8,
+                                ),
+                                CustomDropDown(
+                                  show: true,
+                                  items: items,
+                                  bgColor: Color(0xffE7FFE8),
+                                  valueUrl:
+                                      "assets/images/assets/icon-button-shopping-list.svg",
+                                )
+                              ]),
+                            ],
+                          ),
+                        ),
+                        Container(
+                          padding: EdgeInsets.all(15),
+                          decoration: BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: BorderRadius.circular(10),
+                            boxShadow: [
+                              BoxShadow(
+                                color: Colors.grey.shade100,
+                                blurRadius:
+                                    50, // has the effect of softening the shadow
+                                spreadRadius:
+                                    1, // has the effect of extending the shadow
+                                offset: Offset(
+                                  5.0, // horizontal, move right 10
+                                  5.0, // vertical, move down 10
+                                ),
+                              )
+                            ],
+                          ),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              Column(
+                                children: const [
+                                  Text(
+                                    "Beans",
+                                    style: TextStyle(
+                                      color: Color(0xff2E3553),
+                                      fontFamily: "Gilroy",
+                                      fontWeight: FontWeight.bold,
                                     ),
                                   ),
                                   Text(
@@ -225,82 +283,14 @@ class _HomePageState extends State<HomePage> {
                                 children: [
                                   Text("Tasco"),
                                   SizedBox(
-                                    width: 10,
+                                    width: 8,
                                   ),
-                                  Center(
-                                    child: DropdownButtonHideUnderline(
-                                      child: DropdownButton2(
-                                        customButton: InkWell(
-                                          child: CircleAvatar(
-                                            radius: 18,
-                                            backgroundColor: Color(0xffE7FFE8),
-                                            child: Icon(Icons.more_horiz),
-                                          ),
-                                        ),
-                                        customItemsHeights: [48, 48, 48],
-                                        items: items.map((String items) {
-                                          return DropdownMenuItem(
-                                            value: items,
-                                            child: InkWell(
-                                              onTap: () {
-                                                Navigator.pop(context);
-                                                // Navigator.push(
-                                                //   context,
-                                                //   PageRouteBuilder(
-                                                //     pageBuilder: (context,
-                                                //             animation1,
-                                                //             animation2) =>
-                                                //         const RoomSettingPage(),
-                                                //     transitionDuration:
-                                                //         Duration.zero,
-                                                //     reverseTransitionDuration:
-                                                //         Duration.zero,
-                                                //   ),
-                                                // );
-                                              },
-                                              child: Row(
-                                                children: [
-                                                  items == "Add to List"
-                                                      ? Icon(Icons.done)
-                                                      : items == "Edit"
-                                                          ? Icon(Icons.edit)
-                                                          : Icon(
-                                                              Icons
-                                                                  .delete_outline,
-                                                            ),
-                                                  const SizedBox(
-                                                    width: 10,
-                                                  ),
-                                                  Text(
-                                                    items,
-                                                    style: const TextStyle(
-                                                      fontSize: 13,
-                                                      fontWeight:
-                                                          FontWeight.w600,
-                                                    ),
-                                                  )
-                                                ],
-                                              ),
-                                            ),
-                                          );
-                                        }).toList(),
-                                        onChanged: (value) {},
-                                        itemHeight: 48,
-                                        itemPadding: const EdgeInsets.only(
-                                            left: 16, right: 16),
-                                        dropdownWidth: 160,
-                                        dropdownPadding:
-                                            const EdgeInsets.symmetric(
-                                                vertical: 6),
-                                        dropdownDecoration: BoxDecoration(
-                                          borderRadius:
-                                              BorderRadius.circular(10),
-                                          color: Color(0xffE7FFE8),
-                                        ),
-                                        dropdownElevation: 8,
-                                        offset: const Offset(0, 8),
-                                      ),
-                                    ),
+                                  CustomDropDown(
+                                    show: true,
+                                    items: items,
+                                    bgColor: Color(0xffE7FFE8),
+                                    valueUrl:
+                                        "assets/images/assets/icon-button-shopping-list.svg",
                                   ),
                                 ],
                               )
@@ -335,8 +325,9 @@ class _HomePageState extends State<HomePage> {
                                   Text(
                                     "Beans",
                                     style: TextStyle(
-                                      fontSize: 13,
-                                      fontWeight: FontWeight.w900,
+                                      color: Color(0xff2E3553),
+                                      fontFamily: "Gilroy",
+                                      fontWeight: FontWeight.bold,
                                     ),
                                   ),
                                   Text(
@@ -347,90 +338,19 @@ class _HomePageState extends State<HomePage> {
                                   ),
                                 ],
                               ),
-                              Row(
-                                mainAxisAlignment: MainAxisAlignment.end,
-                                children: [
-                                  Text("Tasco"),
-                                  SizedBox(
-                                    width: 10,
-                                  ),
-                                  Center(
-                                    child: DropdownButtonHideUnderline(
-                                      child: DropdownButton2(
-                                        customButton: InkWell(
-                                          child: CircleAvatar(
-                                            radius: 18,
-                                            backgroundColor: Color(0xffE7FFE8),
-                                            child: Icon(Icons.more_horiz),
-                                          ),
-                                        ),
-                                        customItemsHeights: [48, 48, 48],
-                                        items: items.map((String items) {
-                                          return DropdownMenuItem(
-                                            value: items,
-                                            child: InkWell(
-                                              onTap: () {
-                                                Navigator.pop(context);
-                                                // Navigator.push(
-                                                //   context,
-                                                //   PageRouteBuilder(
-                                                //     pageBuilder: (context,
-                                                //             animation1,
-                                                //             animation2) =>
-                                                //         const RoomSettingPage(),
-                                                //     transitionDuration:
-                                                //         Duration.zero,
-                                                //     reverseTransitionDuration:
-                                                //         Duration.zero,
-                                                //   ),
-                                                // );
-                                              },
-                                              child: Row(
-                                                children: [
-                                                  items == "Add to List"
-                                                      ? Icon(Icons.done)
-                                                      : items == "Edit"
-                                                          ? Icon(Icons.edit)
-                                                          : Icon(
-                                                              Icons
-                                                                  .delete_outline,
-                                                            ),
-                                                  const SizedBox(
-                                                    width: 10,
-                                                  ),
-                                                  Text(
-                                                    items,
-                                                    style: const TextStyle(
-                                                      fontSize: 13,
-                                                      fontWeight:
-                                                          FontWeight.w600,
-                                                    ),
-                                                  )
-                                                ],
-                                              ),
-                                            ),
-                                          );
-                                        }).toList(),
-                                        onChanged: (value) {},
-                                        itemHeight: 48,
-                                        itemPadding: const EdgeInsets.only(
-                                            left: 16, right: 16),
-                                        dropdownWidth: 160,
-                                        dropdownPadding:
-                                            const EdgeInsets.symmetric(
-                                                vertical: 6),
-                                        dropdownDecoration: BoxDecoration(
-                                          borderRadius:
-                                              BorderRadius.circular(10),
-                                          color: Color(0xffE7FFE8),
-                                        ),
-                                        dropdownElevation: 8,
-                                        offset: const Offset(0, 8),
-                                      ),
-                                    ),
-                                  ),
-                                ],
+  Row(children: [
+                                Text("Tasco"),
+                              SizedBox(
+                                width: 8,
+                              ),
+                              CustomDropDown(
+                                show: true,
+                                items: items,
+                                bgColor: Color(0xffE7FFE8),
+                                valueUrl:
+                                    "assets/images/assets/icon-button-shopping-list.svg",
                               )
+  ],)
                             ],
                           ),
                         ),
@@ -462,8 +382,9 @@ class _HomePageState extends State<HomePage> {
                                   Text(
                                     "Beans",
                                     style: TextStyle(
-                                      fontSize: 13,
-                                      fontWeight: FontWeight.w900,
+                                      color: Color(0xff2E3553),
+                                      fontFamily: "Gilroy",
+                                      fontWeight: FontWeight.bold,
                                     ),
                                   ),
                                   Text(
@@ -474,217 +395,19 @@ class _HomePageState extends State<HomePage> {
                                   ),
                                 ],
                               ),
-                              Row(
-                                mainAxisAlignment: MainAxisAlignment.end,
-                                children: [
-                                  Text("Tasco"),
-                                  SizedBox(
-                                    width: 10,
-                                  ),
-                                  Center(
-                                    child: DropdownButtonHideUnderline(
-                                      child: DropdownButton2(
-                                        customButton: InkWell(
-                                          child: CircleAvatar(
-                                            radius: 18,
-                                            backgroundColor: Color(0xffE7FFE8),
-                                            child: Icon(Icons.more_horiz),
-                                          ),
-                                        ),
-                                        customItemsHeights: [48, 48, 48],
-                                        items: items.map((String items) {
-                                          return DropdownMenuItem(
-                                            value: items,
-                                            child: InkWell(
-                                              onTap: () {
-                                                Navigator.pop(context);
-                                                // Navigator.push(
-                                                //   context,
-                                                //   PageRouteBuilder(
-                                                //     pageBuilder: (context,
-                                                //             animation1,
-                                                //             animation2) =>
-                                                //         const RoomSettingPage(),
-                                                //     transitionDuration:
-                                                //         Duration.zero,
-                                                //     reverseTransitionDuration:
-                                                //         Duration.zero,
-                                                //   ),
-                                                // );
-                                              },
-                                              child: Row(
-                                                children: [
-                                                  items == "Add to List"
-                                                      ? Icon(Icons.done)
-                                                      : items == "Edit"
-                                                          ? Icon(Icons.edit)
-                                                          : Icon(
-                                                              Icons
-                                                                  .delete_outline,
-                                                            ),
-                                                  const SizedBox(
-                                                    width: 10,
-                                                  ),
-                                                  Text(
-                                                    items,
-                                                    style: const TextStyle(
-                                                      fontSize: 13,
-                                                      fontWeight:
-                                                          FontWeight.w600,
-                                                    ),
-                                                  )
-                                                ],
-                                              ),
-                                            ),
-                                          );
-                                        }).toList(),
-                                        onChanged: (value) {},
-                                        itemHeight: 48,
-                                        itemPadding: const EdgeInsets.only(
-                                            left: 16, right: 16),
-                                        dropdownWidth: 160,
-                                        dropdownPadding:
-                                            const EdgeInsets.symmetric(
-                                                vertical: 6),
-                                        dropdownDecoration: BoxDecoration(
-                                          borderRadius:
-                                              BorderRadius.circular(10),
-                                          color: Color(0xffE7FFE8),
-                                        ),
-                                        dropdownElevation: 8,
-                                        offset: const Offset(0, 8),
-                                      ),
-                                    ),
-                                  ),
-                                ],
-                              )
-                            ],
-                          ),
-                        ),
-                        Container(
-                          padding: EdgeInsets.all(15),
-                          decoration: BoxDecoration(
-                            color: Colors.white,
-                            borderRadius: BorderRadius.circular(10),
-                            boxShadow: [
-                              BoxShadow(
-                                color: Colors.grey.shade100,
-                                blurRadius:
-                                    50, // has the effect of softening the shadow
-                                spreadRadius:
-                                    1, // has the effect of extending the shadow
-                                offset: Offset(
-                                  5.0, // horizontal, move right 10
-                                  5.0, // vertical, move down 10
-                                ),
-                              )
-                            ],
-                          ),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: [
-                              Column(
-                                children: const [
-                                  Text(
-                                    "Beans",
-                                    style: TextStyle(
-                                      fontSize: 13,
-                                      fontWeight: FontWeight.w900,
-                                    ),
-                                  ),
-                                  Text(
-                                    "1pics",
-                                    style: TextStyle(
-                                      fontSize: 12,
-                                    ),
-                                  ),
-                                ],
+                                    Row(children: [
+                                      Text("Tasco"),
+                              SizedBox(
+                                width: 8,
                               ),
-                              Row(
-                                mainAxisAlignment: MainAxisAlignment.end,
-                                children: [
-                                  Text("Tasco"),
-                                  SizedBox(
-                                    width: 10,
-                                  ),
-                                  Center(
-                                    child: DropdownButtonHideUnderline(
-                                      child: DropdownButton2(
-                                        customButton: InkWell(
-                                          child: CircleAvatar(
-                                            radius: 18,
-                                            backgroundColor: Color(0xffE7FFE8),
-                                            child: Icon(Icons.more_horiz),
-                                          ),
-                                        ),
-                                        customItemsHeights: [48, 48, 48],
-                                        items: items.map((String items) {
-                                          return DropdownMenuItem(
-                                            value: items,
-                                            child: InkWell(
-                                              onTap: () {
-                                                Navigator.pop(context);
-                                                // Navigator.push(
-                                                //   context,
-                                                //   PageRouteBuilder(
-                                                //     pageBuilder: (context,
-                                                //             animation1,
-                                                //             animation2) =>
-                                                //         const RoomSettingPage(),
-                                                //     transitionDuration:
-                                                //         Duration.zero,
-                                                //     reverseTransitionDuration:
-                                                //         Duration.zero,
-                                                //   ),
-                                                // );
-                                              },
-                                              child: Row(
-                                                children: [
-                                                  items == "Add to List"
-                                                      ? Icon(Icons.done)
-                                                      : items == "Edit"
-                                                          ? Icon(Icons.edit)
-                                                          : Icon(
-                                                              Icons
-                                                                  .delete_outline,
-                                                            ),
-                                                  const SizedBox(
-                                                    width: 10,
-                                                  ),
-                                                  Text(
-                                                    items,
-                                                    style: const TextStyle(
-                                                      fontSize: 13,
-                                                      fontWeight:
-                                                          FontWeight.w600,
-                                                    ),
-                                                  )
-                                                ],
-                                              ),
-                                            ),
-                                          );
-                                        }).toList(),
-                                        onChanged: (value) {},
-                                        itemHeight: 48,
-                                        itemPadding: const EdgeInsets.only(
-                                            left: 16, right: 16),
-                                        dropdownWidth: 160,
-                                        dropdownPadding:
-                                            const EdgeInsets.symmetric(
-                                                vertical: 6),
-                                        dropdownDecoration: BoxDecoration(
-                                          borderRadius:
-                                              BorderRadius.circular(10),
-                                          color: Color(0xffE7FFE8),
-                                        ),
-                                        dropdownElevation: 8,
-                                        offset: const Offset(0, 8),
-                                      ),
-                                    ),
-                                  ),
-                                ],
+                              CustomDropDown(
+                                show: true,
+                                items: items,
+                                bgColor: Color(0xffE7FFE8),
+                                valueUrl:
+                                    "assets/images/assets/icon-button-shopping-list.svg",
                               )
+                                    ],)
                             ],
                           ),
                         )
@@ -714,40 +437,38 @@ class _HomePageState extends State<HomePage> {
                         child: Text(
                           "Shared apartment tasks",
                           style: TextStyle(
-                              fontWeight: FontWeight.bold, fontSize: 17),
+                              fontWeight: FontWeight.bold, fontSize: 14),
                         ),
                       ),
                       trailing: Container(
-                        alignment: Alignment.topRight,
+                        alignment: Alignment.center,
                         width: 100,
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.end,
                           children: [
-                            InkWell(
-                              child: CircleAvatar(
-                                radius: 20,
-                                backgroundColor: Color(0xffE7FEFF),
-                                child: Container(
-                                  width: deviceSize.width * 0.035,
-                                  height: deviceSize.height * 0.035,
-                                  decoration: BoxDecoration(
-                                      image: DecorationImage(
-                                          fit: BoxFit.contain,
-                                          image: AssetImage(
-                                              "assets/images/icon_add.png"))),
-                                ),
-                              ),
+                            //                 fit:BoxFit.contain,
+                            // width:26,
+                            // height: 26,
+
+                            SvgPicture.asset(
+                              "assets/images/assets/icon-task-manager.svg",
+                              fit: BoxFit.contain,
+                              width: 26,
+                              height: 26,
                             ),
+
                             SizedBox(
                               width: 10,
                             ),
+
                             InkWell(
-                              child: CircleAvatar(
-                                radius: 20,
-                                backgroundColor: Color(0xffF5F5F5),
-                                child: Icon(_customTileExpanded
-                                    ? Icons.keyboard_arrow_up
-                                    : Icons.keyboard_arrow_down),
+                              child: SvgPicture.asset(
+                                _customTileExpanded
+                                    ? "assets/images/assets/icon-nav-button-bottom.svg"
+                                    : "assets/images/assets/icon-nav-button-top.svg",
+                                fit: BoxFit.contain,
+                                width: 26,
+                                height: 26,
                               ),
                             ),
                           ],
@@ -758,6 +479,108 @@ class _HomePageState extends State<HomePage> {
                       },
                       children: <Widget>[
                         Container(
+                          padding: const EdgeInsets.all(15),
+                          decoration: BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: BorderRadius.circular(10),
+                            boxShadow: [
+                              BoxShadow(
+                                color: Colors.grey.shade100,
+                                blurRadius:
+                                    50, // has the effect of softening the shadow
+                                spreadRadius:
+                                    1, // has the effect of extending the shadow
+                                offset: const Offset(
+                                  5.0, // horizontal, move right 10
+                                  5.0, // vertical, move down 10
+                                ),
+                              )
+                            ],
+                          ),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  const Text(
+                                    "Need to Clean the room",
+                                    style: TextStyle(
+                                      color: Color(0xff2E3553),
+                                      fontFamily: "Gilroy",
+                                      fontWeight: FontWeight.w900,
+                                    ),
+                                  ),
+                                  const SizedBox(
+                                    height: 5,
+                                  ),
+                                  Row(
+                                    children: [
+                                      Container(
+                                        width: deviceSize.width * 0.05,
+                                        height: deviceSize.width * 0.05,
+                                        decoration: const BoxDecoration(
+                                            shape: BoxShape.circle,
+                                            image: DecorationImage(
+                                                fit: BoxFit.contain,
+                                                image: AssetImage(
+                                                    "assets/images/girl.png"))),
+                                      ),
+                                      const SizedBox(
+                                        width: 5,
+                                      ),
+                                      Visibility(
+                                        visible: true,
+                                        child: Container(
+                                          width: deviceSize.width * 0.05,
+                                          height: deviceSize.width * 0.05,
+                                          decoration: BoxDecoration(
+                                              shape: BoxShape.circle,
+                                              image: DecorationImage(
+                                                  fit: BoxFit.contain,
+                                                  image: AssetImage(
+                                                      "assets/images/girl.png"))),
+                                        ),
+                                      ),
+                                      SizedBox(
+                                        width: 5,
+                                      ),
+                                      Visibility(
+                                        visible: true,
+                                        child: Container(
+                                          width: deviceSize.width * 0.05,
+                                          height: deviceSize.width * 0.05,
+                                          decoration: BoxDecoration(
+                                              shape: BoxShape.circle,
+                                              image: DecorationImage(
+                                                  fit: BoxFit.contain,
+                                                  image: AssetImage(
+                                                      "assets/images/girl.png"))),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ],
+                              ),
+                              Column(
+                                crossAxisAlignment: CrossAxisAlignment.end,
+                                children: [
+                                  CustomDropDown(
+                                      items: items,
+                                      valueUrl:
+                                          "assets/images/assets/icon-button-room-task-manager.svg",
+                                      bgColor: Color(0xffE7FEFF)),
+                                  SizedBox(
+                                    height: 5,
+                                  ),
+                                  Text("Tomorrow"),
+                                ],
+                              )
+                            ],
+                          ),
+                        ),
+                        Container(
                           padding: EdgeInsets.all(15),
                           decoration: BoxDecoration(
                             color: Colors.white,
@@ -786,7 +609,8 @@ class _HomePageState extends State<HomePage> {
                                   Text(
                                     "Need to Clean the room",
                                     style: TextStyle(
-                                      fontSize: 13,
+                                      color: Color(0xff2E3553),
+                                      fontFamily: "Gilroy",
                                       fontWeight: FontWeight.w900,
                                     ),
                                   ),
@@ -844,81 +668,11 @@ class _HomePageState extends State<HomePage> {
                               Column(
                                 crossAxisAlignment: CrossAxisAlignment.end,
                                 children: [
-                                  Center(
-                                    child: DropdownButtonHideUnderline(
-                                      child: DropdownButton2(
-                                        customButton: InkWell(
-                                          child: CircleAvatar(
-                                            radius: 18,
-                                            backgroundColor: Color(0xffE7FFE8),
-                                            child: Icon(Icons.more_horiz),
-                                          ),
-                                        ),
-                                        customItemsHeights: [48, 48, 48],
-                                        items: items.map((String items) {
-                                          return DropdownMenuItem(
-                                            value: items,
-                                            child: InkWell(
-                                              onTap: () {
-                                                Navigator.pop(context);
-                                                // Navigator.push(
-                                                //   context,
-                                                //   PageRouteBuilder(
-                                                //     pageBuilder: (context,
-                                                //             animation1,
-                                                //             animation2) =>
-                                                //         const RoomSettingPage(),
-                                                //     transitionDuration:
-                                                //         Duration.zero,
-                                                //     reverseTransitionDuration:
-                                                //         Duration.zero,
-                                                //   ),
-                                                // );
-                                              },
-                                              child: Row(
-                                                children: [
-                                                  items == "Add to List"
-                                                      ? Icon(Icons.done)
-                                                      : items == "Edit"
-                                                          ? Icon(Icons.edit)
-                                                          : Icon(
-                                                              Icons
-                                                                  .delete_outline,
-                                                            ),
-                                                  const SizedBox(
-                                                    width: 10,
-                                                  ),
-                                                  Text(
-                                                    items,
-                                                    style: const TextStyle(
-                                                      fontSize: 13,
-                                                      fontWeight:
-                                                          FontWeight.w600,
-                                                    ),
-                                                  )
-                                                ],
-                                              ),
-                                            ),
-                                          );
-                                        }).toList(),
-                                        onChanged: (value) {},
-                                        itemHeight: 48,
-                                        itemPadding: const EdgeInsets.only(
-                                            left: 16, right: 16),
-                                        dropdownWidth: 160,
-                                        dropdownPadding:
-                                            const EdgeInsets.symmetric(
-                                                vertical: 6),
-                                        dropdownDecoration: BoxDecoration(
-                                          borderRadius:
-                                              BorderRadius.circular(10),
-                                          color: Color(0xffE7FFE8),
-                                        ),
-                                        dropdownElevation: 8,
-                                        offset: const Offset(0, 8),
-                                      ),
-                                    ),
-                                  ),
+                                  CustomDropDown(
+                                      items: items,
+                                      valueUrl:
+                                          "assets/images/assets/icon-button-room-task-manager.svg",
+                                      bgColor: Color(0xffE7FEFF)),
                                   SizedBox(
                                     height: 5,
                                   ),
@@ -957,178 +711,8 @@ class _HomePageState extends State<HomePage> {
                                   Text(
                                     "Need to Clean the room",
                                     style: TextStyle(
-                                      fontSize: 13,
-                                      fontWeight: FontWeight.w900,
-                                    ),
-                                  ),
-                                  SizedBox(
-                                    height: 5,
-                                  ),
-                                  Row(
-                                    children: [
-                                      Container(
-                                        width: deviceSize.width * 0.05,
-                                        height: deviceSize.width * 0.05,
-                                        decoration: BoxDecoration(
-                                            shape: BoxShape.circle,
-                                            image: DecorationImage(
-                                                fit: BoxFit.contain,
-                                                image: AssetImage(
-                                                    "assets/images/girl.png"))),
-                                      ),
-                                      SizedBox(
-                                        width: 5,
-                                      ),
-                                      Visibility(
-                                        visible: true,
-                                        child: Container(
-                                          width: deviceSize.width * 0.05,
-                                          height: deviceSize.width * 0.05,
-                                          decoration: BoxDecoration(
-                                              shape: BoxShape.circle,
-                                              image: DecorationImage(
-                                                  fit: BoxFit.contain,
-                                                  image: AssetImage(
-                                                      "assets/images/girl.png"))),
-                                        ),
-                                      ),
-                                      SizedBox(
-                                        width: 5,
-                                      ),
-                                      Visibility(
-                                        visible: true,
-                                        child: Container(
-                                          width: deviceSize.width * 0.05,
-                                          height: deviceSize.width * 0.05,
-                                          decoration: BoxDecoration(
-                                              shape: BoxShape.circle,
-                                              image: DecorationImage(
-                                                  fit: BoxFit.contain,
-                                                  image: AssetImage(
-                                                      "assets/images/girl.png"))),
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ],
-                              ),
-                              Column(
-                                crossAxisAlignment: CrossAxisAlignment.end,
-                                children: [
-                                  Center(
-                                    child: DropdownButtonHideUnderline(
-                                      child: DropdownButton2(
-                                        customButton: InkWell(
-                                          child: CircleAvatar(
-                                            radius: 18,
-                                            backgroundColor: Color(0xffE7FFE8),
-                                            child: Icon(Icons.more_horiz),
-                                          ),
-                                        ),
-                                        customItemsHeights: [48, 48, 48],
-                                        items: items.map((String items) {
-                                          return DropdownMenuItem(
-                                            value: items,
-                                            child: InkWell(
-                                              onTap: () {
-                                                Navigator.pop(context);
-                                                // Navigator.push(
-                                                //   context,
-                                                //   PageRouteBuilder(
-                                                //     pageBuilder: (context,
-                                                //             animation1,
-                                                //             animation2) =>
-                                                //         const RoomSettingPage(),
-                                                //     transitionDuration:
-                                                //         Duration.zero,
-                                                //     reverseTransitionDuration:
-                                                //         Duration.zero,
-                                                //   ),
-                                                // );
-                                              },
-                                              child: Row(
-                                                children: [
-                                                  items == "Add to List"
-                                                      ? Icon(Icons.done)
-                                                      : items == "Edit"
-                                                          ? Icon(Icons.edit)
-                                                          : Icon(
-                                                              Icons
-                                                                  .delete_outline,
-                                                            ),
-                                                  const SizedBox(
-                                                    width: 10,
-                                                  ),
-                                                  Text(
-                                                    items,
-                                                    style: const TextStyle(
-                                                      fontSize: 13,
-                                                      fontWeight:
-                                                          FontWeight.w600,
-                                                    ),
-                                                  )
-                                                ],
-                                              ),
-                                            ),
-                                          );
-                                        }).toList(),
-                                        onChanged: (value) {},
-                                        itemHeight: 48,
-                                        itemPadding: const EdgeInsets.only(
-                                            left: 16, right: 16),
-                                        dropdownWidth: 160,
-                                        dropdownPadding:
-                                            const EdgeInsets.symmetric(
-                                                vertical: 6),
-                                        dropdownDecoration: BoxDecoration(
-                                          borderRadius:
-                                              BorderRadius.circular(10),
-                                          color: Color(0xffE7FFE8),
-                                        ),
-                                        dropdownElevation: 8,
-                                        offset: const Offset(0, 8),
-                                      ),
-                                    ),
-                                  ),
-                                  SizedBox(
-                                    height: 5,
-                                  ),
-                                  Text("Tomorrow"),
-                                ],
-                              )
-                            ],
-                          ),
-                        ),
-                        Container(
-                          padding: EdgeInsets.all(15),
-                          decoration: BoxDecoration(
-                            color: Colors.white,
-                            borderRadius: BorderRadius.circular(10),
-                            boxShadow: [
-                              BoxShadow(
-                                color: Colors.grey.shade100,
-                                blurRadius:
-                                    50, // has the effect of softening the shadow
-                                spreadRadius:
-                                    1, // has the effect of extending the shadow
-                                offset: Offset(
-                                  5.0, // horizontal, move right 10
-                                  5.0, // vertical, move down 10
-                                ),
-                              )
-                            ],
-                          ),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: [
-                              Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text(
-                                    "Need to Clean the room",
-                                    style: TextStyle(
-                                      fontSize: 13,
+                                      color: Color(0xff2E3553),
+                                      fontFamily: "Gilroy",
                                       fontWeight: FontWeight.w900,
                                     ),
                                   ),
@@ -1171,7 +755,7 @@ class _HomePageState extends State<HomePage> {
                                         child: Container(
                                           width: deviceSize.width * 0.05,
                                           height: deviceSize.width * 0.05,
-                                          decoration: BoxDecoration(
+                                          decoration: const BoxDecoration(
                                               shape: BoxShape.circle,
                                               image: DecorationImage(
                                                   fit: BoxFit.contain,
@@ -1186,85 +770,15 @@ class _HomePageState extends State<HomePage> {
                               Column(
                                 crossAxisAlignment: CrossAxisAlignment.end,
                                 children: [
-                                  Center(
-                                    child: DropdownButtonHideUnderline(
-                                      child: DropdownButton2(
-                                        customButton: InkWell(
-                                          child: CircleAvatar(
-                                            radius: 18,
-                                            backgroundColor: Color(0xffE7FFE8),
-                                            child: Icon(Icons.more_horiz),
-                                          ),
-                                        ),
-                                        customItemsHeights: [48, 48, 48],
-                                        items: items.map((String items) {
-                                          return DropdownMenuItem(
-                                            value: items,
-                                            child: InkWell(
-                                              onTap: () {
-                                                Navigator.pop(context);
-                                                // Navigator.push(
-                                                //   context,
-                                                //   PageRouteBuilder(
-                                                //     pageBuilder: (context,
-                                                //             animation1,
-                                                //             animation2) =>
-                                                //         const RoomSettingPage(),
-                                                //     transitionDuration:
-                                                //         Duration.zero,
-                                                //     reverseTransitionDuration:
-                                                //         Duration.zero,
-                                                //   ),
-                                                // );
-                                              },
-                                              child: Row(
-                                                children: [
-                                                  items == "Add to List"
-                                                      ? Icon(Icons.done)
-                                                      : items == "Edit"
-                                                          ? Icon(Icons.edit)
-                                                          : Icon(
-                                                              Icons
-                                                                  .delete_outline,
-                                                            ),
-                                                  const SizedBox(
-                                                    width: 10,
-                                                  ),
-                                                  Text(
-                                                    items,
-                                                    style: const TextStyle(
-                                                      fontSize: 13,
-                                                      fontWeight:
-                                                          FontWeight.w600,
-                                                    ),
-                                                  )
-                                                ],
-                                              ),
-                                            ),
-                                          );
-                                        }).toList(),
-                                        onChanged: (value) {},
-                                        itemHeight: 48,
-                                        itemPadding: const EdgeInsets.only(
-                                            left: 16, right: 16),
-                                        dropdownWidth: 160,
-                                        dropdownPadding:
-                                            const EdgeInsets.symmetric(
-                                                vertical: 6),
-                                        dropdownDecoration: BoxDecoration(
-                                          borderRadius:
-                                              BorderRadius.circular(10),
-                                          color: Color(0xffE7FFE8),
-                                        ),
-                                        dropdownElevation: 8,
-                                        offset: const Offset(0, 8),
-                                      ),
-                                    ),
-                                  ),
-                                  SizedBox(
+                                  CustomDropDown(
+                                      items: items,
+                                      valueUrl:
+                                          "assets/images/assets/icon-button-room-task-manager.svg",
+                                      bgColor: Color(0xffE7FEFF)),
+                                  const SizedBox(
                                     height: 5,
                                   ),
-                                  Text("Tomorrow"),
+                                  const Text("Tomorrow"),
                                 ],
                               )
                             ],
@@ -1296,43 +810,41 @@ class _HomePageState extends State<HomePage> {
                         child: const Text(
                           "Owing a lot of money",
                           style: TextStyle(
-                              fontWeight: FontWeight.bold, fontSize: 17),
+                              fontWeight: FontWeight.bold, fontSize: 14),
                         ),
                       ),
                       onExpansionChanged: (bool expanded) {
                         setState(() => _customTileExpanded = expanded);
                       },
                       trailing: Container(
-                        alignment: Alignment.topRight,
+                        alignment: Alignment.center,
                         width: 100,
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.end,
                           children: [
-                            InkWell(
-                              child: CircleAvatar(
-                                radius: 20,
-                                backgroundColor: Color(0xffFFE7E7),
-                                child: Container(
-                                  width: deviceSize.width * 0.04,
-                                  height: deviceSize.height * 0.04,
-                                  decoration: BoxDecoration(
-                                      image: DecorationImage(
-                                          fit: BoxFit.contain,
-                                          image: AssetImage(
-                                              "assets/images/icon_wallet.png"))),
-                                ),
-                              ),
+                            //                 fit:BoxFit.contain,
+                            // width:26,
+                            // height: 26,
+
+                            SvgPicture.asset(
+                              "assets/images/assets/icon-dept-organizer.svg",
+                              fit: BoxFit.contain,
+                              width: 26,
+                              height: 26,
                             ),
+
                             SizedBox(
                               width: 10,
                             ),
+
                             InkWell(
-                              child: CircleAvatar(
-                                radius: 20,
-                                backgroundColor: Color(0xffF5F5F5),
-                                child: Icon(_customTileExpanded
-                                    ? Icons.keyboard_arrow_up
-                                    : Icons.keyboard_arrow_down),
+                              child: SvgPicture.asset(
+                                _customTileExpanded
+                                    ? "assets/images/assets/icon-nav-button-bottom.svg"
+                                    : "assets/images/assets/icon-nav-button-top.svg",
+                                fit: BoxFit.contain,
+                                width: 26,
+                                height: 26,
                               ),
                             ),
                           ],
@@ -1368,8 +880,215 @@ class _HomePageState extends State<HomePage> {
                                   Text(
                                     "Borrowing Money for \nschool trip and launch ",
                                     style: TextStyle(
-                                      fontSize: deviceSize.width * 0.028,
-                                      fontWeight: FontWeight.w700,
+                                      fontFamily: "Gilroy",
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
+                                  RichText(
+                                    overflow: TextOverflow.clip,
+                                    textAlign: TextAlign.end,
+                                    textDirection: TextDirection.rtl,
+                                    softWrap: true,
+                                    textScaleFactor: 1,
+                                    text: TextSpan(
+                                      text: 'Dept accepted \n by ',
+                                      style: TextStyle(
+                                        color: Color(0xff2E3553),
+                                        fontFamily: "Gilroy",
+                                      ),
+                                      children: const <TextSpan>[
+                                        TextSpan(
+                                            text: 'Lina Cocona',
+                                            style: TextStyle(
+                                              color: Color(0xff2E3553),
+                                              fontFamily: "Gilroy",
+                                              fontWeight: FontWeight.bold,
+                                            )),
+                                      ],
+                                    ),
+                                  )
+                                ],
+                              ),
+                              SizedBox(
+                                height: deviceSize.height * 0.01,
+                              ),
+                              Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  RichText(
+                                    overflow: TextOverflow.clip,
+                                    textAlign: TextAlign.end,
+                                    textDirection: TextDirection.rtl,
+                                    softWrap: true,
+                                    textScaleFactor: 1,
+                                    text: TextSpan(
+                                      text: 'Paid',
+                                      style: TextStyle(
+                                        color: Color(0xff2E3553),
+                                        fontSize: deviceSize.width * 0.03,
+                                        fontFamily: "Gilroy",
+                                      ),
+                                      children: const <TextSpan>[
+                                        TextSpan(
+                                            text: ' \$50',
+                                            style: TextStyle(
+                                              color: Color(0xff2E3553),
+                                              fontFamily: "Gilroy",
+                                              fontWeight: FontWeight.bold,
+                                            )),
+                                      ],
+                                    ),
+                                  ),
+                                  RichText(
+                                    overflow: TextOverflow.clip,
+                                    textAlign: TextAlign.end,
+                                    textDirection: TextDirection.rtl,
+                                    softWrap: true,
+                                    textScaleFactor: 1,
+                                    text: TextSpan(
+                                      text: 'from',
+                                      style: TextStyle(
+                                        color: Color(0xff2E3553),
+                                        fontSize: deviceSize.width * 0.03,
+                                        fontFamily: "Gilroy",
+                                      ),
+                                      children: const <TextSpan>[
+                                        TextSpan(
+                                            text: ' \$100',
+                                            style: TextStyle(
+                                              color: Color(0xff2E3553),
+                                              fontFamily: "Gilroy",
+                                              fontWeight: FontWeight.bold,
+                                            )),
+                                      ],
+                                    ),
+                                  ),
+                                ],
+                              ),
+                              SizedBox(
+                                height: deviceSize.height * 0.002,
+                              ),
+                              Center(
+                                child: Stack(
+                                  children: [
+                                    Container(
+                                      width: deviceSize.width,
+                                      height: 2,
+                                      decoration: BoxDecoration(
+                                        color: Color(0xffF4F4F4),
+                                        borderRadius: BorderRadius.all(
+                                            Radius.circular(10)),
+                                      ),
+                                    ),
+                                    LayoutBuilder(
+                                      builder: (context, constraints) =>
+                                          Container(
+                                        width:
+                                            constraints.maxWidth * (50 / 100),
+                                        height: 2,
+                                        decoration: BoxDecoration(
+                                          color: Color(0xff48BFAA),
+                                          borderRadius: BorderRadius.all(
+                                              Radius.circular(0)),
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              SizedBox(
+                                height: deviceSize.height * 0.007,
+                              ),
+                              Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  RichText(
+                                    overflow: TextOverflow.clip,
+                                    textAlign: TextAlign.end,
+                                    textDirection: TextDirection.rtl,
+                                    softWrap: true,
+                                    textScaleFactor: 1,
+                                    text: TextSpan(
+                                      text: 'Started: ',
+                                      style: TextStyle(
+                                        color: Color(0xff2E3553),
+                                        fontFamily: "Gilroy",
+                                        fontSize: deviceSize.width * 0.028,
+                                      ),
+                                      children: const <TextSpan>[
+                                        TextSpan(
+                                            text: '12.12.2022',
+                                            style: TextStyle(
+                                              color: Color(0xff2E3553),
+                                              fontFamily: "Gilroy",
+                                              fontWeight: FontWeight.bold,
+                                            )),
+                                      ],
+                                    ),
+                                  ),
+                                  RichText(
+                                    overflow: TextOverflow.clip,
+                                    textAlign: TextAlign.end,
+                                    textDirection: TextDirection.rtl,
+                                    softWrap: true,
+                                    textScaleFactor: 1,
+                                    text: TextSpan(
+                                      text: 'Deadline: ',
+                                      style: TextStyle(
+                                        color: Color(0xff2E3553),
+                                        fontFamily: "Gilroy",
+                                        fontSize: deviceSize.width * 0.028,
+                                      ),
+                                      children: const <TextSpan>[
+                                        TextSpan(
+                                            text: '12.09.2023',
+                                            style: TextStyle(
+                                              color: Color(0xff2E3553),
+                                              fontFamily: "Gilroy",
+                                              fontWeight: FontWeight.bold,
+                                            )),
+                                      ],
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ],
+                          ),
+                        ),
+                        Container(
+                          padding: EdgeInsets.all(15),
+                          decoration: BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: BorderRadius.circular(10),
+                            boxShadow: [
+                              BoxShadow(
+                                color: Colors.grey.shade100,
+                                blurRadius:
+                                    50, // has the effect of softening the shadow
+                                spreadRadius:
+                                    1, // has the effect of extending the shadow
+                                offset: Offset(
+                                  5.0, // horizontal, move right 10
+                                  5.0, // vertical, move down 10
+                                ),
+                              )
+                            ],
+                          ),
+                          child: Column(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Text(
+                                    "Borrowing Money for \nschool trip and launch ",
+                                    style: TextStyle(
+                                      color: Color(0xff2E3553),
+                                      fontFamily: "Gilroy",
+                                      fontWeight: FontWeight.bold,
                                     ),
                                   ),
                                   RichText(
@@ -1575,215 +1294,9 @@ class _HomePageState extends State<HomePage> {
                                   Text(
                                     "Borrowing Money for \nschool trip and launch ",
                                     style: TextStyle(
-                                      fontSize: deviceSize.width * 0.028,
-                                      fontWeight: FontWeight.w700,
-                                    ),
-                                  ),
-                                  RichText(
-                                    overflow: TextOverflow.clip,
-                                    textAlign: TextAlign.end,
-                                    textDirection: TextDirection.rtl,
-                                    softWrap: true,
-                                    textScaleFactor: 1,
-                                    text: TextSpan(
-                                      text: 'Dept accepted \n by ',
-                                      style: TextStyle(
-                                        color: Color(0xff2E3553),
-                                        fontFamily: "Gilroy",
-                                        fontSize: deviceSize.width * 0.028,
-                                      ),
-                                      children: const <TextSpan>[
-                                        TextSpan(
-                                            text: 'Lina Cocona',
-                                            style: TextStyle(
-                                              color: Color(0xff2E3553),
-                                              fontFamily: "Gilroy",
-                                              fontWeight: FontWeight.bold,
-                                            )),
-                                      ],
-                                    ),
-                                  )
-                                ],
-                              ),
-                              SizedBox(
-                                height: deviceSize.height * 0.01,
-                              ),
-                              Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  RichText(
-                                    overflow: TextOverflow.clip,
-                                    textAlign: TextAlign.end,
-                                    textDirection: TextDirection.rtl,
-                                    softWrap: true,
-                                    textScaleFactor: 1,
-                                    text: TextSpan(
-                                      text: 'Paid',
-                                      style: TextStyle(
-                                        color: Color(0xff2E3553),
-                                        fontSize: deviceSize.width * 0.03,
-                                        fontFamily: "Gilroy",
-                                      ),
-                                      children: const <TextSpan>[
-                                        TextSpan(
-                                            text: ' \$50',
-                                            style: TextStyle(
-                                              color: Color(0xff2E3553),
-                                              fontFamily: "Gilroy",
-                                              fontWeight: FontWeight.bold,
-                                            )),
-                                      ],
-                                    ),
-                                  ),
-                                  RichText(
-                                    overflow: TextOverflow.clip,
-                                    textAlign: TextAlign.end,
-                                    textDirection: TextDirection.rtl,
-                                    softWrap: true,
-                                    textScaleFactor: 1,
-                                    text: TextSpan(
-                                      text: 'from',
-                                      style: TextStyle(
-                                        color: Color(0xff2E3553),
-                                        fontSize: deviceSize.width * 0.03,
-                                        fontFamily: "Gilroy",
-                                      ),
-                                      children: const <TextSpan>[
-                                        TextSpan(
-                                            text: ' \$100',
-                                            style: TextStyle(
-                                              color: Color(0xff2E3553),
-                                              fontFamily: "Gilroy",
-                                              fontWeight: FontWeight.bold,
-                                            )),
-                                      ],
-                                    ),
-                                  ),
-                                ],
-                              ),
-                              SizedBox(
-                                height: deviceSize.height * 0.002,
-                              ),
-                              Center(
-                                child: Stack(
-                                  children: [
-                                    Container(
-                                      width: deviceSize.width,
-                                      height: 2,
-                                      decoration: BoxDecoration(
-                                        color: Color(0xffF4F4F4),
-                                        borderRadius: BorderRadius.all(
-                                            Radius.circular(10)),
-                                      ),
-                                    ),
-                                    LayoutBuilder(
-                                      builder: (context, constraints) =>
-                                          Container(
-                                        width:
-                                            constraints.maxWidth * (50 / 100),
-                                        height: 2,
-                                        decoration: BoxDecoration(
-                                          color: Color(0xff48BFAA),
-                                          borderRadius: BorderRadius.all(
-                                              Radius.circular(0)),
-                                        ),
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                              SizedBox(
-                                height: deviceSize.height * 0.007,
-                              ),
-                              Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  RichText(
-                                    overflow: TextOverflow.clip,
-                                    textAlign: TextAlign.end,
-                                    textDirection: TextDirection.rtl,
-                                    softWrap: true,
-                                    textScaleFactor: 1,
-                                    text: TextSpan(
-                                      text: 'Started: ',
-                                      style: TextStyle(
-                                        color: Color(0xff2E3553),
-                                        fontFamily: "Gilroy",
-                                        fontSize: deviceSize.width * 0.028,
-                                      ),
-                                      children: const <TextSpan>[
-                                        TextSpan(
-                                            text: '12.12.2022',
-                                            style: TextStyle(
-                                              color: Color(0xff2E3553),
-                                              fontFamily: "Gilroy",
-                                              fontWeight: FontWeight.bold,
-                                            )),
-                                      ],
-                                    ),
-                                  ),
-                                  RichText(
-                                    overflow: TextOverflow.clip,
-                                    textAlign: TextAlign.end,
-                                    textDirection: TextDirection.rtl,
-                                    softWrap: true,
-                                    textScaleFactor: 1,
-                                    text: TextSpan(
-                                      text: 'Deadline: ',
-                                      style: TextStyle(
-                                        color: Color(0xff2E3553),
-                                        fontFamily: "Gilroy",
-                                        fontSize: deviceSize.width * 0.028,
-                                      ),
-                                      children: const <TextSpan>[
-                                        TextSpan(
-                                            text: '12.09.2023',
-                                            style: TextStyle(
-                                              color: Color(0xff2E3553),
-                                              fontFamily: "Gilroy",
-                                              fontWeight: FontWeight.bold,
-                                            )),
-                                      ],
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ],
-                          ),
-                        ),
-                        Container(
-                          padding: EdgeInsets.all(15),
-                          decoration: BoxDecoration(
-                            color: Colors.white,
-                            borderRadius: BorderRadius.circular(10),
-                            boxShadow: [
-                              BoxShadow(
-                                color: Colors.grey.shade100,
-                                blurRadius:
-                                    50, // has the effect of softening the shadow
-                                spreadRadius:
-                                    1, // has the effect of extending the shadow
-                                offset: Offset(
-                                  5.0, // horizontal, move right 10
-                                  5.0, // vertical, move down 10
-                                ),
-                              )
-                            ],
-                          ),
-                          child: Column(
-                            mainAxisSize: MainAxisSize.min,
-                            children: [
-                              Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  Text(
-                                    "Borrowing Money for \nschool trip and launch ",
-                                    style: TextStyle(
-                                      fontSize: deviceSize.width * 0.028,
-                                      fontWeight: FontWeight.w700,
+                                      color: Color(0xff2E3553),
+                                      fontFamily: "Gilroy",
+                                      fontWeight: FontWeight.bold,
                                     ),
                                   ),
                                   RichText(
@@ -1989,40 +1502,38 @@ class _HomePageState extends State<HomePage> {
                         child: const Text(
                           "Owing a lot of money",
                           style: TextStyle(
-                              fontWeight: FontWeight.bold, fontSize: 17),
+                              fontWeight: FontWeight.bold, fontSize: 14),
                         ),
                       ),
                       trailing: Container(
-                        alignment: Alignment.topRight,
+                        alignment: Alignment.center,
                         width: 100,
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.end,
                           children: [
-                            InkWell(
-                              child: CircleAvatar(
-                                radius: 20,
-                                backgroundColor: Color(0xffFFE7E7),
-                                child: Container(
-                                  width: deviceSize.width * 0.04,
-                                  height: deviceSize.height * 0.04,
-                                  decoration: BoxDecoration(
-                                      image: DecorationImage(
-                                          fit: BoxFit.contain,
-                                          image: AssetImage(
-                                              "assets/images/icon_wallet.png"))),
-                                ),
-                              ),
+                            //                 fit:BoxFit.contain,
+                            // width:26,
+                            // height: 26,
+
+                            SvgPicture.asset(
+                              "assets/images/assets/icon-dept-organizer.svg",
+                              fit: BoxFit.contain,
+                              width: 26,
+                              height: 26,
                             ),
+
                             SizedBox(
                               width: 10,
                             ),
+
                             InkWell(
-                              child: CircleAvatar(
-                                radius: 20,
-                                backgroundColor: Color(0xffF5F5F5),
-                                child: Icon(_customTileExpanded
-                                    ? Icons.keyboard_arrow_up
-                                    : Icons.keyboard_arrow_down),
+                              child: SvgPicture.asset(
+                                _customTileExpanded
+                                    ? "assets/images/assets/icon-nav-button-bottom.svg"
+                                    : "assets/images/assets/icon-nav-button-top.svg",
+                                fit: BoxFit.contain,
+                                width: 26,
+                                height: 26,
                               ),
                             ),
                           ],
@@ -2095,13 +1606,11 @@ class _HomePageState extends State<HomePage> {
                                       SizedBox(
                                         width: 10,
                                       ),
-                                      InkWell(
-                                        child: CircleAvatar(
-                                          radius: 18,
-                                          backgroundColor: Color(0xffF7E7FF),
-                                          child: Icon(Icons.more_horiz),
-                                        ),
-                                      ),
+                                      CustomDropDown(
+                                          items: items,
+                                          valueUrl:
+                                              "assets/images/assets/icon-button-room-activity-manager.svg",
+                                          bgColor: Color(0xffF7E7FF)),
                                     ],
                                   ),
                                   SizedBox(
@@ -2179,13 +1688,11 @@ class _HomePageState extends State<HomePage> {
                                       SizedBox(
                                         width: 10,
                                       ),
-                                      InkWell(
-                                        child: CircleAvatar(
-                                          radius: 18,
-                                          backgroundColor: Color(0xffF7E7FF),
-                                          child: Icon(Icons.more_horiz),
-                                        ),
-                                      ),
+                                      CustomDropDown(
+                                          items: items,
+                                          valueUrl:
+                                              "assets/images/assets/icon-button-room-activity-manager.svg",
+                                          bgColor: Color(0xffF7E7FF)),
                                     ],
                                   ),
                                   SizedBox(
@@ -2263,13 +1770,11 @@ class _HomePageState extends State<HomePage> {
                                       SizedBox(
                                         width: 10,
                                       ),
-                                      InkWell(
-                                        child: CircleAvatar(
-                                          radius: 18,
-                                          backgroundColor: Color(0xffF7E7FF),
-                                          child: Icon(Icons.more_horiz),
-                                        ),
-                                      ),
+                                      CustomDropDown(
+                                          items: items,
+                                          valueUrl:
+                                              "assets/images/assets/icon-button-room-activity-manager.svg",
+                                          bgColor: Color(0xffF7E7FF)),
                                     ],
                                   ),
                                   SizedBox(
@@ -2306,38 +1811,38 @@ class _HomePageState extends State<HomePage> {
                         child: const Text(
                           "Buying stuff for next summer",
                           style: TextStyle(
-                              fontWeight: FontWeight.bold, fontSize: 17),
+                              fontWeight: FontWeight.bold, fontSize: 14),
                         ),
                       ),
                       trailing: Container(
-                        alignment: Alignment.topRight,
+                        alignment: Alignment.center,
                         width: 100,
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.end,
                           children: [
-                            InkWell(
-                              child: CircleAvatar(
-                                radius: 20,
-                                backgroundColor: Color(0xffE7FFE8),
-                                child: Container(
-                                  width: deviceSize.width * 0.035,
-                                  height: deviceSize.height * 0.035,
-                                  decoration: BoxDecoration(
-                                      image: DecorationImage(
-                                          fit: BoxFit.contain,
-                                          image: AssetImage(
-                                              "assets/images/icon_bag.png"))),
-                                ),
-                              ),
+                            //                 fit:BoxFit.contain,
+                            // width:26,
+                            // height: 26,
+
+                            SvgPicture.asset(
+                              "assets/images/assets/icon_shopping_list.svg",
+                              fit: BoxFit.contain,
+                              width: 26,
+                              height: 26,
                             ),
+
                             SizedBox(
                               width: 10,
                             ),
+
                             InkWell(
-                              child: CircleAvatar(
-                                radius: 20,
-                                backgroundColor: Color(0xffF5F5F5),
-                                child: Icon(Icons.keyboard_arrow_up),
+                              child: SvgPicture.asset(
+                                _customTileExpanded
+                                    ? "assets/images/assets/icon-nav-button-bottom.svg"
+                                    : "assets/images/assets/icon-nav-button-top.svg",
+                                fit: BoxFit.contain,
+                                width: 26,
+                                height: 26,
                               ),
                             ),
                           ],
@@ -2373,7 +1878,6 @@ class _HomePageState extends State<HomePage> {
                                   Text(
                                     "Black Panter",
                                     style: TextStyle(
-                                      fontSize: 13,
                                       fontWeight: FontWeight.w900,
                                     ),
                                   ),
@@ -2410,13 +1914,11 @@ class _HomePageState extends State<HomePage> {
                                       SizedBox(
                                         width: 10,
                                       ),
-                                      InkWell(
-                                        child: CircleAvatar(
-                                          radius: 18,
-                                          backgroundColor: Color(0xffF7E7FF),
-                                          child: Icon(Icons.more_horiz),
-                                        ),
-                                      ),
+                                      CustomDropDown(
+                                          items: items,
+                                          valueUrl:
+                                              "assets/images/assets/icon-button-room-activity-manager.svg",
+                                          bgColor: Color(0xffF7E7FF)),
                                     ],
                                   ),
                                   SizedBox(
@@ -2457,7 +1959,6 @@ class _HomePageState extends State<HomePage> {
                                   Text(
                                     "Black Panter",
                                     style: TextStyle(
-                                      fontSize: 13,
                                       fontWeight: FontWeight.w900,
                                     ),
                                   ),
@@ -2494,13 +1995,11 @@ class _HomePageState extends State<HomePage> {
                                       SizedBox(
                                         width: 10,
                                       ),
-                                      InkWell(
-                                        child: CircleAvatar(
-                                          radius: 18,
-                                          backgroundColor: Color(0xffF7E7FF),
-                                          child: Icon(Icons.more_horiz),
-                                        ),
-                                      ),
+                                      CustomDropDown(
+                                          items: items,
+                                          valueUrl:
+                                              "assets/images/assets/icon-button-room-activity-manager.svg",
+                                          bgColor: Color(0xffF7E7FF)),
                                     ],
                                   ),
                                   SizedBox(
@@ -2578,13 +2077,11 @@ class _HomePageState extends State<HomePage> {
                                       SizedBox(
                                         width: 10,
                                       ),
-                                      InkWell(
-                                        child: CircleAvatar(
-                                          radius: 18,
-                                          backgroundColor: Color(0xffF7E7FF),
-                                          child: Icon(Icons.more_horiz),
-                                        ),
-                                      ),
+                                      CustomDropDown(
+                                          items: items,
+                                          valueUrl:
+                                              "assets/images/assets/icon-button-room-activity-manager.svg",
+                                          bgColor: Color(0xffF7E7FF)),
                                     ],
                                   ),
                                   SizedBox(
@@ -2621,38 +2118,38 @@ class _HomePageState extends State<HomePage> {
                         child: const Text(
                           "People owe me",
                           style: TextStyle(
-                              fontWeight: FontWeight.bold, fontSize: 17),
+                              fontWeight: FontWeight.bold, fontSize: 14),
                         ),
                       ),
                       trailing: Container(
-                        alignment: Alignment.topRight,
+                        alignment: Alignment.center,
                         width: 100,
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.end,
                           children: [
-                            InkWell(
-                              child: CircleAvatar(
-                                radius: 20,
-                                backgroundColor: Color(0xffFFE7E7),
-                                child: Container(
-                                  width: deviceSize.width * 0.04,
-                                  height: deviceSize.height * 0.04,
-                                  decoration: BoxDecoration(
-                                      image: DecorationImage(
-                                          fit: BoxFit.contain,
-                                          image: AssetImage(
-                                              "assets/images/icon_wallet.png"))),
-                                ),
-                              ),
+                            //                 fit:BoxFit.contain,
+                            // width:26,
+                            // height: 26,
+
+                            SvgPicture.asset(
+                              "assets/images/assets/icon-dept-organizer.svg",
+                              fit: BoxFit.contain,
+                              width: 26,
+                              height: 26,
                             ),
+
                             SizedBox(
                               width: 10,
                             ),
+
                             InkWell(
-                              child: CircleAvatar(
-                                radius: 20,
-                                backgroundColor: Color(0xffF5F5F5),
-                                child: Icon(Icons.keyboard_arrow_up),
+                              child: SvgPicture.asset(
+                                _customTileExpanded
+                                    ? "assets/images/assets/icon-nav-button-bottom.svg"
+                                    : "assets/images/assets/icon-nav-button-top.svg",
+                                fit: BoxFit.contain,
+                                width: 26,
+                                height: 26,
                               ),
                             ),
                           ],
@@ -2763,6 +2260,107 @@ class _HomePageState extends State<HomePage> {
                 ),
               ],
             ),
+    );
+  }
+}
+
+class CustomDropDown extends StatelessWidget {
+  String? valueUrl;
+  Color? bgColor;
+  bool? show;
+  CustomDropDown(
+      {Key? key,
+      required this.items,
+      required this.valueUrl,
+      required this.bgColor,
+      this.show = false})
+      : super(key: key);
+
+  final List<String> items;
+
+  @override
+  Widget build(BuildContext context) {
+    Size deviceSize = MediaQuery.of(context).size;
+    return Align(
+      alignment: Alignment.topRight,
+      child: Container(
+      
+        child: PopupMenuButton(
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.all(
+              Radius.circular(10),
+            ),
+          ),
+          color: bgColor,
+          elevation: 0,
+          child: SvgPicture.asset(
+            valueUrl!,
+            width: 26,
+            height: 26,
+            fit: BoxFit.contain,
+          ),
+          itemBuilder: (context) {
+            return List.generate(
+              items.length,
+              (index) => PopupMenuItem(
+                onTap: () async {
+                  // await AuthServices.setLocale(
+                  //     AppLanguages.languages[index].code);
+
+                  // await translator.setNewLanguage(
+                  //   context,
+                  //   newLanguage: AppLanguages.languages[index].code,
+                  //   remember: true,
+                  //   restart: true,
+                  // );
+                  // String savedLocal = await AuthServices.getLocale();
+                  // setState(() {
+                  //   saveindex = AppLanguages.languages
+                  //       .indexWhere((element) => element.code == savedLocal);
+                  // });
+                },
+                child: Container(
+                  child: Row(
+                    children: [
+                      items[index] == "Add to List" ||
+                              items[index] == "Completed"
+                          ? SvgPicture.asset(
+                              "assets/images/assets/icon-completed-blue.svg",
+                              width: 15,
+                              height: 15,
+                              fit: BoxFit.contain,
+                            )
+                          : items[index] == "Edit"
+                              ? SvgPicture.asset(
+                                  "assets/images/assets/Icon.svg",
+                                  width: 15,
+                                  height: 15,
+                                  fit: BoxFit.contain,
+                                )
+                              : SvgPicture.asset(
+                                  "assets/images/assets/icon-bin-blue.svg",
+                                  width: 15,
+                                  height: 15,
+                                  fit: BoxFit.contain,
+                                ),
+                      const SizedBox(
+                        width: 10,
+                      ),
+                      Text(
+                        items[index],
+                        style: const TextStyle(
+                          fontSize: 13,
+                          fontWeight: FontWeight.w600,
+                        ),
+                      )
+                    ],
+                  ),
+                ),
+              ),
+            );
+          },
+        ),
+      ),
     );
   }
 }
