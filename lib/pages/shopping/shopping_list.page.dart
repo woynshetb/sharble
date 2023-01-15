@@ -111,91 +111,97 @@ class _ShoppingListPageState extends State<ShoppingListPage>
             width: deviceSize.width,
             decoration: const BoxDecoration(
               color: Colors.white,
+              borderRadius: BorderRadius.only(
+                topLeft: Radius.circular(15),
+                topRight: Radius.circular(15),
+              )
             ),
             child: Padding(
               padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 30),
-              child: ListView(
-                // crossAxisAlignment: CrossAxisAlignment.center,
-                // mainAxisSize: MainAxisSize.min,
-                children: [
-                  const Align(
-                    alignment: Alignment.topLeft,
-                    child: Text(
-                      "Item Name",
-                      style: TextStyle(
-                        fontSize: 14,
-                        fontWeight: FontWeight.w900,
+              child: SingleChildScrollView(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  
+                  children: [
+                    const Align(
+                      alignment: Alignment.topLeft,
+                      child: Text(
+                        "Item Name",
+                        style: TextStyle(
+                          fontSize: 14,
+                          fontWeight: FontWeight.w900,
+                        ),
                       ),
                     ),
-                  ),
-                  SizedBox(
-                    height: 5,
-                  ),
-                  DefaultField(
-                    keyboardType: TextInputType.emailAddress,
-                    textEditingController: TextEditingController(),
-                    obscureText: false,
-                    onTap: () {},
-                    validator: (value) => FormValidator.validateEmail(value!),
-                  ),
-                  SizedBox(
-                    height: 10,
-                  ),
-                  Align(
-                    alignment: Alignment.topLeft,
-                    child: Text(
-                      "Quantity",
-                      style: TextStyle(
-                        fontSize: 14,
-                        fontWeight: FontWeight.w900,
+                    SizedBox(
+                      height: 5,
+                    ),
+                    DefaultField(
+                      keyboardType: TextInputType.emailAddress,
+                      textEditingController: TextEditingController(),
+                      obscureText: false,
+                      onTap: () {},
+                      validator: (value) => FormValidator.validateEmail(value!),
+                    ),
+                    SizedBox(
+                      height: 10,
+                    ),
+                    Align(
+                      alignment: Alignment.topLeft,
+                      child: Text(
+                        "Quantity",
+                        style: TextStyle(
+                          fontSize: 14,
+                          fontWeight: FontWeight.w900,
+                        ),
                       ),
                     ),
-                  ),
-                  SizedBox(
-                    height: 5,
-                  ),
-                  DefaultField(
-                    keyboardType: TextInputType.emailAddress,
-                    textEditingController: TextEditingController(),
-                    hintText: "wbilihatu@gmail.com",
-                    obscureText: false,
-                    onTap: () {},
-                    validator: (value) => FormValidator.validateEmail(value!),
-                  ),
-                  SizedBox(
-                    height: 10,
-                  ),
-                  Align(
-                    alignment: Alignment.topLeft,
-                    child: Text(
-                      "Store",
-                      style: TextStyle(
-                        fontSize: 14,
-                        fontWeight: FontWeight.w900,
+                    SizedBox(
+                      height: 5,
+                    ),
+                    DefaultField(
+                      keyboardType: TextInputType.emailAddress,
+                      textEditingController: TextEditingController(),
+                      hintText: "wbilihatu@gmail.com",
+                      obscureText: false,
+                      onTap: () {},
+                      validator: (value) => FormValidator.validateEmail(value!),
+                    ),
+                    SizedBox(
+                      height: 10,
+                    ),
+                    Align(
+                      alignment: Alignment.topLeft,
+                      child: Text(
+                        "Store",
+                        style: TextStyle(
+                          fontSize: 14,
+                          fontWeight: FontWeight.w900,
+                        ),
                       ),
                     ),
-                  ),
-                  SizedBox(
-                    height: 5,
-                  ),
-                  DefaultField(
-                    keyboardType: TextInputType.emailAddress,
-                    textEditingController: TextEditingController(),
-                    hintText: "wbilihatu@gmail.com",
-                    obscureText: false,
-                    onTap: () {},
-                    validator: (value) => FormValidator.validateEmail(value!),
-                  ),
-                  SizedBox(
-                    height: 20,
-                  ),
-                  GreenPostitve(
-                      onPressed: () {
-                        var nav = Navigator.of(context);
-                        nav.pop();
-                      },
-                      title: "Add")
-                ],
+                    SizedBox(
+                      height: 5,
+                    ),
+                    DefaultField(
+                      keyboardType: TextInputType.emailAddress,
+                      textEditingController: TextEditingController(),
+                      hintText: "wbilihatu@gmail.com",
+                      obscureText: false,
+                      onTap: () {},
+                      validator: (value) => FormValidator.validateEmail(value!),
+                    ),
+                    SizedBox(
+                      height: 20,
+                    ),
+                    GreenPostitve(
+                        onPressed: () {
+                          var nav = Navigator.of(context);
+                          nav.pop();
+                        },
+                        title: "Add")
+                  ],
+                ),
               ),
             ),
           );
@@ -252,9 +258,11 @@ class _ShoppingListPageState extends State<ShoppingListPage>
             height: 26,
             fit: BoxFit.contain,
           ),
+          SizedBox(width: 5,),
           CustomDropDown2(
             items: items,
-            valueUrl: "assets/images/assets/icon_shopping_list.svg",
+            // valueUrl:   "assets/images/assets/icon-bin-blue.svg",
+             valueUrl: "assets/images/assets/icon-button-shopping-list.svg",
             bgColor: Color(0xff48BFAA),
           ),
           const SizedBox(
@@ -263,9 +271,12 @@ class _ShoppingListPageState extends State<ShoppingListPage>
         ],
       ),
       body: Padding(
-        padding: const EdgeInsets.only(left: 20.0, right: 10),
-        child: Column(children: [
+        padding: const EdgeInsets.only(left: 20.0, right: 20),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
           Row(
+            mainAxisAlignment: MainAxisAlignment.start,
             children: [
               Container(
                 width: 20,
@@ -358,9 +369,11 @@ class _ShoppingListPageState extends State<ShoppingListPage>
                   Tab(
                     child: Container(
                       height: 31,
-                      padding: const EdgeInsets.symmetric(
-                        vertical: 10,
-                        horizontal: 20,
+                      padding: const EdgeInsets.only(
+                        top: 10,
+                        bottom: 10,
+                        right: 20,
+                        left: 20
                       ),
                       child: Text(
                         "All",
@@ -730,6 +743,7 @@ class _CustomTabBodyState extends State<CustomTabBody> {
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
                           Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(
                                 list[index]['title'],
@@ -738,10 +752,13 @@ class _CustomTabBodyState extends State<CustomTabBody> {
                                   fontWeight: FontWeight.w900,
                                 ),
                               ),
-                              Text(
-                                list[index]['sub'],
-                                style: TextStyle(
-                                  fontSize: 12,
+                              Visibility(
+                                visible: list[index]['sub']!="",
+                                child: Text(
+                                  list[index]['sub'],
+                                  style: TextStyle(
+                                    fontSize: 12,
+                                  ),
                                 ),
                               ),
                             ],
@@ -771,8 +788,11 @@ class _CustomTabBodyState extends State<CustomTabBody> {
           height: 10,
         ),
         Text(
-          "Completed",
-          style: TextStyle(fontWeight: FontWeight.bold, fontSize: 17),
+          "COMPLETED",
+         style: TextStyle(
+            
+              fontWeight: FontWeight.bold,
+              fontSize: 10),
         ),
         SizedBox(
           height: 10,
@@ -852,6 +872,7 @@ class _CustomTabBodyState extends State<CustomTabBody> {
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
                           Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(
                                 copmpletedList[index]['title'],
@@ -861,10 +882,13 @@ class _CustomTabBodyState extends State<CustomTabBody> {
                                   color: Colors.grey
                                 ),
                               ),
-                              Text(
-                                copmpletedList[index]['sub'],
-                                style: TextStyle(
-                                  fontSize: 12,
+                              Visibility(
+                                visible:  copmpletedList[index]['sub']!="",
+                                child: Text(
+                                  copmpletedList[index]['sub'],
+                                  style: TextStyle(
+                                    fontSize: 12,
+                                  ),
                                 ),
                               ),
                             ],
@@ -991,7 +1015,7 @@ class CustomDropDown2 extends StatelessWidget {
         mainAxisSize: MainAxisSize.min,
         children: [
           SvgPicture.asset(
-            "assets/images/assets/icon-button-room-task-manager.svg",
+           valueUrl.toString(),
             width: 26,
             height: 26,
             fit: BoxFit.contain,

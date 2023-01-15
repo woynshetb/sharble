@@ -20,6 +20,7 @@ class _LoginPageState extends State<LoginPage> {
     Size deviceSize = MediaQuery.of(context).size;
     TextEditingController email = TextEditingController();
     return Scaffold(
+   
       resizeToAvoidBottomInset: false,
       body: SafeArea(
         child: Padding(

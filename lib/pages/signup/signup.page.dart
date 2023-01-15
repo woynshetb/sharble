@@ -271,6 +271,8 @@ class _SignupPageState extends State<SignupPage> with RestorationMixin {
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceBetween,
+                                
+
                                 children: [
                                   InkWell(
                                     onTap: () {
@@ -304,11 +306,21 @@ class _SignupPageState extends State<SignupPage> with RestorationMixin {
                                       ),
                                     ),
                                   ),
-                                  Text(
-                                    "I agree with the terms and conditions and also \nthe protection of my personal data on Sharble.",
-                                    textAlign: TextAlign.center,
-                                    style: TextStyle(fontSize: 13),
-                                  )
+                                   SizedBox(
+                                    width: 15,
+                                   ),
+                                  Expanded(
+                                    
+                                    child: Text(
+                                        "I agree with the terms and conditions and also the protection of my personal data on Sharble.",
+                                        textAlign: TextAlign.start,
+                                        maxLines: 3,
+                                        style: TextStyle(
+                                          fontSize: 13,
+                                        ),
+                                      ),
+                                  ),
+                                  
                                 ],
                               )
                             ],

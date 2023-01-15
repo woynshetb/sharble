@@ -67,7 +67,7 @@ class _RoomDetailState extends State<RoomDetail> {
                         var nav = Navigator.of(context);
                         nav.pop();
                       },
-                      title: "Yes")
+                      title: "Invite")
                 ],
               ),
             ),
@@ -119,15 +119,15 @@ class _RoomDetailState extends State<RoomDetail> {
       ),
       body: Padding(
         padding: EdgeInsets.only(
-          left: 30,
-          right: 30,
+          left: 20,
+          right: 20,
           bottom: 20,
         ),
         child: SingleChildScrollView(
           child: Column(
             children: [
               Text(
-                "Your room has been created. You can now invite \n people to join and share together. As admin, you \n can remove them anytime.",
+                "Your room has been created. You can now invite people to join and share together. As admin, you can remove them anytime.",
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   fontSize: 13,
@@ -215,10 +215,11 @@ class _RoomDetailState extends State<RoomDetail> {
                                 children: [
                                   Visibility(
                                     visible: index != 0,
-                                    child: Image.asset(
-                                      "assets/images/icon_delete.png",
-                                      width: deviceSize.width * 0.04,
-                                    ),
+                                 child: SvgPicture.asset(
+                                          "assets/images/assets/icon-bin-blue.svg",
+                                          width: deviceSize.width * 0.04,
+                                          fit: BoxFit.contain,
+                                        ),
                                   ),
                                   SizedBox(
                                     height: 5,

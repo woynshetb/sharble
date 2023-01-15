@@ -19,6 +19,7 @@ class _RoomsPageState extends State<RoomsPage> {
       "image": "assets/images/girl.png",
       "color": Color(0xffE7FFE8),
       "icon": "assets/images/assets/icon_shopping_list.svg",
+      "length": "98",
     },
     {
       "name": "Vacation Trip 2021 & Student \nLoans",
@@ -26,13 +27,15 @@ class _RoomsPageState extends State<RoomsPage> {
       "image": "assets/images/girl.png",
       "color": Color(0xffE7FEFF),
       "icon": "assets/images/assets/icon-task-manager.svg",
+      "length": "",
     },
     {
       "name": "Mike owing me money for a long \ntime",
       "total": "12",
       "image": "assets/images/girl.png",
       "icon": "assets/images/assets/icon-dept-organizer.svg",
-      "color": Color(0xffFFE7E7)
+      "color": Color(0xffFFE7E7),
+      "length": "5",
     },
     {
       "name": "Movies and Shows to watch this \nsimmer",
@@ -40,6 +43,7 @@ class _RoomsPageState extends State<RoomsPage> {
       "image": "assets/images/girl.png",
       "color": Color(0xffF7E7FF),
       "icon": "assets/images/assets/icon-activity-planner.svg",
+      "length": "12",
     },
   ];
   @override
@@ -117,7 +121,6 @@ class _RoomsPageState extends State<RoomsPage> {
                   );
                 },
                 child: Container(
-                  
                   margin: EdgeInsets.only(top: 2, bottom: 8),
                   padding: EdgeInsets.symmetric(horizontal: 20, vertical: 15),
                   decoration: BoxDecoration(
@@ -126,7 +129,8 @@ class _RoomsPageState extends State<RoomsPage> {
                     boxShadow: [
                       BoxShadow(
                         color: Colors.grey.withOpacity(0.1),
-                        blurRadius: 25, // has the effect of softening the shadow
+                        blurRadius:
+                            25, // has the effect of softening the shadow
                         spreadRadius:
                             1, // has the effect of extending the shadow
                         offset: Offset(
@@ -138,7 +142,6 @@ class _RoomsPageState extends State<RoomsPage> {
                   ),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  
                     children: [
                       Column(
                         mainAxisSize: MainAxisSize.min,
@@ -179,7 +182,7 @@ class _RoomsPageState extends State<RoomsPage> {
                           Row(
                             children: [
                               Container(
-                                width:20,
+                                width: 20,
                                 height: 20,
                                 decoration: BoxDecoration(
                                     image: DecorationImage(
@@ -191,7 +194,7 @@ class _RoomsPageState extends State<RoomsPage> {
                                 width: 5,
                               ),
                               Container(
-                               width:20,
+                                width: 20,
                                 height: 20,
                                 decoration: BoxDecoration(
                                     image: DecorationImage(
@@ -214,12 +217,41 @@ class _RoomsPageState extends State<RoomsPage> {
                           )
                         ],
                       ),
-                      SvgPicture.asset(
-                        list[index]['icon'],
-                        fit: BoxFit.contain,
-                        width: 65,
-                        height: 65,
-                      ),
+   
+                      Stack(
+                        children: [
+                          SvgPicture.asset(
+                            list[index]['icon'],
+                            fit: BoxFit.contain,
+                            width: 65,
+                            height: 65,
+                          ),
+                          Positioned(
+                            top: 0,
+                            right: 0,
+                            child: Visibility(
+                              visible: list[index]['length'] !="",
+                              child: Container(
+                                width: 15,
+                                height: 15,
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(3),
+                                  color: Colors.red,
+                                ),
+                                child: Align(
+                                    alignment: Alignment.center,
+                                    child: Text(
+                                       list[index]['length'],
+                                      style: TextStyle(
+                                          color: Colors.white,
+                                          fontWeight: FontWeight.w300,
+                                          fontSize: 8),
+                                    )),
+                              ),
+                            ),
+                          )
+                        ],
+                      )
                     ],
                   ),
                 ),

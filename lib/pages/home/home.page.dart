@@ -143,8 +143,8 @@ class _HomePageState extends State<HomePage> {
                         ),
                       ),
                       trailing: Container(
-                        alignment: Alignment.center,
-                        width: 100,
+                        alignment: Alignment.centerRight,
+                        width: 150,
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.end,
                           children: [
@@ -204,6 +204,7 @@ class _HomePageState extends State<HomePage> {
                             crossAxisAlignment: CrossAxisAlignment.center,
                             children: [
                               Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
                                 children: const [
                                   Text(
                                     "Beans",
@@ -261,6 +262,7 @@ class _HomePageState extends State<HomePage> {
                             crossAxisAlignment: CrossAxisAlignment.center,
                             children: [
                               Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
                                 children: const [
                                   Text(
                                     "Beans",
@@ -321,6 +323,7 @@ class _HomePageState extends State<HomePage> {
                             crossAxisAlignment: CrossAxisAlignment.center,
                             children: [
                               Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
                                 children: const [
                                   Text(
                                     "Beans",
@@ -338,19 +341,21 @@ class _HomePageState extends State<HomePage> {
                                   ),
                                 ],
                               ),
-  Row(children: [
-                                Text("Tasco"),
-                              SizedBox(
-                                width: 8,
-                              ),
-                              CustomDropDown(
-                                show: true,
-                                items: items,
-                                bgColor: Color(0xffE7FFE8),
-                                valueUrl:
-                                    "assets/images/assets/icon-button-shopping-list.svg",
+                              Row(
+                                children: [
+                                  Text("Tasco"),
+                                  SizedBox(
+                                    width: 8,
+                                  ),
+                                  CustomDropDown(
+                                    show: true,
+                                    items: items,
+                                    bgColor: Color(0xffE7FFE8),
+                                    valueUrl:
+                                        "assets/images/assets/icon-button-shopping-list.svg",
+                                  )
+                                ],
                               )
-  ],)
                             ],
                           ),
                         ),
@@ -378,6 +383,7 @@ class _HomePageState extends State<HomePage> {
                             crossAxisAlignment: CrossAxisAlignment.center,
                             children: [
                               Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
                                 children: const [
                                   Text(
                                     "Beans",
@@ -395,19 +401,21 @@ class _HomePageState extends State<HomePage> {
                                   ),
                                 ],
                               ),
-                                    Row(children: [
-                                      Text("Tasco"),
-                              SizedBox(
-                                width: 8,
-                              ),
-                              CustomDropDown(
-                                show: true,
-                                items: items,
-                                bgColor: Color(0xffE7FFE8),
-                                valueUrl:
-                                    "assets/images/assets/icon-button-shopping-list.svg",
+                              Row(
+                                children: [
+                                  Text("Tasco"),
+                                  SizedBox(
+                                    width: 8,
+                                  ),
+                                  CustomDropDown(
+                                    show: true,
+                                    items: items,
+                                    bgColor: Color(0xffE7FFE8),
+                                    valueUrl:
+                                        "assets/images/assets/icon-button-shopping-list.svg",
+                                  )
+                                ],
                               )
-                                    ],)
                             ],
                           ),
                         )
@@ -569,7 +577,7 @@ class _HomePageState extends State<HomePage> {
                                   CustomDropDown(
                                       items: items,
                                       valueUrl:
-                                          "assets/images/assets/icon-button-room-task-manager.svg",
+                                          "assets/images/assets/icon-button-task-manager.svg",
                                       bgColor: Color(0xffE7FEFF)),
                                   SizedBox(
                                     height: 5,
@@ -671,7 +679,7 @@ class _HomePageState extends State<HomePage> {
                                   CustomDropDown(
                                       items: items,
                                       valueUrl:
-                                          "assets/images/assets/icon-button-room-task-manager.svg",
+        "assets/images/assets/icon-button-task-manager.svg",
                                       bgColor: Color(0xffE7FEFF)),
                                   SizedBox(
                                     height: 5,
@@ -773,7 +781,7 @@ class _HomePageState extends State<HomePage> {
                                   CustomDropDown(
                                       items: items,
                                       valueUrl:
-                                          "assets/images/assets/icon-button-room-task-manager.svg",
+        "assets/images/assets/icon-button-task-manager.svg",
                                       bgColor: Color(0xffE7FEFF)),
                                   const SizedBox(
                                     height: 5,
@@ -880,6 +888,7 @@ class _HomePageState extends State<HomePage> {
                                   Text(
                                     "Borrowing Money for \nschool trip and launch ",
                                     style: TextStyle(
+                                      fontSize: 13,
                                       fontFamily: "Gilroy",
                                       fontWeight: FontWeight.bold,
                                     ),
@@ -891,8 +900,9 @@ class _HomePageState extends State<HomePage> {
                                     softWrap: true,
                                     textScaleFactor: 1,
                                     text: TextSpan(
-                                      text: 'Dept accepted \n by ',
+                                      text: 'Dept accepted\n by ',
                                       style: TextStyle(
+                                        fontSize: 10,
                                         color: Color(0xff2E3553),
                                         fontFamily: "Gilroy",
                                       ),
@@ -1098,7 +1108,7 @@ class _HomePageState extends State<HomePage> {
                                     softWrap: true,
                                     textScaleFactor: 1,
                                     text: TextSpan(
-                                      text: 'Dept accepted \n by ',
+                                      text: 'Dept accepted\n by ',
                                       style: TextStyle(
                                         color: Color(0xff2E3553),
                                         fontFamily: "Gilroy",
@@ -1306,7 +1316,7 @@ class _HomePageState extends State<HomePage> {
                                     softWrap: true,
                                     textScaleFactor: 1,
                                     text: TextSpan(
-                                      text: 'Dept accepted \n by ',
+                                      text: 'Dept accepted\n by ',
                                       style: TextStyle(
                                         color: Color(0xff2E3553),
                                         fontFamily: "Gilroy",
@@ -1591,9 +1601,10 @@ class _HomePageState extends State<HomePage> {
                                     decoration: BoxDecoration(
                                         shape: BoxShape.circle,
                                         image: DecorationImage(
-                                            fit: BoxFit.contain,
-                                            image: AssetImage(
-                                                "assets/images/girl.png"))),
+                                          fit: BoxFit.contain,
+                                          image: AssetImage(
+                                              "assets/images/girl.png"),
+                                        )),
                                   ),
                                 ],
                               ),
@@ -1609,7 +1620,7 @@ class _HomePageState extends State<HomePage> {
                                       CustomDropDown(
                                           items: items,
                                           valueUrl:
-                                              "assets/images/assets/icon-button-room-activity-manager.svg",
+                                              "assets/images/assets/icon-button-activity-planner.svg",
                                           bgColor: Color(0xffF7E7FF)),
                                     ],
                                   ),
@@ -1691,7 +1702,7 @@ class _HomePageState extends State<HomePage> {
                                       CustomDropDown(
                                           items: items,
                                           valueUrl:
-                                              "assets/images/assets/icon-button-room-activity-manager.svg",
+            "assets/images/assets/icon-button-activity-planner.svg",
                                           bgColor: Color(0xffF7E7FF)),
                                     ],
                                   ),
@@ -1773,7 +1784,7 @@ class _HomePageState extends State<HomePage> {
                                       CustomDropDown(
                                           items: items,
                                           valueUrl:
-                                              "assets/images/assets/icon-button-room-activity-manager.svg",
+                                          "assets/images/assets/icon-button-activity-planner.svg",
                                           bgColor: Color(0xffF7E7FF)),
                                     ],
                                   ),
@@ -2284,7 +2295,6 @@ class CustomDropDown extends StatelessWidget {
     return Align(
       alignment: Alignment.topRight,
       child: Container(
-      
         child: PopupMenuButton(
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.all(

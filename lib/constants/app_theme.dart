@@ -12,7 +12,7 @@ class AppTheme {
         selectionColor: Colors.grey,
       ),
       dividerColor: Colors.black,
-      scaffoldBackgroundColor: Color(0xffFCFBFC),
+      scaffoldBackgroundColor: Color(0xffffffff),
       backgroundColor: Colors.white,
       cardColor: Colors.white,
     

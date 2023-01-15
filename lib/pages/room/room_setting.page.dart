@@ -77,7 +77,7 @@ class _RoomSettingPageState extends State<RoomSettingPage> {
                           ),
                         );
                       },
-                      title: "Yes")
+                      title: "Invite")
                 ],
               ),
             ),
@@ -157,8 +157,9 @@ class _RoomSettingPageState extends State<RoomSettingPage> {
 
     return Scaffold(
       resizeToAvoidBottomInset: false,
+      backgroundColor: Colors.white,
       appBar: AppBar(
-        backgroundColor: Color(0xffFCFBFC),
+        backgroundColor: Colors.white,
         titleSpacing: 0,
         elevation: 0,
         //leadingWidth: 50,
@@ -196,193 +197,200 @@ class _RoomSettingPageState extends State<RoomSettingPage> {
       ),
       body: Padding(
         padding: const EdgeInsets.only(left: 30, right: 30, top: 10),
-        child: SingleChildScrollView(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              const Align(
-                alignment: Alignment.topLeft,
-                child: Text(
-                  "Room Name",
-                  style: TextStyle(fontSize: 13, fontWeight: FontWeight.bold),
-                ),
-              ),
-              const SizedBox(
-                height: 5,
-              ),
-              DefaultField(
-                validator: (value) => FormValidator.validateName(value!),
-              ),
-              const SizedBox(
-                height: 10,
-              ),
-              const Align(
-                alignment: Alignment.topLeft,
-                child: Text(
-                  "Members",
-                  style: TextStyle(fontSize: 13, fontWeight: FontWeight.bold),
-                ),
-              ),
-              Expanded(
-                  flex: 0,
-                  child: ListView.builder(
-                      shrinkWrap: true,
-                      itemCount: 3,
-                      physics: NeverScrollableScrollPhysics(),
-                      itemBuilder: ((context, index) {
-                        return Container(
-                          margin: EdgeInsets.only(
-                            top: 10
-                          ),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                          Row(children: [
-                                Container(
-                                width: deviceSize.width * 0.12,
-                                height: deviceSize.width * 0.12,
-                                decoration: BoxDecoration(
-                                  shape: BoxShape.circle,
-                                  image: DecorationImage(
-                                      fit: BoxFit.contain,
-                                      image:
-                                          AssetImage("assets/images/girl.png")),
-                                ),
-                              ),
-                              SizedBox(
-                                width: 10,
-                              ),
-                              Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            SingleChildScrollView(
+              child: Column(
+                children: [
+                  const Align(
+                    alignment: Alignment.topLeft,
+                    child: Text(
+                      "Room Name",
+                      style:
+                          TextStyle(fontSize: 13, fontWeight: FontWeight.bold),
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 5,
+                  ),
+                  DefaultField(
+                    validator: (value) => FormValidator.validateName(value!),
+                  ),
+                  const SizedBox(
+                    height: 10,
+                  ),
+                  const Align(
+                    alignment: Alignment.topLeft,
+                    child: Text(
+                      "Members",
+                      style:
+                          TextStyle(fontSize: 13, fontWeight: FontWeight.bold),
+                    ),
+                  ),
+                  Expanded(
+                      flex: 0,
+                      child: ListView.builder(
+                          shrinkWrap: true,
+                          itemCount: 3,
+                          physics: NeverScrollableScrollPhysics(),
+                          itemBuilder: ((context, index) {
+                            return Container(
+                              margin: EdgeInsets.only(top: 10),
+                              child: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
                                 children: [
-                                  Text(
-                                    "First One",
-                                    style: TextStyle(
-                                      fontSize: 13,
-                                      fontWeight: FontWeight.w900,
-                                    ),
+                                  Row(
+                                    children: [
+                                      Container(
+                                        width: deviceSize.width * 0.12,
+                                        height: deviceSize.width * 0.12,
+                                        decoration: BoxDecoration(
+                                          shape: BoxShape.circle,
+                                          image: DecorationImage(
+                                              fit: BoxFit.contain,
+                                              image: AssetImage(
+                                                  "assets/images/girl.png")),
+                                        ),
+                                      ),
+                                      SizedBox(
+                                        width: 10,
+                                      ),
+                                      Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          Text(
+                                            "First One",
+                                            style: TextStyle(
+                                              fontSize: 13,
+                                              fontWeight: FontWeight.w900,
+                                            ),
+                                          ),
+                                          SizedBox(
+                                            height: 3,
+                                          ),
+                                          Text("email@email.com"),
+                                        ],
+                                      ),
+                                    ],
                                   ),
-                                  SizedBox(
-                                    height: 3,
-                                  ),
-                                  Text("email@email.com"),
-                                ],
-                              ),
-                          ],),
-                              Column(
-                                crossAxisAlignment: CrossAxisAlignment.end,
-                                children: [
-                                  Visibility(
-                                    visible: index != 0,
-                                    child: Image.asset(
-                                      "assets/images/icon_delete.png",
-                                      width: deviceSize.width * 0.04,
-                                    ),
-                                  ),
-                                  SizedBox(
-                                    height: 5,
-                                  ),
-                                  Visibility(
-                                    visible: index == 2,
-                                    child: Text(
-                                      "Pending",
-                                      style:
-                                          TextStyle(fontStyle: FontStyle.italic),
-                                    ),
+                                  Column(
+                                    crossAxisAlignment: CrossAxisAlignment.end,
+                                    children: [
+                                      Visibility(
+                                        visible: index != 0,
+                                        child: SvgPicture.asset(
+                                          "assets/images/assets/icon-bin-blue.svg",
+                                          width: deviceSize.width * 0.04,
+                                          fit: BoxFit.contain,
+                                        ),
+                                      ),
+                                      SizedBox(
+                                        height: 5,
+                                      ),
+                                      Visibility(
+                                        visible: index == 2,
+                                        child: Text(
+                                          "Pending",
+                                          style: TextStyle(
+                                              fontStyle: FontStyle.italic),
+                                        ),
+                                      )
+                                    ],
                                   )
                                 ],
-                              )
-                            ],
-                          ),
-                        );
-                      }))),
-              Container(
-                margin: EdgeInsets.only(top: deviceSize.height * 0.01),
-                child: GreenNegative(
-                    onPressed: () {
-                      customDialogAddMember(
-                          title: "Invite Member by Email or Name",
-                          context: context,
-                          deviceSize: deviceSize);
-                    },
-                    title: "Add member"),
-              ),
-              SizedBox(
-                height: deviceSize.height*0.26
-              ),
-              Align(
-                alignment: FractionalOffset.bottomCenter,
-                child: Container(
-                  margin: EdgeInsets.only(bottom: deviceSize.height * 0.02),
-                  child: Column(
-                    children: [
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          InkWell(
-                            onTap: () {
-                              customDialog(
-                                  title: "Delete Room",
-                                  description:
-                                      "Are you sure you want to delete this room? It can’t be undone.",
-                                  deviceSize: deviceSize,
-                                  context: context);
-                            },
-                            child: Text(
-                              "Delete Room",
-                              style: TextStyle(
-                                color: Color(0xffD65555),
-                                fontWeight: FontWeight.bold,
                               ),
-                            ),
-                          ),
-                          SizedBox(
-                            width: 5,
-                          ),
-                          Text(
-                            "/",
+                            );
+                          }))),
+                  Container(
+                    margin: EdgeInsets.only(top: deviceSize.height * 0.01),
+                    child: GreenNegative(
+                        onPressed: () {
+                          customDialogAddMember(
+                              title: "Invite Member by Email or Name",
+                              context: context,
+                              deviceSize: deviceSize);
+                        },
+                        title: "Add member"),
+                  ),
+                ],
+              ),
+            ),
+     
+            Align(
+              alignment: Alignment.bottomCenter,
+              child: Container(
+                margin: EdgeInsets.only(bottom: deviceSize.height * 0.02),
+                child: Column(
+                  children: [
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        InkWell(
+                          onTap: () {
+                            customDialog(
+                                title: "Delete Room",
+                                description:
+                                    "Are you sure you want to delete this room? It can’t be undone.",
+                                deviceSize: deviceSize,
+                                context: context);
+                          },
+                          child: Text(
+                            "Delete Room",
                             style: TextStyle(
                               color: Color(0xffD65555),
-                              fontWeight: FontWeight.w600,
+                              fontWeight: FontWeight.bold,
                             ),
                           ),
-                          SizedBox(
-                            width: 5,
+                        ),
+                        SizedBox(
+                          width: 5,
+                        ),
+                        Text(
+                          "/",
+                          style: TextStyle(
+                            color: Color(0xffD65555),
+                            fontWeight: FontWeight.w600,
                           ),
-                          InkWell(
-                            onTap: () {
-                              customDialog(
-                                  title: "Leave Room",
-                                  description:
-                                      "Are you sure you want to leave this room? It can’t be undone.",
-                                  deviceSize: deviceSize,
-                                  context: context);
-                            },
-                            child: Text(
-                              "Leave Room",
-                              style: TextStyle(
-                                color: Color(0xffD65555),
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                      SizedBox(height: deviceSize.height * 0.02),
-                      GreenPostitve(
-                          onPressed: () {
-                            // var nav = Navigator.of(context);
-                            // nav.pop();
-                            // nav.pop();
+                        ),
+                        SizedBox(
+                          width: 5,
+                        ),
+                        InkWell(
+                          onTap: () {
+                            customDialog(
+                                title: "Leave Room",
+                                description:
+                                    "Are you sure you want to leave this room? It can’t be undone.",
+                                deviceSize: deviceSize,
+                                context: context);
                           },
-                          title: "Update")
-                    ],
-                  ),
+                          child: Text(
+                            "Leave Room",
+                            style: TextStyle(
+                              color: Color(0xffD65555),
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                    SizedBox(height: deviceSize.height * 0.02),
+                    GreenPostitve(
+                        onPressed: () {
+                          // var nav = Navigator.of(context);
+                          // nav.pop();
+                          // nav.pop();
+                        },
+                        title: "Update")
+                  ],
                 ),
               ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
       // floatingActionButton: Visibility(
