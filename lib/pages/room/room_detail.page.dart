@@ -248,7 +248,7 @@ class _RoomDetailState extends State<RoomDetail> {
                             context: context);
                       },
                       title: "Add member")),
-              SizedBox(height: deviceSize.height * 0.2),
+              SizedBox(height: deviceSize.height * 0.21),
               Align(
                 alignment: FractionalOffset.bottomCenter,
                 child: Column(
