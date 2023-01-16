@@ -110,18 +110,16 @@ class _ShoppingListPageState extends State<ShoppingListPage>
           return Container(
             width: deviceSize.width,
             decoration: const BoxDecoration(
-              color: Colors.white,
-              borderRadius: BorderRadius.only(
-                topLeft: Radius.circular(15),
-                topRight: Radius.circular(15),
-              )
-            ),
+                color: Colors.white,
+                borderRadius: BorderRadius.only(
+                  topLeft: Radius.circular(15),
+                  topRight: Radius.circular(15),
+                )),
             child: Padding(
               padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 30),
               child: SingleChildScrollView(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
-                  
                   children: [
                     const Align(
                       alignment: Alignment.topLeft,
@@ -214,6 +212,7 @@ class _ShoppingListPageState extends State<ShoppingListPage>
 
     return Scaffold(
       resizeToAvoidBottomInset: false,
+      
       appBar: AppBar(
         centerTitle: false,
         backgroundColor: Color(0xffFCFBFC),
@@ -258,11 +257,13 @@ class _ShoppingListPageState extends State<ShoppingListPage>
             height: 26,
             fit: BoxFit.contain,
           ),
-          SizedBox(width: 5,),
+          SizedBox(
+            width: 5,
+          ),
           CustomDropDown2(
             items: items,
             // valueUrl:   "assets/images/assets/icon-bin-blue.svg",
-             valueUrl: "assets/images/assets/icon-button-shopping-list.svg",
+            valueUrl: "assets/images/assets/icon-button-room-shopping-list.svg",
             bgColor: Color(0xff48BFAA),
           ),
           const SizedBox(
@@ -272,9 +273,7 @@ class _ShoppingListPageState extends State<ShoppingListPage>
       ),
       body: Padding(
         padding: const EdgeInsets.only(left: 20.0, right: 20),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
+        child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
           Row(
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
@@ -290,7 +289,7 @@ class _ShoppingListPageState extends State<ShoppingListPage>
                 width: 5,
               ),
               Container(
-               width: 20,
+                width: 20,
                 height: 20,
                 decoration: BoxDecoration(
                     image: DecorationImage(
@@ -370,11 +369,7 @@ class _ShoppingListPageState extends State<ShoppingListPage>
                     child: Container(
                       height: 31,
                       padding: const EdgeInsets.only(
-                        top: 10,
-                        bottom: 10,
-                        right: 20,
-                        left: 20
-                      ),
+                          top: 10, bottom: 10, right: 20, left: 20),
                       child: Text(
                         "All",
                         style: TextStyle(
@@ -399,9 +394,8 @@ class _ShoppingListPageState extends State<ShoppingListPage>
                   ),
                   Tab(
                     child: Container(
-                        height: 31,
+                      height: 31,
                       padding: const EdgeInsets.symmetric(
-                      
                         horizontal: 20,
                       ),
                       child: Align(
@@ -429,9 +423,8 @@ class _ShoppingListPageState extends State<ShoppingListPage>
                   ),
                   Tab(
                     child: Container(
-                         height: 31,
+                      height: 31,
                       padding: const EdgeInsets.symmetric(
-                       
                         horizontal: 20,
                       ),
                       child: Align(
@@ -459,9 +452,8 @@ class _ShoppingListPageState extends State<ShoppingListPage>
                   ),
                   Tab(
                     child: Container(
-                         height: 31,
+                      height: 31,
                       padding: const EdgeInsets.symmetric(
-                       
                         horizontal: 20,
                       ),
                       child: Align(
@@ -686,7 +678,7 @@ class _CustomTabBodyState extends State<CustomTabBody> {
                           fit: BoxFit.contain,
                           color: Colors.white,
                         ),
-    
+
                         onTap: (CompletionHandler handler) async {
                           //  list.removeAt(index);
                           //  setState(() {});
@@ -703,7 +695,7 @@ class _CustomTabBodyState extends State<CustomTabBody> {
                             color: Colors.white,
                             fit: BoxFit.contain,
                           ),
-    
+
                           /// this is the same as iOS native
                           performsFirstActionWithFullSwipe: false,
                           onTap: (CompletionHandler handler) async {
@@ -753,7 +745,7 @@ class _CustomTabBodyState extends State<CustomTabBody> {
                                 ),
                               ),
                               Visibility(
-                                visible: list[index]['sub']!="",
+                                visible: list[index]['sub'] != "",
                                 child: Text(
                                   list[index]['sub'],
                                   style: TextStyle(
@@ -789,16 +781,12 @@ class _CustomTabBodyState extends State<CustomTabBody> {
         ),
         Text(
           "COMPLETED",
-         style: TextStyle(
-            
-              fontWeight: FontWeight.bold,
-              fontSize: 10),
+          style: TextStyle(fontWeight: FontWeight.bold, fontSize: 10),
         ),
         SizedBox(
           height: 10,
         ),
         Expanded(
-          
             child: ListView.builder(
                 itemCount: copmpletedList.length,
                 physics: NeverScrollableScrollPhysics(),
@@ -817,7 +805,7 @@ class _CustomTabBodyState extends State<CustomTabBody> {
                           fit: BoxFit.contain,
                           color: Colors.white,
                         ),
-    
+
                         onTap: (CompletionHandler handler) async {
                           //  list.removeAt(index);
                           //  setState(() {});
@@ -834,7 +822,7 @@ class _CustomTabBodyState extends State<CustomTabBody> {
                             color: Colors.white,
                             fit: BoxFit.contain,
                           ),
-    
+
                           /// this is the same as iOS native
                           performsFirstActionWithFullSwipe: false,
                           onTap: (CompletionHandler handler) async {
@@ -877,18 +865,16 @@ class _CustomTabBodyState extends State<CustomTabBody> {
                               Text(
                                 copmpletedList[index]['title'],
                                 style: TextStyle(
-                                  fontSize: 13,
-                                  fontWeight: FontWeight.w900,
-                                  color: Colors.grey
-                                ),
+                                    fontSize: 13,
+                                    fontWeight: FontWeight.w900,
+                                    color: Color(0xff8c95a4)),
                               ),
                               Visibility(
-                                visible:  copmpletedList[index]['sub']!="",
+                                visible: copmpletedList[index]['sub'] != "",
                                 child: Text(
                                   copmpletedList[index]['sub'],
                                   style: TextStyle(
-                                    fontSize: 12,
-                                  ),
+                                      fontSize: 12, color: Color(0xff8c95a4)),
                                 ),
                               ),
                             ],
@@ -900,9 +886,12 @@ class _CustomTabBodyState extends State<CustomTabBody> {
                                 copmpletedList[index]['desc'],
                                 style: TextStyle(
                                   fontSize: 12,
+                                 
                                 ),
                               ),
-                              SizedBox(width: 8,),
+                              SizedBox(
+                                width: 8,
+                              ),
                               CustomDropDown(
                                 show: true,
                                 items: items,
@@ -1015,7 +1004,7 @@ class CustomDropDown2 extends StatelessWidget {
         mainAxisSize: MainAxisSize.min,
         children: [
           SvgPicture.asset(
-           valueUrl.toString(),
+            valueUrl.toString(),
             width: 26,
             height: 26,
             fit: BoxFit.contain,

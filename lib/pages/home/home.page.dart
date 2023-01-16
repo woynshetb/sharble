@@ -33,6 +33,7 @@ class _HomePageState extends State<HomePage> {
     Size deviceSize = MediaQuery.of(context).size;
     return Scaffold(
       resizeToAvoidBottomInset: false,
+      backgroundColor: Color(0xffFCFBFC),
       appBar: AppBar(
         leadingWidth: 30,
         titleSpacing: 0,
@@ -679,7 +680,7 @@ class _HomePageState extends State<HomePage> {
                                   CustomDropDown(
                                       items: items,
                                       valueUrl:
-        "assets/images/assets/icon-button-task-manager.svg",
+                                          "assets/images/assets/icon-button-task-manager.svg",
                                       bgColor: Color(0xffE7FEFF)),
                                   SizedBox(
                                     height: 5,
@@ -781,7 +782,7 @@ class _HomePageState extends State<HomePage> {
                                   CustomDropDown(
                                       items: items,
                                       valueUrl:
-        "assets/images/assets/icon-button-task-manager.svg",
+                                          "assets/images/assets/icon-button-task-manager.svg",
                                       bgColor: Color(0xffE7FEFF)),
                                   const SizedBox(
                                     height: 5,
@@ -879,18 +880,19 @@ class _HomePageState extends State<HomePage> {
                             ],
                           ),
                           child: Column(
-                            mainAxisSize: MainAxisSize.min,
+                            // mainAxisSize: MainAxisSize.min,
                             children: [
                               Row(
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceBetween,
+                                  
                                 children: [
                                   Text(
                                     "Borrowing Money for \nschool trip and launch ",
                                     style: TextStyle(
                                       fontSize: 13,
                                       fontFamily: "Gilroy",
-                                      fontWeight: FontWeight.bold,
+                                      fontWeight: FontWeight.w800,
                                     ),
                                   ),
                                   RichText(
@@ -900,7 +902,7 @@ class _HomePageState extends State<HomePage> {
                                     softWrap: true,
                                     textScaleFactor: 1,
                                     text: TextSpan(
-                                      text: 'Dept accepted\n by ',
+                                      text: 'Dept accepted\nby ',
                                       style: TextStyle(
                                         fontSize: 10,
                                         color: Color(0xff2E3553),
@@ -1098,7 +1100,8 @@ class _HomePageState extends State<HomePage> {
                                     style: TextStyle(
                                       color: Color(0xff2E3553),
                                       fontFamily: "Gilroy",
-                                      fontWeight: FontWeight.bold,
+                                      fontWeight: FontWeight.w800,
+                                      fontSize: 13,
                                     ),
                                   ),
                                   RichText(
@@ -1108,11 +1111,11 @@ class _HomePageState extends State<HomePage> {
                                     softWrap: true,
                                     textScaleFactor: 1,
                                     text: TextSpan(
-                                      text: 'Dept accepted\n by ',
+                                      text: 'Dept accepted\nby ',
                                       style: TextStyle(
                                         color: Color(0xff2E3553),
                                         fontFamily: "Gilroy",
-                                        fontSize: deviceSize.width * 0.028,
+                                        fontSize: 10,
                                       ),
                                       children: const <TextSpan>[
                                         TextSpan(
@@ -1306,7 +1309,8 @@ class _HomePageState extends State<HomePage> {
                                     style: TextStyle(
                                       color: Color(0xff2E3553),
                                       fontFamily: "Gilroy",
-                                      fontWeight: FontWeight.bold,
+                                      fontSize:13,
+                                      fontWeight: FontWeight.w800,
                                     ),
                                   ),
                                   RichText(
@@ -1316,11 +1320,11 @@ class _HomePageState extends State<HomePage> {
                                     softWrap: true,
                                     textScaleFactor: 1,
                                     text: TextSpan(
-                                      text: 'Dept accepted\n by ',
+                                      text: 'Dept accepted\nby ',
                                       style: TextStyle(
                                         color: Color(0xff2E3553),
                                         fontFamily: "Gilroy",
-                                        fontSize: deviceSize.width * 0.028,
+                                    fontSize: 10,
                                       ),
                                       children: const <TextSpan>[
                                         TextSpan(
@@ -1702,7 +1706,7 @@ class _HomePageState extends State<HomePage> {
                                       CustomDropDown(
                                           items: items,
                                           valueUrl:
-            "assets/images/assets/icon-button-activity-planner.svg",
+                                              "assets/images/assets/icon-button-activity-planner.svg",
                                           bgColor: Color(0xffF7E7FF)),
                                     ],
                                   ),
@@ -1784,7 +1788,7 @@ class _HomePageState extends State<HomePage> {
                                       CustomDropDown(
                                           items: items,
                                           valueUrl:
-                                          "assets/images/assets/icon-button-activity-planner.svg",
+                                              "assets/images/assets/icon-button-activity-planner.svg",
                                           bgColor: Color(0xffF7E7FF)),
                                     ],
                                   ),

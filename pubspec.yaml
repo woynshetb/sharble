@@ -52,6 +52,7 @@ dependencies:
   dropdown_button2: ^1.9.2
   flutter_launcher_icons: ^0.11.0
   flutter_keyboard_visibility: ^5.4.0
+  velocity_x: ^3.6.0
 
 dev_dependencies:
   flutter_test:

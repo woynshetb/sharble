@@ -123,155 +123,147 @@ class _RoomDetailState extends State<RoomDetail> {
           right: 20,
           bottom: 20,
         ),
-        child: SingleChildScrollView(
-          child: Column(
-            children: [
-              Text(
-                "Your room has been created. You can now invite people to join and share together. As admin, you can remove them anytime.",
-                textAlign: TextAlign.center,
+        child: ListView(
+          children: [
+         Column(children: [
+   Text(
+              "Your room has been created. You can now invite people to join and share together. As admin, you can remove them anytime.",
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                fontSize: 13,
+                fontWeight: FontWeight.w300,
+              ),
+            ),
+            SizedBox(
+              height: 15,
+            ),
+            Align(
+              alignment: Alignment.topLeft,
+              child: Text(
+                "Default Currency for this Room",
                 style: TextStyle(
                   fontSize: 13,
-                  fontWeight: FontWeight.w300,
+                  fontWeight: FontWeight.w700,
                 ),
               ),
-              SizedBox(
-                height: 15,
+            ),
+            SizedBox(
+              height: 5,
+            ),
+            DefaultField(
+              validator: (value) => FormValidator.validateName(value!),
+            ),
+            SizedBox(
+              height: 10,
+            ),
+            Align(
+              alignment: Alignment.topLeft,
+              child: Text(
+                "Members",
+                style: TextStyle(fontSize: 13, fontWeight: FontWeight.bold),
               ),
-              Align(
-                alignment: Alignment.topLeft,
-                child: Text(
-                  "Default Currency for this Room",
-                  style: TextStyle(
-                    fontSize: 13,
-                    fontWeight: FontWeight.w700,
-                  ),
-                ),
-              ),
-              SizedBox(
-                height: 5,
-              ),
-              DefaultField(
-                validator: (value) => FormValidator.validateName(value!),
-              ),
-              SizedBox(
-                height: 10,
-              ),
-              Align(
-                alignment: Alignment.topLeft,
-                child: Text(
-                  "Members",
-                  style: TextStyle(fontSize: 13, fontWeight: FontWeight.bold),
-                ),
-              ),
-              Expanded(
-                  flex: 0,
-                  child: ListView.builder(
-                      physics: NeverScrollableScrollPhysics(),
-                      shrinkWrap: true,
-                      itemCount: 3,
-                      itemBuilder: ((context, index) {
-                        return Container(
-                          margin: EdgeInsets.only(top: 10),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Row(
-                                children: [
-                                  Container(
-                                    width: deviceSize.width * 0.12,
-                                    height: deviceSize.width * 0.12,
-                                    decoration: BoxDecoration(
-                                      shape: BoxShape.circle,
-                                      image: DecorationImage(
-                                          fit: BoxFit.contain,
-                                          image: AssetImage(
-                                              "assets/images/girl.png")),
-                                    ),
-                                  ),
-                                  SizedBox(
-                                    width: 10,
-                                  ),
-                                  Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      Text(
-                                        "First One",
-                                        style: TextStyle(
-                                          fontSize: 13,
-                                          fontWeight: FontWeight.w900,
-                                        ),
-                                      ),
-                                      SizedBox(
-                                        height: 3,
-                                      ),
-                                      Text("email@email.com"),
-                                    ],
-                                  ),
-                                ],
+            ),
+            ListView.builder(
+                physics: NeverScrollableScrollPhysics(),
+                shrinkWrap: true,
+                itemCount: 3,
+                itemBuilder: ((context, index) {
+                  return Container(
+                    margin: EdgeInsets.only(top: 10),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Row(
+                          children: [
+                            Container(
+                              width: deviceSize.width * 0.12,
+                              height: deviceSize.width * 0.12,
+                              decoration: BoxDecoration(
+                                shape: BoxShape.circle,
+                                image: DecorationImage(
+                                    fit: BoxFit.contain,
+                                    image:
+                                        AssetImage("assets/images/girl.png")),
                               ),
-                              Column(
-                                crossAxisAlignment: CrossAxisAlignment.end,
-                                children: [
-                                  Visibility(
-                                    visible: index != 0,
-                                 child: SvgPicture.asset(
-                                          "assets/images/assets/icon-bin-blue.svg",
-                                          width: deviceSize.width * 0.04,
-                                          fit: BoxFit.contain,
-                                        ),
-                                  ),
-                                  SizedBox(
-                                    height: 5,
-                                  ),
-                                  Visibility(
-                                    visible: index == 2,
-                                    child: Text(
-                                      "Pending",
-                                      style: TextStyle(
-                                          fontStyle: FontStyle.italic),
-                                    ),
-                                  )
-                                ],
-                              )
-                            ],
-                          ),
-                        );
-                      }))),
-              Container(
-                  margin: EdgeInsets.only(top: deviceSize.height * 0.03),
-                  child: GreenNegative(
-                      onPressed: () {
-                        customDialog(
-                            title: "Invite Member by Email or Name",
-                            deviceSize: deviceSize,
-                            context: context);
-                      },
-                      title: "Add member")),
-              SizedBox(height: deviceSize.height * 0.21),
-              Align(
-                alignment: FractionalOffset.bottomCenter,
-                child: Column(
-                  children: [
-                    GreenPostitve(
-                        onPressed: () {
-                          Navigator.push(
-                            context,
-                            PageRouteBuilder(
-                              pageBuilder:
-                                  (context, animation1, animation2) =>
-                                      RoomsPage(),
-                              transitionDuration: Duration.zero,
-                              reverseTransitionDuration: Duration.zero,
                             ),
-                          );
+                            SizedBox(
+                              width: 10,
+                            ),
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  "First One",
+                                  style: TextStyle(
+                                    fontSize: 13,
+                                    fontWeight: FontWeight.w900,
+                                  ),
+                                ),
+                                SizedBox(
+                                  height: 3,
+                                ),
+                                Text("email@email.com"),
+                              ],
+                            ),
+                          ],
+                        ),
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.end,
+                          children: [
+                            Visibility(
+                              visible: index != 0,
+                              child: SvgPicture.asset(
+                                "assets/images/assets/icon-bin-blue.svg",
+                                width: deviceSize.width * 0.04,
+                                fit: BoxFit.contain,
+                              ),
+                            ),
+                            SizedBox(
+                              height: 5,
+                            ),
+                            Visibility(
+                              visible: index == 2,
+                              child: Text(
+                                "Pending",
+                                style: TextStyle(fontStyle: FontStyle.italic),
+                              ),
+                            )
+                          ],
+                        )
+                      ],
+                    ),
+                  );
+                })),
+           
+         ],), Column(
+              children: [
+                Container(
+                    margin: EdgeInsets.only(top: deviceSize.height * 0.02),
+                    child: GreenNegative(
+                        onPressed: () {
+                          customDialog(
+                              title: "Invite Member by Email or Name",
+                              deviceSize: deviceSize,
+                              context: context);
                         },
-                        title: "Finish")
-                  ],
-                ),
-              ),
-            ],
-          ),
+                        title: "Add member")),
+                SizedBox(height: deviceSize.height * 0.23),
+                GreenPostitve(
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        PageRouteBuilder(
+                          pageBuilder: (context, animation1, animation2) =>
+                              RoomsPage(),
+                          transitionDuration: Duration.zero,
+                          reverseTransitionDuration: Duration.zero,
+                        ),
+                      );
+                    },
+                    title: "Finish")
+              ],
+            ),
+          ],
         ),
       ),
     );
