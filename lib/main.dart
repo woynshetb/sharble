@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:sharble/constants/app_theme.dart';
 import 'package:sharble/pages/splash/splash.page.dart';
-import 'package:sharble/pages/welcome/welcome.page.dart';
+
 
 void main() {
   runApp(const MyApp());

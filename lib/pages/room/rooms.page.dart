@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:sharble/pages/dept_orginizer/dept_organizer.page.dart';
 import 'package:sharble/pages/notifications/notifications.page.dart';
 import 'package:sharble/pages/room/create_room.page.dart';
 import 'package:sharble/pages/shopping/shopping_list.page.dart';
+import 'package:get/get.dart';
 
 class RoomsPage extends StatefulWidget {
   const RoomsPage({Key? key}) : super(key: key);
@@ -73,7 +75,7 @@ class _RoomsPageState extends State<RoomsPage> {
               width: deviceSize.width * 0.04,
             ),
           ),
-          SizedBox(
+          const SizedBox(
             width: 10,
           ),
           InkWell(
@@ -82,7 +84,7 @@ class _RoomsPageState extends State<RoomsPage> {
                 context,
                 PageRouteBuilder(
                   pageBuilder: (context, animation1, animation2) =>
-                      NotificationsPage(),
+                      const NotificationsPage(),
                   transitionDuration: Duration.zero,
                   reverseTransitionDuration: Duration.zero,
                 ),
@@ -93,12 +95,12 @@ class _RoomsPageState extends State<RoomsPage> {
               width: deviceSize.width * 0.04,
             ),
           ),
-          SizedBox(
+          const SizedBox(
             width: 23,
           ),
         ],
       ),
-      backgroundColor: Color(0xffFCFBFC),
+      backgroundColor: const Color(0xffFCFBFC),
       body: Padding(
         padding: const EdgeInsets.only(
           left: 20.0,
@@ -106,23 +108,26 @@ class _RoomsPageState extends State<RoomsPage> {
         ),
         child: ListView.builder(
             itemCount: list.length,
-            physics: NeverScrollableScrollPhysics(),
+            physics: const NeverScrollableScrollPhysics(),
             itemBuilder: (context, index) {
               return InkWell(
                 onTap: () {
-                  Navigator.push(
-                    context,
-                    PageRouteBuilder(
-                      pageBuilder: (context, animation1, animation2) =>
-                          ShoppingListPage(),
-                      transitionDuration: Duration.zero,
-                      reverseTransitionDuration: Duration.zero,
-                    ),
-                  );
+                  if (index == 2) {
+                    Navigator.push(
+                      context,
+                      PageRouteBuilder(
+                        pageBuilder: (context, animation1, animation2) =>
+                            const DeptOrganizer(),
+                        transitionDuration: Duration.zero,
+                        reverseTransitionDuration: Duration.zero,
+                      ),
+                    );
+                  }
                 },
                 child: Container(
-                  margin: EdgeInsets.only(top: 2, bottom: 8),
-                  padding: EdgeInsets.symmetric(horizontal: 20, vertical: 15),
+                  margin: const EdgeInsets.only(top: 2, bottom: 8),
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 20, vertical: 15),
                   decoration: BoxDecoration(
                     color: Colors.white,
                     borderRadius: BorderRadius.circular(15),
@@ -133,7 +138,7 @@ class _RoomsPageState extends State<RoomsPage> {
                             25, // has the effect of softening the shadow
                         spreadRadius:
                             1, // has the effect of extending the shadow
-                        offset: Offset(
+                        offset: const Offset(
                           6, // horizontal, move right 10
                           6, // vertical, move down 10
                         ),
@@ -149,12 +154,12 @@ class _RoomsPageState extends State<RoomsPage> {
                         children: [
                           Text(
                             list[index]['name'],
-                            style: TextStyle(
+                            style: const TextStyle(
                               fontSize: 14,
                               fontWeight: FontWeight.w800,
                             ),
                           ),
-                          SizedBox(
+                          const SizedBox(
                             height: 20,
                           ),
                           Row(
@@ -176,7 +181,7 @@ class _RoomsPageState extends State<RoomsPage> {
                               ),
                             ],
                           ),
-                          SizedBox(
+                          const SizedBox(
                             height: 5,
                           ),
                           Row(
@@ -217,7 +222,6 @@ class _RoomsPageState extends State<RoomsPage> {
                           )
                         ],
                       ),
-   
                       Stack(
                         children: [
                           SvgPicture.asset(
@@ -230,7 +234,7 @@ class _RoomsPageState extends State<RoomsPage> {
                             top: 0,
                             right: 0,
                             child: Visibility(
-                              visible: list[index]['length'] !="",
+                              visible: list[index]['length'] != "",
                               child: Container(
                                 width: 15,
                                 height: 15,
@@ -241,7 +245,7 @@ class _RoomsPageState extends State<RoomsPage> {
                                 child: Align(
                                     alignment: Alignment.center,
                                     child: Text(
-                                       list[index]['length'],
+                                      list[index]['length'],
                                       style: TextStyle(
                                           color: Colors.white,
                                           fontWeight: FontWeight.w300,
